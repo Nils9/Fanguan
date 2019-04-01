@@ -8,7 +8,7 @@ class Commande : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Commande(QWidget *parent = nullptr);
+    explicit Commande(QWidget *parent = nullptr, int commandeId = 0);
 
 signals:
 

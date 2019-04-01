@@ -8,6 +8,7 @@
 #include "selection.h"
 #include "carte.h"
 #include "connexion.h"
+#include "commande.h"
 
 
 Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
@@ -16,7 +17,7 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Barre supérieure
-    QHBoxLayout * topMenuLayout = new QHBoxLayout(this);
+    QHBoxLayout * topMenuLayout = new QHBoxLayout();
 
     QPushButton * aboButton = new QPushButton(tr("Espace Habitué"));
     QPushButton * carteButton = new QPushButton(tr("Carte"));
@@ -37,9 +38,10 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 
     centralWidget = new QWidget(this);
     centralWidget->setMinimumSize(QSize(600, 400));
+    centralLayout->addWidget(centralWidget);
 
     //Barre inférieure
-    QHBoxLayout * bottomMenuLayout = new QHBoxLayout(this);
+    QHBoxLayout * bottomMenuLayout = new QHBoxLayout();
 
     QPushButton * serveurButton = new QPushButton(tr("Appeler Serveur"));
     QPushButton * commandeButton = new QPushButton(tr("Commande"));
@@ -52,9 +54,8 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 
     //Layout général
     mainLayout->addLayout(topMenuLayout);
-    mainLayout->addWidget(centralWidget);
+    mainLayout->addLayout(centralLayout);
     mainLayout->addLayout(bottomMenuLayout);
-    this->setLayout(mainLayout);
 
     //Connection des boutons aux slots
     connect(aboButton, SIGNAL(clicked()), this, SLOT(displayEspaceAbo()));
@@ -76,6 +77,9 @@ void Template::displayEspaceAbo() {
 
 void Template::displayCommande() {
    std::cout << "Commande"<<std::endl;
+   centralLayout->removeWidget(centralWidget);
+   setCentralWidget(new Commande());
+   centralLayout->addWidget(centralWidget);
 }
 
 void Template::appelServeur() {
