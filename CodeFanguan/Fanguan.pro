@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     menu.cpp \
     selection.cpp \
     template.cpp \
-    accueil.cpp
+    accueil.cpp \
+    plat.cpp
 
 HEADERS  += mainwindow.h \
     carte.h \
@@ -51,7 +52,8 @@ HEADERS  += mainwindow.h \
     model.h \
     selection.h \
     template.h \
-    accueil.h
+    accueil.h \
+    plat.h
 
 FORMS    += mainwindow.ui
 
