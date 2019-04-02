@@ -35,7 +35,16 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-    centralWidget = new QWidget(this);
+
+
+    switch (rub) {
+    case CARTE:
+        centralWidget = new Carte(this);
+        break;
+    default:
+        centralWidget = new QWidget(this);
+        break;
+    }
     centralWidget->setMinimumSize(QSize(600, 400));
     centralLayout->addWidget(centralWidget);
 
