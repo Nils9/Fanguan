@@ -3,6 +3,8 @@
 #include <iostream>
 #include "accueil.h"
 #include "template.h"
+#include "carte.h"
+#include "catalogue.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(new Accueil(this));
     setMinimumSize(900, 600);
     setStyleSheet(" QMainWindow {background-color : red}; QPushButton {background-color : yellow;}");
+
 }
 
 MainWindow::~MainWindow()
