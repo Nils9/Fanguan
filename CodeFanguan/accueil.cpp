@@ -13,10 +13,13 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
 
     QPushButton * frButton = new QPushButton("Fr");
     frButton->setIcon(QIcon(":/images/france.jpg"));
+    frButton->setMinimumSize(QSize(50, 40));
     QPushButton * engButton = new QPushButton("Eng");
     engButton->setIcon(QIcon(":/images/angleterre.jpg"));
+    engButton->setMinimumSize(QSize(50, 40));
     QPushButton * chButton = new QPushButton("Ch");
     chButton->setIcon(QIcon(":/images/chine.png"));
+    chButton->setMinimumSize(QSize(50, 40));
 
     QSizePolicy langSizePolicy = QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     frButton->setSizePolicy(langSizePolicy);

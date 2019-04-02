@@ -10,5 +10,7 @@
         <file>images/loupe.png</file>
         <file>images/back.png</file>
         <file>images/cross.png</file>
+        <file>images/nouilles.jpg</file>
+        <file>images/poulet.jpg</file>
     </qresource>
 </RCC>

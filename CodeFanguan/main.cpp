@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include "carte.h"
+#include "template.h"
 #include <QApplication>
 #include "template.h"
 

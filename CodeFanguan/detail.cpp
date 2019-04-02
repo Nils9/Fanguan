@@ -4,3 +4,4 @@ Detail::Detail(QWidget *parent) : QWidget(parent)
 {
 
 }
+

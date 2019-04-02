@@ -1,4 +1,5 @@
 #include "template.h"
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -8,7 +9,6 @@
 #include "selection.h"
 #include "carte.h"
 #include "connexion.h"
-#include "commande.h"
 
 
 Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
@@ -19,10 +19,10 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     //Barre supérieure
     QHBoxLayout * topMenuLayout = new QHBoxLayout();
 
-    QPushButton * aboButton = new QPushButton(tr("Espace Habitué"));
+    QPushButton * aboButton = new QPushButton(tr("Espace Habitue"));
     QPushButton * carteButton = new QPushButton(tr("Carte"));
-    QPushButton * rechercheButton = new QPushButton(tr("Recheche"));
-    QPushButton * selectionButton = new QPushButton(tr("Sélection du Chef"));
+    QPushButton * rechercheButton = new QPushButton(tr("Recherche"));
+    QPushButton * selectionButton = new QPushButton(tr("Selection du Chef"));
 
     aboButton->setFont(buttonFont);
     carteButton->setFont(buttonFont);
@@ -36,7 +36,15 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 
     //Zone centrale
 
-    centralWidget = new QWidget(this);
+
+    switch (rub) {
+    case CARTE:
+        centralWidget = new Carte(this);
+        break;
+    default:
+        centralWidget = new QWidget(this);
+        break;
+    }
     centralWidget->setMinimumSize(QSize(600, 400));
     centralLayout->addWidget(centralWidget);
 
@@ -66,17 +74,21 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 }
 
 void Template::displayCarte() {
-   std::cout << "Carte"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new Carte());
+    centralLayout->addWidget(centralWidget);
+    update();
 }
+
 void Template::displayRecherche() {
    std::cout << "Recherche"<<std::endl;
 }
+
 void Template::displayEspaceAbo() {
    std::cout << "Espace habitués"<<std::endl;
 }
 
 void Template::displayCommande() {
-   std::cout << "Commande"<<std::endl;
    centralLayout->removeWidget(centralWidget);
    setCentralWidget(new Commande());
    centralLayout->addWidget(centralWidget);
@@ -84,4 +96,7 @@ void Template::displayCommande() {
 
 void Template::appelServeur() {
    std::cout << "Serveur"<< std::endl;
+}
+
+void Template::paintEvent(QPaintEvent *){
 }
