@@ -20,7 +20,7 @@ Catalogue::Catalogue(QWidget *parent) : QWidget(parent)
         CatalogueItem(QString label, QIcon icon, int id) : QToolButton(){
             setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
             setIcon(icon);
-            setIconSize(QSize(150, 150));
+            setIconSize(QSize(150, 120));
             setText(label);
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setStyleSheet("color : black; background-color : white;");
