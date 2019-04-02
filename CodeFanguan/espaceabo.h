@@ -1,6 +1,6 @@
-//Julien
-#ifndef ESPACEABO_H
-#define ESPACEABO_H
+//Arthur
+#ifndef DETAIL_H
+#define DETAIL_H
 
 #include <QWidget>
 
@@ -15,4 +15,4 @@ signals:
 public slots:
 };
 
-#endif // ESPACEABO_H
+#endif // DETAIL_H
