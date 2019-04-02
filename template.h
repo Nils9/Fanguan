@@ -28,9 +28,9 @@ public slots:
     void appelServeur();
 
 private :
-    QWidget * centralWidget;
-    QLayout * centralLayout;
-    QVBoxLayout * mainLayout;
+    QWidget * centralWidget = nullptr;
+    QLayout * centralLayout = nullptr;
+    QVBoxLayout * mainLayout = nullptr;
 };
 
 #endif // TEMPLATE_H

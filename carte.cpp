@@ -8,7 +8,7 @@
 
 Carte::Carte(QWidget *parent) : QWidget(parent)
 {
-    QVBoxLayout * mainLayout = new QVBoxLayout();
+    QHBoxLayout * mainLayout = new QHBoxLayout();
 
     QHBoxLayout * topLayout = new QHBoxLayout();
     topLayout->setSpacing(0);
@@ -39,19 +39,20 @@ Carte::Carte(QWidget *parent) : QWidget(parent)
     buttonLayout->addWidget(boissonsButton);
     buttonLayout->setSpacing(50);
 
-    mainLayout->addLayout(topLayout);
-    mainLayout->addStretch(5);
-    mainLayout->addLayout(buttonLayout);
-    mainLayout->addStretch(5);
-    setLayout(mainLayout);
-
     //Zone centrale
     centralLayout = new QHBoxLayout();
     centralWidget = new QWidget(this);
-    centralWidget->setMinimumSize(QSize(600, 400));
+    centralWidget->setMinimumSize(QSize(300, 300));
     centralLayout->addWidget(centralWidget);
 
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
+    //mainLayout->addLayout(topLayout);
+    //mainLayout->addStretch(5);
+    mainLayout->addLayout(buttonLayout);
+    mainLayout->addLayout(centralLayout);
+    mainLayout->addStretch(5);
+    setLayout(mainLayout);
 
     connect(entreesButton, SIGNAL(clicked()), this, SLOT(displayEntrees()));
     connect(platsButton, SIGNAL(clicked()), this, SLOT(displayPlats()));
@@ -68,23 +69,33 @@ void Carte::displayEntrees() {
 }
 
 void Carte::displayPlats() {
-   std::cout << "Plats"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new Catalogue());
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
 void Carte::displayDesserts() {
-   std::cout << "Desserts"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new Catalogue());
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
 void Carte::displayMenus() {
-   std::cout << "Menus"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new Catalogue());
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
 void Carte::displayBoissons() {
-   std::cout << "Boissons"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new Catalogue());
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
-void Carte::paintEvent(QPaintEvent *){/*
-    centralLayout->removeWidget(centralWidget);
-    centralLayout->addWidget(centralWidget);*/
+void Carte::paintEvent(QPaintEvent *){
 }
 
