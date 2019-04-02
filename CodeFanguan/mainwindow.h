@@ -15,8 +15,15 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots :
+    void displayCarte();
+    void displayEspaceAbo();
+    void displayRecherche();
+    void appelServeur();
+
 private:
     Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H
+
