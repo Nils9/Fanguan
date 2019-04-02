@@ -1,4 +1,7 @@
 #include "template.h"
+
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QPushButton>
 #include <QSizePolicy>
 #include <iostream>
@@ -32,7 +35,6 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-    centralLayout = new QHBoxLayout();
     centralWidget = new QWidget(this);
     centralWidget->setMinimumSize(QSize(600, 400));
     centralLayout->addWidget(centralWidget);
@@ -51,10 +53,8 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 
     //Layout général
     mainLayout->addLayout(topMenuLayout);
-    //mainLayout->addWidget(centralWidget);
     mainLayout->addLayout(centralLayout);
     mainLayout->addLayout(bottomMenuLayout);
-    //this->setLayout(mainLayout);
 
     //Connection des boutons aux slots
     connect(aboButton, SIGNAL(clicked()), this, SLOT(displayEspaceAbo()));
@@ -80,14 +80,14 @@ void Template::displayEspaceAbo() {
 }
 
 void Template::displayCommande() {
-   std::cout << "Commande"<<std::endl;
+   centralLayout->removeWidget(centralWidget);
+   setCentralWidget(new Commande());
+   centralLayout->addWidget(centralWidget);
 }
 
 void Template::appelServeur() {
    std::cout << "Serveur"<< std::endl;
 }
 
-void Template::paintEvent(QPaintEvent *){/*
-    centralLayout->removeWidget(centralWidget);
-    centralLayout->addWidget(centralWidget);*/
+void Template::paintEvent(QPaintEvent *){
 }

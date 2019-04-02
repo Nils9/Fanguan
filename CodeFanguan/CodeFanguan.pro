@@ -63,3 +63,17 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    images/angleterre.jpg \
+    images/loupe.jpg \
+    images/menu.jpg \
+    images/nourriture.jpg \
+    images/bell.png \
+    images/chine.png \
+    images/menu.png \
+    images/smileymaison.png \
+    images/toque.png
+
+RESOURCES += \
+    res.qrc

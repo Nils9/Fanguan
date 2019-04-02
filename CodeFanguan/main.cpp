@@ -2,6 +2,7 @@
 #include "carte.h"
 #include "template.h"
 #include <QApplication>
+#include "template.h"
 
 int main(int argc, char *argv[])
 {

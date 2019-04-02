@@ -11,9 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     //ui->setupUi(this);
-    setCentralWidget(new Template(this));
+    setCentralWidget(new Accueil(this));
     setMinimumSize(900, 600);
-    setStyleSheet("Accueil {background-color: red}");
+    setStyleSheet(" QMainWindow {background-color : red}; QPushButton {background-color : yellow;}");
+
 }
 
 MainWindow::~MainWindow()

@@ -1,6 +1,6 @@
 #ifndef TEMPLATE_H
 #define TEMPLATE_H
-
+#include <QHBoxLayout>
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -29,7 +29,7 @@ public slots:
 
 private :
     QWidget * centralWidget = nullptr;
-    QLayout * centralLayout = nullptr;
+    QHBoxLayout * centralLayout = new QHBoxLayout() ;
     QVBoxLayout * mainLayout = nullptr;
 };
 
