@@ -38,7 +38,10 @@ SOURCES += \
     connexion.cpp \
     espaceabo.cpp \
     inscription.cpp \
-    gerercompte.cpp
+    gerercompte.cpp \
+    membre.cpp \
+    famille.cpp \
+    recherche.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,7 +57,10 @@ HEADERS += \
     espaceabo.h \
     inscription.h \
     gerercompte.h \
-    model.h
+    model.h \
+    membre.h \
+    famille.h \
+    recherche.h
 
 FORMS += \
         mainwindow.ui
@@ -76,4 +82,5 @@ DISTFILES += \
     images/toque.png
 
 RESOURCES += \
+    res.qrc \
     res.qrc
