@@ -3,6 +3,11 @@
 #define MENU_H
 
 #include <QWidget>
+#include <QLayout>
+#include <QToolButton>
+#include <QLabel>
+#include <QGridLayout>
+#include <QPushButton>
 
 class Menu : public QWidget
 {
