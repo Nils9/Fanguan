@@ -18,17 +18,17 @@ Model::Model(){
     Plat * e1 = new Plat(1);
     e1->setImageFile(":/images/Entrees/nems.jpeg");
     e1->setPrix(5);
-    e1->setLabel("Nems au Poulet");
+    e1->setLabel("Nems Poulet");
     addEntree(e1);
     Plat * e2 = new Plat(4);
     e2->setImageFile(":/images/Entrees/nems.jpeg");
     e2->setPrix(5);
-    e2->setLabel("Nems au Porc");
+    e2->setLabel("Nems Porc");
     addEntree(e2);
     Plat * e3 = new Plat(5);
     e3->setImageFile(":/images/Entrees/nems.jpeg");
     e3->setPrix(5);
-    e3->setLabel("Nems aux Crevettes");
+    e3->setLabel("Nems Crevettes");
     addEntree(e3);
     //Plats
     Plat * p1 = new Plat(2);
@@ -50,6 +50,19 @@ Model::Model(){
     m1->addMenuPlat(p1);
     m1->addMenuDessert(d1);
     addMenu(m1);
+    MenuModel * m2 = new MenuModel("Japonais");
+    m2->addMenuEntree(e1);
+    m2->addMenuEntree(e3);
+    m2->addMenuPlat(d1);
+    m2->addMenuDessert(p1);
+    addMenu(m2);
+    MenuModel * m3 = new MenuModel("Thaïlandais");
+    m3->addMenuEntree(e1);
+    m3->addMenuEntree(e2);
+    m3->addMenuEntree(e3);
+    m3->addMenuPlat(p1);
+    m3->addMenuDessert(d1);
+    addMenu(m3);
 }
 
 void Model::addDessert(Plat *dessert){
