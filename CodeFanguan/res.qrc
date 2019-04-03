@@ -1,1 +1,20 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>images/angleterre.jpg</file>
+        <file>images/back.png</file>
+        <file>images/bell.png</file>
+        <file>images/chine.png</file>
+        <file>images/cross.png</file>
+        <file>images/france.jpg</file>
+        <file>images/loupe.png</file>
+        <file>images/menu.jpg</file>
+        <file>images/menu.png</file>
+        <file>images/nouilles.jpg</file>
+        <file>images/nourriture.jpg</file>
+        <file>images/plus.png</file>
+        <file>images/poubelle.png</file>
+        <file>images/poulet.jpg</file>
+        <file>images/smileymaison.png</file>
+        <file>images/toque.png</file>
+    </qresource>
+</RCC>
