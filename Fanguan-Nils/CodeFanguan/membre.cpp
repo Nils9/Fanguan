@@ -8,7 +8,12 @@ Membre::Membre()
 Membre::Membre(QString name, int id){
     this->name = name;
     this->id = id;
+    this->commande = new std::vector<Plat*>();
+    this->favoris = new std::vector<Plat*>();
+    this->recommendations = new std::vector<Plat*>();
+    this->avantages = new std::vector<QString>();
 }
+
 
 int Membre::getId(){
     return id;
@@ -18,34 +23,34 @@ QString Membre::getName(){
     return name;
 }
 
-//std::vector<Plat*> getCommande(){
-//    return commande;
-//}
+std::vector<Plat*>* Membre::getCommande(){
+    return commande;
+}
 
-//void Membre::addCommande(Plat *plat){
-//    commande->push_back(plat);
-//}
+void Membre::addCommande(Plat *plat){
+    commande->push_back(plat);
+}
 
-//void Membre::addFavori(Plat *plat){
-//    favoris->push_back(plat);
-//}
+void Membre::addFavori(Plat *plat){
+    favoris->push_back(plat);
+}
 
-//std::vector<Plat*> getFavoris(){
-//    return favoris;
-//}
+std::vector<Plat*> * Membre::getFavoris(){
+    return favoris;
+}
 
-//void Membre::addRecommendation(Plat *plat){
-//    recommendations->push_back(plat);
-//}
+void Membre::addRecommendation(Plat *plat){
+    recommendations->push_back(plat);
+}
 
-//std::vector<Plat*> getRecommendations(){
-//    return recommendations;
-//}
+std::vector<Plat*> * Membre::getRecommendations(){
+    return recommendations;
+}
 
-//void Membre::addAvantage(QString avantage){
-//    commande->push_back(avantage);
-//}
+void Membre::addAvantage(QString avantage){
+    avantages->push_back(avantage);
+}
 
-//std::vector<QString> getAvantages(){
-//    return avantages;
-//}
+std::vector<QString> * Membre::getAvantages(){
+    return avantages;
+}
