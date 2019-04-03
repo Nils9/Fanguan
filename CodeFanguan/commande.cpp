@@ -9,7 +9,7 @@
 #include <QLabel>
 #include <QFrame>
 
-Commande::Commande(QDialog *parent,  int commandeId) : QDialog(parent)
+Commande::Commande(QWidget *parent,  int commandeId) : QWidget(parent)
 {
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
@@ -79,7 +79,6 @@ Commande::Commande(QDialog *parent,  int commandeId) : QDialog(parent)
     bottomLayout->addWidget(total);
     bottomLayout->addStretch(10);
     bottomLayout->addWidget(sendButton);
-    setModal(true);
 
     mainLayout->addLayout(topLayout);
     mainLayout->addLayout(grid);
