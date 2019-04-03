@@ -117,10 +117,12 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
     //connect(flecheG, SIGNAL(clicked()), this, SLOT());
 }
 
-QVBoxLayout * Menu::newColonne(std::vector<Plat *> liste, QString type){
+QVBoxLayout * Menu::newColonne(std::vector<Plat *> liste, QString nom){
     QVBoxLayout * colonne = new QVBoxLayout();
-    QLabel * label = new QLabel(type);
+    QLabel * label = new QLabel(nom);
     label->setFont(QFont("Arial", 18));
+    colonne->addWidget(label);
+    colonne->setAlignment(label, Qt::AlignCenter);
     colonne->addStretch(5);
 
     for(int i = 0; i < liste.size(); i++){

@@ -18,25 +18,35 @@ Model::Model(){
     Plat * e1 = new Plat(1);
     e1->setImageFile(":/images/Entrees/nems.jpeg");
     e1->setPrix(5);
+    e1->setLabel("Nems au Poulet");
     addEntree(e1);
     Plat * e2 = new Plat(4);
     e2->setImageFile(":/images/Entrees/nems.jpeg");
     e2->setPrix(5);
+    e2->setLabel("Nems au Porc");
     addEntree(e2);
+    Plat * e3 = new Plat(5);
+    e3->setImageFile(":/images/Entrees/nems.jpeg");
+    e3->setPrix(5);
+    e3->setLabel("Nems aux Crevettes");
+    addEntree(e3);
     //Plats
     Plat * p1 = new Plat(2);
     p1->setImageFile(":/images/Plats/nouilles.jpg");
     p1->setPrix(10);
+    p1->setLabel("Nouilles");
     addPlat(p1);
     //Desserts
     Plat * d1 = new Plat(3);
     d1->setImageFile(":/images/Desserts/sesame-beignets.jpeg");
     d1->setPrix(4);
+    d1->setLabel("Beignets de sésame");
     addPlat(d1);
     //Menus
     MenuModel * m1 = new MenuModel("Cantonais");
     m1->addMenuEntree(e1);
     m1->addMenuEntree(e2);
+    //m1->addMenuEntree(e3);
     m1->addMenuPlat(p1);
     m1->addMenuDessert(d1);
     addMenu(m1);
