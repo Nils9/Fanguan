@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->setupUi(this);
     setCentralWidget(new Accueil(this));
     setMinimumSize(900, 600);
-    setStyleSheet(" QMainWindow {background-color : red}; QPushButton {background-color : yellow;}");
+    setStyleSheet(" QMainWindow {background-color : #ff5e4d}; QPushButton {background-color : yellow;}");
 }
 
 MainWindow::~MainWindow()
@@ -27,11 +27,11 @@ void MainWindow::displayCarte() {
 }
 
 void MainWindow::displayRecherche() {
-    setCentralWidget(new Template(this, Template::ESPACEABO));
+    setCentralWidget(new Template(this, Template::RECHERCHE));
 }
 
 void MainWindow::displayEspaceAbo() {
-    setCentralWidget(new Template(this, Template::RECHERCHE));
+    setCentralWidget(new Template(this, Template::ESPACEABO));
 }
 
 void MainWindow::appelServeur() {

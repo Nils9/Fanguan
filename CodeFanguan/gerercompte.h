@@ -25,6 +25,10 @@ private:
     std::vector <QLabel*> * labelsVector = new std::vector<QLabel*>;
     std::vector <QProgressBar*> * progressBarsVector = new std::vector<QProgressBar*>;
 
+    QWidget * centralWidget;
+    QLayout * centralLayout;
+    QVBoxLayout * mainLayout;
+
 public:
     explicit GererCompte(QWidget *parent = nullptr);
     void addDeleteButton(int row, int column);

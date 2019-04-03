@@ -1,4 +1,5 @@
 #include "espaceabo.h"
+#include "template.h"
 
 EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
 {
@@ -22,13 +23,11 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
 
     class CatalogueItem : public QToolButton
     {
-
     public:
         CatalogueItem(QString label, QIcon icon, int id) : QToolButton(){
             setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-            setMaximumSize(QSize(160,150));
             setIcon(icon);
-            setIconSize(QSize(150, 150));
+            setIconSize(QSize(150, 120));
             setText(label);
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setStyleSheet("color : black; background-color : white;");
@@ -40,7 +39,8 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     EspaceAboLeftButton * arthurButton = new EspaceAboLeftButton("Arthur");
     EspaceAboLeftButton * nilsButton = new EspaceAboLeftButton("Nils");
     EspaceAboLeftButton * julienButton = new EspaceAboLeftButton("Julien");
-    EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gérer Compte");
+    EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte");
+
     leftVerticalLayout->addWidget(margotButton);
     leftVerticalLayout->addWidget(arthurButton);
     leftVerticalLayout->addWidget(nilsButton);
@@ -53,17 +53,21 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     QWidget * platsFavorisContentWidget = new QWidget();
     QScrollArea * platsFavorisScrollArea = new QScrollArea;
     platsFavorisScrollArea->setAlignment(Qt::AlignCenter);
-    platsFavorisScrollArea->setMaximumHeight(200);
+    platsFavorisScrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    platsFavorisScrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded);
+    platsFavorisScrollArea->setMinimumHeight(185);
     QHBoxLayout * platsFavorisLayout = new QHBoxLayout();
-    platsFavorisLayout->setSpacing(50);
-    CatalogueItem * nemsButton = new CatalogueItem("Nems",QIcon(":/nourriture.jpg"),1);
-    CatalogueItem * samoussasButton = new CatalogueItem("Samoussas",QIcon(":/nourriture.jpg"),2);
-    CatalogueItem * boeufGingembreButton = new CatalogueItem("Boeuf au gingembre",QIcon(":/nourriture.jpg"),3);
-    CatalogueItem * phoButton = new CatalogueItem("Pho",QIcon(":/nourriture.jpg"),4);
+    platsFavorisLayout->setSpacing(10);
+    CatalogueItem * nemsButton = new CatalogueItem("Nems",QIcon(":/images/nourriture.jpg"),1);
+    CatalogueItem * samoussasButton = new CatalogueItem("Samoussas",QIcon(":/images/nourriture.jpg"),2);
+    CatalogueItem * boeufGingembreButton = new CatalogueItem("Boeuf au gingembre",QIcon(":/images/nourriture.jpg"),3);
+    CatalogueItem * phoButton = new CatalogueItem("Pho",QIcon(":/images/nourriture.jpg"),4);
+    CatalogueItem * nouillesButton = new CatalogueItem("Nouilles",QIcon(":/images/nourriture.jpg"),4);
     platsFavorisLayout->addWidget(nemsButton);
     platsFavorisLayout->addWidget(samoussasButton);
     platsFavorisLayout->addWidget(boeufGingembreButton);
     platsFavorisLayout->addWidget(phoButton);
+    platsFavorisLayout->addWidget(nouillesButton);
     platsFavorisContentWidget->setLayout(platsFavorisLayout);
     platsFavorisScrollArea->setWidget(platsFavorisContentWidget);
 
@@ -76,13 +80,15 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     QWidget * recommandationsContentWidget = new QWidget();
     QScrollArea * recommandationsScrollArea = new QScrollArea();
     recommandationsScrollArea->setAlignment(Qt::AlignCenter);
-    recommandationsScrollArea->setMaximumHeight(200);
+    recommandationsScrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    recommandationsScrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded);
+    recommandationsScrollArea->setMinimumHeight(185);
     QHBoxLayout * recommandationsLayout = new QHBoxLayout();
-    recommandationsLayout->setSpacing(50);
-    CatalogueItem * canardLaqueButton = new CatalogueItem("Canard laqué",QIcon(":/nourriture.jpg"),5);
-    CatalogueItem * rouleauxPrintempsButton = new CatalogueItem("Rouleaux de printemps",QIcon(":/nourriture.jpg"),6);
-    CatalogueItem * rizCantonnaisButton = new CatalogueItem("Riz cantonnais",QIcon(":/nourriture.jpg"),7);
-    CatalogueItem * boBunButton = new CatalogueItem("Bò bún",QIcon(":/nourriture.jpg"),8);
+    recommandationsLayout->setSpacing(10);
+    CatalogueItem * canardLaqueButton = new CatalogueItem("Canard laque",QIcon(":/images/nourriture.jpg"),5);
+    CatalogueItem * rouleauxPrintempsButton = new CatalogueItem("Rouleaux de printemps",QIcon(":/images/nourriture.jpg"),6);
+    CatalogueItem * rizCantonnaisButton = new CatalogueItem("Riz cantonnais",QIcon(":/images/nourriture.jpg"),7);
+    CatalogueItem * boBunButton = new CatalogueItem("Bo bun",QIcon(":/images/nourriture.jpg"),8);
     recommandationsLayout->addWidget(canardLaqueButton);
     recommandationsLayout->addWidget(rouleauxPrintempsButton);
     recommandationsLayout->addWidget(rizCantonnaisButton);
@@ -94,15 +100,15 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     recommandationsWithLabelLayout->addWidget(recommandationsScrollArea);
 
     QLabel * avantagesPersoLabel = new QLabel("Avantages personnels: ");
-    QLabel * avantagePerso1 = new QLabel(" -5% sur les entrées");
+    QLabel * avantagePerso1 = new QLabel(" -5% sur les entrees");
     QLabel * avantagesFamilleLabel = new QLabel("Avantages famille: ");
     QLabel * avantageFamille1 = new QLabel(" Commande prioritaire");
-    QLabel * avantageFamille2 = new QLabel(" Thé vert offert");
+    QLabel * avantageFamille2 = new QLabel(" The vert offert");
     QGridLayout * avantagesGridLayout = new QGridLayout();
     avantagesGridLayout->setAlignment(Qt::AlignCenter);
     avantagesGridLayout->addWidget(avantagesPersoLabel,1,1);
     avantagesGridLayout->addWidget(avantagePerso1,2,1);
-    avantagesGridLayout->setHorizontalSpacing(100);
+    avantagesGridLayout->setHorizontalSpacing(200);
     avantagesGridLayout->addWidget(avantagesFamilleLabel,1,2);
     avantagesGridLayout->addWidget(avantageFamille1,2,2);
     avantagesGridLayout->addWidget(avantageFamille2,3,2);
@@ -110,9 +116,12 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     rightVerticalLayout->addLayout(platsFavorisWithLabelLayout);
     rightVerticalLayout->addSpacing(30);
     rightVerticalLayout->addLayout(recommandationsWithLabelLayout);
+    rightVerticalLayout->addSpacing(30);
     rightVerticalLayout->addLayout(avantagesGridLayout);
 
     layout->addLayout(leftVerticalLayout);
     layout->addLayout(rightVerticalLayout);
 
+    connect(gererCompteButton, SIGNAL(clicked()), parent, SLOT(displayGererCompte()));
 }
+
