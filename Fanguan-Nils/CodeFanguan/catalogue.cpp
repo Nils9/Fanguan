@@ -14,19 +14,6 @@ Catalogue::Catalogue(QWidget *parent) : QWidget(parent)
     QHBoxLayout * topLayout = new QHBoxLayout();
     topLayout->setSpacing(0);
 
-    class CatalogueItem : public QToolButton
-    {
-    public:
-        CatalogueItem(QString label, QIcon icon, int id) : QToolButton(){
-            setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-            setIcon(icon);
-            setIconSize(QSize(150, 120));
-            setText(label);
-            setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
-            setStyleSheet("color : black; background-color : white;");
-        }
-        virtual ~CatalogueItem() {}
-    };
 
     QToolButton * plat1Button = new CatalogueItem("nems: 7 euros",QIcon(":/images/nouilles.jpg"),1);
     QToolButton * plat2Button = new CatalogueItem("riz: 5 euros",QIcon(":/images/nouilles.jpg"),2);

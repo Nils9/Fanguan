@@ -3,6 +3,7 @@
 #define CATALOGUE_H
 
 #include <QWidget>
+#include "catalogueitem.h"
 
 class Catalogue : public QWidget
 {

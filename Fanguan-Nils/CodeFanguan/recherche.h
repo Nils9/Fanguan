@@ -2,6 +2,13 @@
 #define RECHERCHE_H
 
 #include <QWidget>
+#include <QLayout>
+#include <QToolButton>
+#include <QGroupBox>
+#include <QPushButton>
+#include <QSlider>
+#include <QGridLayout>
+#include <QIcon>
 
 class Recherche : public QWidget
 {
