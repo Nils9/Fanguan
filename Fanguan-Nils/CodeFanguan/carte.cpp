@@ -1,5 +1,6 @@
 #include "carte.h"
 #include "catalogue.h"
+#include "menu.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -17,10 +18,10 @@ Carte::Carte(QWidget *parent) : QWidget(parent)
     {
     public:
         CarteButton(QString label) : QPushButton(label){
-            setMinimumSize(QSize(200, 70));
+            setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(QFont("Arial", 13));
-            setStyleSheet("color : black; background-color : white;");
+            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
         }
         virtual ~CarteButton() {}
     };
@@ -84,7 +85,7 @@ void Carte::displayDesserts() {
 
 void Carte::displayMenus() {
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Catalogue());
+    setCentralWidget(new Menu(nullptr, new Model()));
     centralLayout->addWidget(centralWidget);
     update();
 }

@@ -44,7 +44,7 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
             setMinimumSize(QSize(200, 150));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(QFont("Arial", 18));
-            setStyleSheet("color : yellow; background-color : orange;");
+            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
             QVBoxLayout * layout = new QVBoxLayout(this);
             QLabel * image = new QLabel();
             image->setAlignment(Qt::AlignHCenter);

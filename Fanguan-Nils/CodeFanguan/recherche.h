@@ -10,6 +10,8 @@
 #include <QGridLayout>
 #include <QIcon>
 
+#include"catalogue.h"
+
 class Recherche : public QWidget
 {
     Q_OBJECT
@@ -19,6 +21,11 @@ public:
 signals:
 
 public slots:
+
+private:
+    QWidget * centralWidget;
+    QLayout * centralLayout;
+    QVBoxLayout * mainLayout;
 };
 
 #endif // RECHERCHE_H

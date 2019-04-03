@@ -2,7 +2,7 @@
 
 Recherche::Recherche(QWidget *parent) : QWidget(parent)
 {
-    QHBoxLayout * hlayout = new QHBoxLayout(this);
+    QHBoxLayout * mainLayout = new QHBoxLayout();
 
     //Création de la colonne recherche
     QVBoxLayout * vlayout = new QVBoxLayout();
@@ -37,7 +37,7 @@ Recherche::Recherche(QWidget *parent) : QWidget(parent)
     QVBoxLayout * typeLayout = new QVBoxLayout();
 
     QHBoxLayout * dishLayout = new QHBoxLayout();
-    QPushButton * starterButton = new QPushButton(tr("Entrées"));
+    QPushButton * starterButton = new QPushButton(tr("Entrees"));
     QPushButton * mealButton = new QPushButton(tr("Plats"));
     QPushButton * dessertsButton = new QPushButton(tr("Desserts"));
     dishLayout->addWidget(starterButton);
@@ -45,8 +45,8 @@ Recherche::Recherche(QWidget *parent) : QWidget(parent)
     dishLayout->addWidget(dessertsButton);
 
     QHBoxLayout * detailLayout = new QHBoxLayout();
-    QPushButton * spicyButton = new QPushButton(tr("Epicé"));
-    QPushButton * vegButton = new QPushButton(tr("Végétarien"));
+    QPushButton * spicyButton = new QPushButton(tr("Epice"));
+    QPushButton * vegButton = new QPushButton(tr("Vegetarien"));
     detailLayout->addWidget(spicyButton);
     detailLayout->addWidget(vegButton);
 
@@ -55,7 +55,7 @@ Recherche::Recherche(QWidget *parent) : QWidget(parent)
     typeGroupBox->setLayout(typeLayout);
 
     //Groupe choix ingrédient
-    QGroupBox * ingGroupBox = new QGroupBox(tr("Ingrédients"));
+    QGroupBox * ingGroupBox = new QGroupBox(tr("Ingredients"));
     QGridLayout * ingLayout = new QGridLayout();
 
     QToolButton * carotteButton = new QToolButton();
@@ -77,5 +77,17 @@ Recherche::Recherche(QWidget *parent) : QWidget(parent)
     vlayout->addWidget(countryGroupBox);
     vlayout->addWidget(typeGroupBox);
     vlayout->addWidget(ingGroupBox);
-    hlayout->addLayout(vlayout);
+
+    //Zone centrale
+    centralLayout = new QHBoxLayout();
+    centralWidget = new Catalogue(this);
+    centralWidget->setMinimumSize(QSize(300, 300));
+    centralLayout->addWidget(centralWidget);
+    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+    mainLayout->addLayout(vlayout);
+    mainLayout->addLayout(centralLayout);
+    mainLayout->addStretch(5);
+    setLayout(mainLayout);
+
+    //hlayout->addLayout(vlayout);
 }

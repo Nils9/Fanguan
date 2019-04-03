@@ -10,6 +10,7 @@
 #include "carte.h"
 #include "connexion.h"
 #include "detail.h"
+#include "recherche.h"
 
 Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 {
@@ -48,20 +49,15 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
         previousWidget = 1;
         break;
 
-    case RECHERCHE:
-        centralLayout->removeWidget(centralWidget);
-        centralWidget = new Detail(this);
-        previousWidget = 1;
-        break;
-
 	case RECHERCHE:
-    	std::cout << "Ouvrir detail"<< std::endl;
-    	centralWidget = new Detail(this);
-    	break;
+        centralLayout->removeWidget(centralWidget);
+        centralWidget = new Recherche(this);
+        previousWidget = 3;
+        break;
 
     default:
         centralWidget = new QWidget();
-        previousWidget = 3;
+        previousWidget = 4;
         break;
     }
     centralWidget->setMinimumSize(QSize(600, 400));
@@ -103,7 +99,11 @@ void Template::displayCarte() {
 
 void Template::displayRecherche() {
     previousWidget = 3;
-   std::cout << "Recherche"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new Recherche(this));
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
 void Template::displayEspaceAbo() {
@@ -138,7 +138,7 @@ void Template::retourCommande() {
         setCentralWidget(new Carte(this));
     }
     if(previousWidget == 3){
-        setCentralWidget(new QWidget(this));
+        setCentralWidget(new Recherche(this));
     }
     if(previousWidget == 4){
         setCentralWidget(new GererCompte(this));

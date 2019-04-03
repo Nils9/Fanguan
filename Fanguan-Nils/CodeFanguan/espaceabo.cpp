@@ -12,11 +12,10 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     {
     public:
         EspaceAboLeftButton(QString label) : QPushButton(label){
-            setMinimumSize(QSize(150, 15));
+            setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
             setFont(QFont("Arial", 15));
-            setStyleSheet("color : red; background-color : orange;");
-
+            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
         }
         virtual ~EspaceAboLeftButton() {}
     };
