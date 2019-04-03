@@ -35,8 +35,6 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-
-
     switch (rub) {
     case CARTE:
         centralWidget = new Carte(this);
@@ -86,7 +84,14 @@ void Template::displayRecherche() {
 
 void Template::displayEspaceAbo() {
    std::cout << "Espace habitués"<<std::endl;
+   EspaceAbo * espaceAbo = new EspaceAbo();
+   centralLayout->addWidget(espaceAbo);
 }
+
+void Template::displayRecherche() {
+   std::cout << "Recherche"<<std::endl;
+}
+
 
 void Template::displayCommande() {
    centralLayout->removeWidget(centralWidget);

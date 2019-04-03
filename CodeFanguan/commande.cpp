@@ -82,5 +82,4 @@ Commande::Commande(QWidget *parent,  int commandeId) : QWidget(parent)
     mainLayout->addLayout(topLayout);
     mainLayout->addLayout(grid);
     mainLayout->addLayout(bottomLayout);
-
 }

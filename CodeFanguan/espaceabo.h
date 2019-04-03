@@ -1,8 +1,15 @@
-//Arthur
-#ifndef DETAIL_H
-#define DETAIL_H
+//Julien
+#ifndef ESPACEABO_H
+#define ESPACEABO_H
 
 #include <QWidget>
+#include <QLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QTextListFormat>
+#include <QToolButton>
+#include <QIcon>
+#include <QScrollArea>
 
 class EspaceAbo : public QWidget
 {
@@ -15,4 +22,4 @@ signals:
 public slots:
 };
 
-#endif // DETAIL_H
+#endif // ESPACEABO_H

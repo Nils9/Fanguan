@@ -46,7 +46,7 @@ Carte::Carte(QWidget *parent) : QWidget(parent)
     centralLayout->addWidget(centralWidget);
 
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-
+  
     //mainLayout->addLayout(topLayout);
     //mainLayout->addStretch(5);
     mainLayout->addLayout(buttonLayout);

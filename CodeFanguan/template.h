@@ -1,5 +1,9 @@
+//Arthur
 #ifndef TEMPLATE_H
 #define TEMPLATE_H
+
+#include "espaceabo.h"
+
 #include <QHBoxLayout>
 #include <QWidget>
 #include <QVBoxLayout>
