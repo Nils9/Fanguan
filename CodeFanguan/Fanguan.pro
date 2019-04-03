@@ -59,3 +59,6 @@ FORMS    += mainwindow.ui
 
 RESOURCES += \
     res.qrc
+
+DISTFILES += \
+    images/poubelle.png

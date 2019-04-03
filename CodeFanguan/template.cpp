@@ -88,10 +88,6 @@ void Template::displayEspaceAbo() {
    centralLayout->addWidget(espaceAbo);
 }
 
-void Template::displayRecherche() {
-   std::cout << "Recherche"<<std::endl;
-}
-
 
 void Template::displayCommande() {
    centralLayout->removeWidget(centralWidget);
