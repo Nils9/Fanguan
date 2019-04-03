@@ -86,6 +86,7 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 
 void Template::displayCarte() {
     centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
     setCentralWidget(new Carte(this));
     centralLayout->addWidget(centralWidget);
     update();
@@ -97,6 +98,7 @@ void Template::displayRecherche() {
 
 void Template::displayEspaceAbo() {
     centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
     setCentralWidget(new EspaceAbo(this));
     centralLayout->addWidget(centralWidget);
     update();
@@ -105,6 +107,7 @@ void Template::displayEspaceAbo() {
 
 void Template::displayCommande() {
    centralLayout->removeWidget(centralWidget);
+   centralWidget->hide();
    setCentralWidget(new Commande(this));
    centralLayout->addWidget(centralWidget);
 }
@@ -115,8 +118,8 @@ void Template::appelServeur() {
 
 
 void Template::displayGererCompte() {
-    std::cout << "GerercOMPTE"<< std::endl;
     centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
     setCentralWidget(new GererCompte(this));
     centralLayout->addWidget(centralWidget);
     update();
