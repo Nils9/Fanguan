@@ -2,7 +2,7 @@
 #ifndef COMMANDE_H
 #define COMMANDE_H
 
-#include <QWidget>
+#include <QDialog>
 
 class Commande : public QWidget
 {
