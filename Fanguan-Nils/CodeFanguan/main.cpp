@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    w.setCentralWidget(new Menu());
+    Model* model = new Model();
+    w.setCentralWidget(new Menu(nullptr, model));
     w.show();
     return a.exec();
 }

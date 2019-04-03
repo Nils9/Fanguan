@@ -19,6 +19,10 @@ Model::Model(){
     e1->setImageFile(":/images/Entrees/nems.jpeg");
     e1->setPrix(5);
     addEntree(e1);
+    Plat * e2 = new Plat(4);
+    e2->setImageFile(":/images/Entrees/nems.jpeg");
+    e2->setPrix(5);
+    addEntree(e2);
     //Plats
     Plat * p1 = new Plat(2);
     p1->setImageFile(":/images/Plats/nouilles.jpg");
@@ -32,40 +36,41 @@ Model::Model(){
     //Menus
     MenuModel * m1 = new MenuModel("Cantonais");
     m1->addMenuEntree(e1);
+    m1->addMenuEntree(e2);
     m1->addMenuPlat(p1);
     m1->addMenuDessert(d1);
-
+    addMenu(m1);
 }
 
 void Model::addDessert(Plat *dessert){
-    carteDesserts->push_back(dessert);
+    carteDesserts.push_back(dessert);
 }
 
 void Model::addPlat(Plat * plat){
-    cartePlats->push_back(plat);
+    cartePlats.push_back(plat);
 }
 
 void Model::addEntree(Plat *entree){
-    carteEntrees->push_back(entree);
+    carteEntrees.push_back(entree);
 }
 
 void Model::addMenu(MenuModel *menu){
-    carteMenus->push_back(menu);
+    carteMenus.push_back(menu);
 }
 
-std::vector<Plat*> * Model::getEntrees(){
+std::vector<Plat*> Model::getEntrees(){
     return carteEntrees;
 }
 
-std::vector<Plat*> * Model::getPlats(){
+std::vector<Plat*> Model::getPlats(){
     return cartePlats;
 }
 
-std::vector<Plat*> * Model::getDesserts(){
+std::vector<Plat*> Model::getDesserts(){
     return carteDesserts;
 }
 
-std::vector<MenuModel*> * Model::getMenus(){
+std::vector<MenuModel*> Model::getMenus(){
     return carteMenus;
 }
 

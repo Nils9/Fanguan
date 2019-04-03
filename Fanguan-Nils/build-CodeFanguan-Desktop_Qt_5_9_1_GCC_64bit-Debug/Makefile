@@ -1710,9 +1710,14 @@ moc_menu.cpp: /home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QWidget \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QGridLayout \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPushButton \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h \
-		../CodeFanguan/catalogueitem.h \
+		../CodeFanguan/menumodel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
 		../CodeFanguan/plat.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
+		../CodeFanguan/model.h \
+		../CodeFanguan/membre.h \
+		../CodeFanguan/famille.h \
+		../CodeFanguan/catalogueitem.h \
 		../CodeFanguan/menu.h \
 		moc_predefs.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/bin/moc
@@ -2524,12 +2529,13 @@ main.o: ../CodeFanguan/main.cpp ../CodeFanguan/mainwindow.h \
 		../CodeFanguan/menu.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
-		../CodeFanguan/catalogueitem.h \
+		../CodeFanguan/menumodel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
 		../CodeFanguan/plat.h \
 		../CodeFanguan/model.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
 		../CodeFanguan/membre.h \
-		../CodeFanguan/famille.h
+		../CodeFanguan/famille.h \
+		../CodeFanguan/catalogueitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CodeFanguan/main.cpp
 
 mainwindow.o: ../CodeFanguan/mainwindow.cpp ../CodeFanguan/mainwindow.h \
@@ -3719,9 +3725,14 @@ menu.o: ../CodeFanguan/menu.cpp ../CodeFanguan/menu.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QGridLayout \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPushButton \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h \
-		../CodeFanguan/catalogueitem.h \
+		../CodeFanguan/menumodel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
 		../CodeFanguan/plat.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
+		../CodeFanguan/model.h \
+		../CodeFanguan/membre.h \
+		../CodeFanguan/famille.h \
+		../CodeFanguan/catalogueitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menu.o ../CodeFanguan/menu.cpp
 
 accueil.o: ../CodeFanguan/accueil.cpp ../CodeFanguan/accueil.h \
@@ -4919,7 +4930,8 @@ model.o: ../CodeFanguan/model.cpp ../CodeFanguan/model.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
 		../CodeFanguan/membre.h \
-		../CodeFanguan/famille.h
+		../CodeFanguan/famille.h \
+		../CodeFanguan/menumodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../CodeFanguan/model.cpp
 
 menumodel.o: ../CodeFanguan/menumodel.cpp ../CodeFanguan/menumodel.h \
