@@ -5,6 +5,7 @@
 #include "template.h"
 #include "carte.h"
 #include "catalogue.h"
+#include "gerercompte.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

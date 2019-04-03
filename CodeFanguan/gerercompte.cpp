@@ -21,64 +21,24 @@ GererCompte::GererCompte(QWidget *parent) : QWidget(parent)
     progressGridLayout = new QGridLayout();
     progressGridLayout->setAlignment(Qt::AlignCenter);
 
-    QLabel * margotLabel = new QLabel("Margot");
-    QProgressBar * margotProgressBar = new QProgressBar();
-    margotProgressBar->setValue(81);
-    margotProgressBar->setTextVisible(false);
-    progressGridLayout->addWidget(margotLabel,1,1);
-    progressGridLayout->addWidget(margotProgressBar,1,2);
-
-    QLabel * arthurLabel = new QLabel("Arthur");
-    QProgressBar * arthurProgressBar = new QProgressBar();
-    arthurProgressBar->setValue(44);
-    arthurProgressBar->setTextVisible(false);
-    progressGridLayout->addWidget(arthurLabel,2,1);
-    progressGridLayout->addWidget(arthurProgressBar,2,2);
-
-    QLabel * nilsLabel = new QLabel("Nils");
-    QProgressBar * nilsProgressBar = new QProgressBar();
-    nilsProgressBar->setValue(51);
-    nilsProgressBar->setTextVisible(false);
-    progressGridLayout->addWidget(nilsLabel,3,1);
-    progressGridLayout->addWidget(nilsProgressBar,3,2);
-
-    QLabel * julienLabel = new QLabel("Julien");
-    QProgressBar * julienProgressBar = new QProgressBar();
-    julienProgressBar->setValue(69);
-    julienProgressBar->setTextVisible(false);
-    progressGridLayout->addWidget(julienLabel,4,1);
-    progressGridLayout->addWidget(julienProgressBar,4,2);
-
     plusButton = new QToolButton();
-    plusButton->setIcon(QIcon(":/plus.png"));
+    plusButton->setIcon(QIcon(":images/plus.png"));
     plusButton->setIconSize(QSize(25,25));
     plusButton->setStyleSheet("QToolButton{border-radius: 0px;}");
     progressGridLayout->addWidget(plusButton,5,1);
 
-    QToolButton * deleteMargotButton = new QToolButton();
-    deleteMargotButton->setIcon(QIcon(":/poubelle.png"));
-    deleteMargotButton->setIconSize(QSize(25,25));
-    deleteMargotButton->setStyleSheet("QToolButton{border-radius: 0px;}");
-    progressGridLayout->addWidget(deleteMargotButton,1,0);
-
-    QToolButton * deleteArthurButton = new QToolButton();
-    deleteArthurButton->setIcon(QIcon(":/poubelle.png"));
-    deleteArthurButton->setIconSize(QSize(25,25));
-    deleteArthurButton->setStyleSheet("QToolButton{border-radius: 0px;}");
-    progressGridLayout->addWidget(deleteArthurButton,2,0);
-
-    QToolButton * deleteNilsButton = new QToolButton();
-    deleteNilsButton->setIcon(QIcon(":/poubelle.png"));
-    deleteNilsButton->setIconSize(QSize(25,25));
-    deleteNilsButton->setStyleSheet("QToolButton{border-radius: 0px;}");
-    progressGridLayout->addWidget(deleteNilsButton,3,0);
-
-    QToolButton * deleteJulienButton = new QToolButton();
-    deleteJulienButton->setIcon(QIcon(":/poubelle.png"));
-    deleteJulienButton->setIconSize(QSize(25,25));
-    deleteJulienButton->setStyleSheet("QToolButton{border-radius: 0px;}");
-    progressGridLayout->addWidget(deleteJulienButton,4,0);
-
+    addDeleteButton(1,0);
+    addLabel(1,1,"Margot");
+    addProgressBar(1,2,71);
+    addDeleteButton(2,0);
+    addLabel(2,1,"Arthur");
+    addProgressBar(2,2,81);
+    addDeleteButton(3,0);
+    addLabel(3,1,"Nils");
+    addProgressBar(3,2,48);
+    addDeleteButton(4,0);
+    addLabel(4,1,"Julien");
+    addProgressBar(4,2,56);
 
     QLabel * passwordLabel = new QLabel("Mot de passe: ");
     QLineEdit * passwordLineEdit = new QLineEdit();
@@ -112,20 +72,52 @@ void GererCompte::addMembre(){
     int n = progressGridLayout->rowCount();
     QString newMembreName = newMembreLineEdit->text();
     newMembreLineEdit->clear();
-    QToolButton * deleteButton = new QToolButton();
-    deleteButton->setIcon(QIcon(":/poubelle.png"));
-    deleteButton->setIconSize(QSize(25,25));
-    deleteButton->setStyleSheet("QToolButton{border-radius: 0px;}");
-    QLabel * newMembreLabel = new QLabel(newMembreName);
-    QProgressBar * newMembreProgressBar = new QProgressBar();
-    newMembreProgressBar->setValue(0);
-    newMembreProgressBar->setTextVisible(false);
+    addDeleteButton(n,0);
+    addLabel(n,1,newMembreName);
+    addProgressBar(n,2,0);
     progressGridLayout->removeWidget(newMembreLineEdit);
     newMembreLineEdit->hide();
     progressGridLayout->removeWidget(addMembreButton);
     addMembreButton->hide();
-    progressGridLayout->addWidget(deleteButton,n,0);
-    progressGridLayout->addWidget(newMembreLabel,n,1);
-    progressGridLayout->addWidget(newMembreProgressBar,n,2);
     progressGridLayout->addWidget(plusButton,n+1,1);
+}
+
+void GererCompte::deleteMembre(){
+    QObject * buttonClicked = sender();
+    int i = 0;
+    while((deleteButtonsVector->at(i) != buttonClicked) & (i<deleteButtonsVector->size())){
+      i+=1;
+    }
+    progressGridLayout->removeWidget(deleteButtonsVector->at(i));
+    progressGridLayout->removeWidget(labelsVector->at(i));
+    progressGridLayout->removeWidget(progressBarsVector->at(i));
+    deleteButtonsVector->at(i)->hide();
+    labelsVector->at(i)->hide();
+    progressBarsVector->at(i)->hide();
+    deleteButtonsVector->erase(deleteButtonsVector->begin()+i);
+    labelsVector->erase(labelsVector->begin()+i);
+    progressBarsVector->erase(progressBarsVector->begin()+i);
+}
+
+void GererCompte::addDeleteButton(int row, int column){
+    QToolButton * deleteButton = new QToolButton();
+    deleteButton->setIcon(QIcon(":images/poubelle.png"));
+    deleteButton->setIconSize(QSize(25,25));
+    deleteButton->setStyleSheet("QToolButton{border-radius: 0px;}");
+    deleteButtonsVector->push_back(deleteButton);
+    connect(deleteButton,SIGNAL(clicked()),this,SLOT(deleteMembre()));
+    progressGridLayout->addWidget(deleteButton,row,column);
+}
+
+void GererCompte::addLabel(int row, int column, QString name){
+    QLabel * newMembreLabel = new QLabel(name);
+    progressGridLayout->addWidget(newMembreLabel,row,column);
+    labelsVector->push_back(newMembreLabel);
+}
+
+void GererCompte::addProgressBar(int row, int column, int progress){
+    QProgressBar * newMembreProgressBar = new QProgressBar();
+    newMembreProgressBar->setValue(progress);
+    progressBarsVector->push_back(newMembreProgressBar);
+    progressGridLayout->addWidget(newMembreProgressBar,row,column);
 }
