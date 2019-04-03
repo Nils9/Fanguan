@@ -12,9 +12,11 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     topLayout->setSpacing(0);
 
     QPushButton * frButton = new QPushButton("Fr");
+    frButton->setIcon(QIcon(":/images/france.jpg"));
     QPushButton * engButton = new QPushButton("Eng");
+    engButton->setIcon(QIcon(":/images/angleterre.jpg"));
     QPushButton * chButton = new QPushButton("Ch");
-
+    chButton->setIcon(QIcon(":/images/chine.png"));
 
     QSizePolicy langSizePolicy = QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     frButton->setSizePolicy(langSizePolicy);
@@ -35,20 +37,31 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     class AccueilButton : public QPushButton
     {
     public:
-        AccueilButton(QString label) : QPushButton(label){
+        AccueilButton(QString label, QString imageFile) : QPushButton() {
             setMinimumSize(QSize(200, 150));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(QFont("Arial", 18));
             setStyleSheet("color : yellow; background-color : orange;");
+            QVBoxLayout * layout = new QVBoxLayout(this);
+            QLabel * image = new QLabel();
+            image->setAlignment(Qt::AlignHCenter);
+            QPixmap pix(imageFile);
+            image->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+            image->setPixmap(pix.scaled(QSize(150, 100), Qt::IgnoreAspectRatio,
+                                        Qt::SmoothTransformation));
+            layout->addWidget(image);
 
+            QLabel* title = new QLabel(label);
+            title->setAlignment(Qt::AlignHCenter);
+            title->setFont(QFont("Arial", 18));
+            layout->addWidget(title);
         }
         virtual ~AccueilButton() {}
     };
-
-    QPushButton * carteButton = new AccueilButton("Carte");
-    QPushButton * aboButton = new AccueilButton("Espace Habitue");
-    QPushButton * rechercheButton = new AccueilButton("Recherche");
-    QPushButton * selectionButton = new AccueilButton("Notre Selection");
+    QPushButton * carteButton = new AccueilButton("Carte",":/images/menu.png");
+    QPushButton * aboButton = new AccueilButton("Espace Habitue", ":/images/smileymaison.png");
+    QPushButton * rechercheButton = new AccueilButton("Recherche",":/images/loupe.png");
+    QPushButton * selectionButton = new AccueilButton("Notre Selection",":/images/toque.png");
 
     QHBoxLayout * buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(carteButton);
@@ -58,7 +71,7 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     buttonLayout->setSpacing(50);
 
     QHBoxLayout * serveurLayout = new QHBoxLayout();
-    QPushButton * serveurButton = new AccueilButton("Serveur");
+    QPushButton * serveurButton = new AccueilButton("Serveur", ":/images/bell.png");
     serveurLayout->addStretch(5);
     serveurLayout->addWidget(serveurButton);
     serveurLayout->addStretch(5);
@@ -72,7 +85,7 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(serveurLayout);
     mainLayout->addStretch(5);
     setLayout(mainLayout);
-
+  
     connect(aboButton, SIGNAL(clicked()), parent, SLOT(displayEspaceAbo()));
     connect(rechercheButton, SIGNAL(clicked()), parent, SLOT(displayRecherche()));
     connect(carteButton, SIGNAL(clicked()), parent, SLOT(displayCarte()));
@@ -80,6 +93,4 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
 
 
 }
-
-
 

@@ -20,23 +20,22 @@ Catalogue::Catalogue(QWidget *parent) : QWidget(parent)
         CatalogueItem(QString label, QIcon icon, int id) : QToolButton(){
             setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
             setIcon(icon);
-            setIconSize(QSize(150, 150));
+            setIconSize(QSize(150, 120));
             setText(label);
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setStyleSheet("color : black; background-color : white;");
         }
         virtual ~CatalogueItem() {}
     };
-
-    QToolButton * plat1Button = new CatalogueItem("nems: 7 euros",QIcon(":/nourriture.jpg"),1);
-    QToolButton * plat2Button = new CatalogueItem("riz: 5 euros",QIcon(":/nourriture.jpg"),2);
-    QToolButton * plat3Button = new CatalogueItem("poulet: 11 euros",QIcon(":/nourriture.jpg"),3);
-    QToolButton * plat4Button = new CatalogueItem("nouilles: 11 euros",QIcon(":/nourriture.jpg"),4);
-    QToolButton * plat5Button = new CatalogueItem("nouilles pou: 12 euros",QIcon(":/nourriture.jpg"),5);
-    QToolButton * plat6Button = new CatalogueItem("nouilles boeuf: 12 e",QIcon(":/nourriture.jpg"),6);
-    QToolButton * plat7Button = new CatalogueItem("nouilles cre: 13 euros",QIcon(":/nourriture.jpg"),7);
-    QToolButton * plat8Button = new CatalogueItem("nouilles ette: 13 euros",QIcon(":/nourriture.jpg"),8);
-    QToolButton * plat9Button = new CatalogueItem("nouilles atte: 13 euros",QIcon(":/nourriture.jpg"),9);
+    QToolButton * plat1Button = new CatalogueItem("nems: 7 euros",QIcon(":/images/nouilles.jpg"),1);
+    QToolButton * plat2Button = new CatalogueItem("riz: 5 euros",QIcon(":/images/nouilles.jpg"),2);
+    QToolButton * plat3Button = new CatalogueItem("poulet: 11 euros",QIcon(":/images/poulet.jpg"),3);
+    QToolButton * plat4Button = new CatalogueItem("nouilles: 11 euros",QIcon(":/images/poulet.jpg"),4);
+    QToolButton * plat5Button = new CatalogueItem("nouilles pou: 12 euros",QIcon(":/images/nouilles.jpg"),5);
+    QToolButton * plat6Button = new CatalogueItem("nouilles boeuf: 12 e",QIcon(":/images/nouilles.jpg"),6);
+    QToolButton * plat7Button = new CatalogueItem("nouilles cre: 13 euros",QIcon(":/images/poulet.jpg"),7);
+    QToolButton * plat8Button = new CatalogueItem("nouilles ette: 13 euros",QIcon(":/images/poulet.jpg"),8);
+    QToolButton * plat9Button = new CatalogueItem("nouilles atte: 13 euros",QIcon(":/images/poulet.jpg"),9);
 
     QHBoxLayout * button1Layout = new QHBoxLayout();
     button1Layout->addWidget(plat1Button);

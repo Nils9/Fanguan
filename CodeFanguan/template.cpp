@@ -1,4 +1,5 @@
 #include "template.h"
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -16,12 +17,12 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Barre supérieure
-    QHBoxLayout * topMenuLayout = new QHBoxLayout(this);
+    QHBoxLayout * topMenuLayout = new QHBoxLayout();
 
-    QPushButton * aboButton = new QPushButton(tr("Espace Habitué"));
+    QPushButton * aboButton = new QPushButton(tr("Espace Habitue"));
     QPushButton * carteButton = new QPushButton(tr("Carte"));
-    QPushButton * rechercheButton = new QPushButton(tr("Recheche"));
-    QPushButton * selectionButton = new QPushButton(tr("Sélection du Chef"));
+    QPushButton * rechercheButton = new QPushButton(tr("Recherche"));
+    QPushButton * selectionButton = new QPushButton(tr("Selection du Chef"));
 
     aboButton->setFont(buttonFont);
     carteButton->setFont(buttonFont);
@@ -34,13 +35,19 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-
-    centralWidget = new QWidget(this);
+    switch (rub) {
+    case CARTE:
+        centralWidget = new Carte(this);
+        break;
+    default:
+        centralWidget = new QWidget(this);
+        break;
+    }
     centralWidget->setMinimumSize(QSize(600, 400));
-    centralLayout = new QHBoxLayout();
+    centralLayout->addWidget(centralWidget);
 
     //Barre inférieure
-    QHBoxLayout * bottomMenuLayout = new QHBoxLayout(this);
+    QHBoxLayout * bottomMenuLayout = new QHBoxLayout();
 
     QPushButton * serveurButton = new QPushButton(tr("Appeler Serveur"));
     QPushButton * commandeButton = new QPushButton(tr("Commande"));
@@ -53,10 +60,8 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 
     //Layout général
     mainLayout->addLayout(topMenuLayout);
-    //mainLayout->addWidget(centralWidget);
     mainLayout->addLayout(centralLayout);
     mainLayout->addLayout(bottomMenuLayout);
-    this->setLayout(mainLayout);
 
     //Connection des boutons aux slots
     connect(aboButton, SIGNAL(clicked()), this, SLOT(displayEspaceAbo()));
@@ -67,21 +72,36 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 }
 
 void Template::displayCarte() {
-   std::cout << "Carte"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new Carte());
+    centralLayout->addWidget(centralWidget);
+    update();
 }
+
 void Template::displayRecherche() {
    std::cout << "Recherche"<<std::endl;
 }
+
 void Template::displayEspaceAbo() {
    std::cout << "Espace habitués"<<std::endl;
    EspaceAbo * espaceAbo = new EspaceAbo();
    centralLayout->addWidget(espaceAbo);
 }
 
+void Template::displayRecherche() {
+   std::cout << "Recherche"<<std::endl;
+}
+
+
 void Template::displayCommande() {
-   std::cout << "Commande"<<std::endl;
+   centralLayout->removeWidget(centralWidget);
+   setCentralWidget(new Commande());
+   centralLayout->addWidget(centralWidget);
 }
 
 void Template::appelServeur() {
    std::cout << "Serveur"<< std::endl;
+}
+
+void Template::paintEvent(QPaintEvent *){
 }

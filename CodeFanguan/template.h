@@ -2,8 +2,12 @@
 #ifndef TEMPLATE_H
 #define TEMPLATE_H
 
-#include <QWidget>
 #include "espaceabo.h"
+
+#include <QHBoxLayout>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
 class Template : public QWidget
 {
@@ -15,6 +19,7 @@ public:
     void setCentralWidget(QWidget * w) {
         centralWidget =  w;
     }
+    void paintEvent(QPaintEvent *);
 
 signals:
 
@@ -27,8 +32,9 @@ public slots:
     void appelServeur();
 
 private :
-    QWidget * centralWidget;
-    QLayout * centralLayout;
+    QWidget * centralWidget = nullptr;
+    QHBoxLayout * centralLayout = new QHBoxLayout() ;
+    QVBoxLayout * mainLayout = nullptr;
 };
 
 #endif // TEMPLATE_H

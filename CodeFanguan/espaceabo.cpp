@@ -115,5 +115,4 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     layout->addLayout(leftVerticalLayout);
     layout->addLayout(rightVerticalLayout);
 
-
 }
