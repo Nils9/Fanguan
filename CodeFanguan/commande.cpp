@@ -9,7 +9,7 @@
 #include <QLabel>
 #include <QFrame>
 
-Commande::Commande(QWidget *parent,  int commandeId) : QWidget(parent)
+Commande::Commande(QDialog *parent,  int commandeId) : QDialog(parent)
 {
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
@@ -65,9 +65,10 @@ Commande::Commande(QWidget *parent,  int commandeId) : QWidget(parent)
         virtual ~CommandeItem() {}
     };
 
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 11; i++) {
         grid->addWidget(new CommandeItem(0,i), i/3, i%3);
     }
+    grid->setHorizontalSpacing(30);
 
     QHBoxLayout * bottomLayout = new QHBoxLayout();
     QPushButton * sendButton = new QPushButton("Envoyer en cuisine");
@@ -78,6 +79,7 @@ Commande::Commande(QWidget *parent,  int commandeId) : QWidget(parent)
     bottomLayout->addWidget(total);
     bottomLayout->addStretch(10);
     bottomLayout->addWidget(sendButton);
+    setModal(true);
 
     mainLayout->addLayout(topLayout);
     mainLayout->addLayout(grid);

@@ -9,7 +9,7 @@
 #include "selection.h"
 #include "carte.h"
 #include "connexion.h"
-
+#include "detail.h"
 
 Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 {
@@ -40,6 +40,10 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     switch (rub) {
     case CARTE:
         centralWidget = new Carte(this);
+        break;
+    case RECHERCHE:
+        std::cout << "Ouvrir detail"<< std::endl;
+        centralWidget = new Detail(this);
         break;
     default:
         centralWidget = new QWidget(this);

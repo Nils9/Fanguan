@@ -27,11 +27,11 @@ void MainWindow::displayCarte() {
 }
 
 void MainWindow::displayRecherche() {
-    setCentralWidget(new Template(this, Template::ESPACEABO));
+    setCentralWidget(new Template(this, Template::RECHERCHE));
 }
 
 void MainWindow::displayEspaceAbo() {
-    setCentralWidget(new Template(this, Template::RECHERCHE));
+    setCentralWidget(new Template(this, Template::ESPACEABO));
 }
 
 void MainWindow::appelServeur() {

@@ -2,13 +2,13 @@
 #ifndef COMMANDE_H
 #define COMMANDE_H
 
-#include <QWidget>
+#include <QDialog>
 
-class Commande : public QWidget
+class Commande : public QDialog
 {
     Q_OBJECT
 public:
-    explicit Commande(QWidget *parent = nullptr, int commandeId = 0);
+    explicit Commande(QDialog *parent = nullptr, int commandeId = 0);
 
 signals:
 
