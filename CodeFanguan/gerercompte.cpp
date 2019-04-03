@@ -6,7 +6,12 @@ GererCompte::GererCompte(QWidget *parent) : QWidget(parent)
     layout->setSpacing(20);
     layout->setMargin(100);
 
+    QHBoxLayout * headerVerticalLayout = new QHBoxLayout();
     QLabel * familyLabel = new QLabel("Famille Calvi");
+    QToolButton * backButton = new QToolButton();
+    backButton->setIcon(QIcon(":/back.png"));
+    headerVerticalLayout->addWidget(familyLabel);
+    headerVerticalLayout->addWidget(backButton);
 
     QProgressBar * familleProgressBar = new QProgressBar();
     familleProgressBar->setValue(68);
@@ -79,8 +84,7 @@ GererCompte::GererCompte(QWidget *parent) : QWidget(parent)
     passwordLineEdit->setText("Bisounours42");
     passwordLineEdit->setEchoMode(QLineEdit::Password);
 
-
-    layout->addWidget(familyLabel);
+    layout->addLayout(headerVerticalLayout);
     layout->addWidget(familleProgressBar);
     layout->addStretch(10);
     layout->addLayout(progressGridLayout);
@@ -100,7 +104,6 @@ void GererCompte::addMembreLineEdit(){
     progressGridLayout->addWidget(newMembreLineEdit,n,1);
     progressGridLayout->addWidget(addMembreButton,n,2);
     addMembreButton->setVisible(true);
-    //progressGridLayout->addWidget(plusButton,n+1,1);
 }
 
 void GererCompte::addMembre(){
@@ -115,7 +118,6 @@ void GererCompte::addMembre(){
     QProgressBar * newMembreProgressBar = new QProgressBar();
     newMembreProgressBar->setValue(0);
     newMembreProgressBar->setTextVisible(false);
-    //progressGridLayout->removeWidget(plusButton);
     progressGridLayout->removeWidget(newMembreLineEdit);
     newMembreLineEdit->hide();
     progressGridLayout->removeWidget(addMembreButton);

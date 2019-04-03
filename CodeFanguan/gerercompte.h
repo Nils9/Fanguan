@@ -10,6 +10,7 @@
 #include <QIcon>
 #include <QToolButton>
 #include <QPushButton>
+#include <QIcon>
 
 class GererCompte : public QWidget
 {
