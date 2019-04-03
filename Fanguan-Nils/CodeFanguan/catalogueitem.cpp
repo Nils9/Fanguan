@@ -1,10 +1,10 @@
 #include "catalogueitem.h"
 
-CatalogueItem::CatalogueItem(QString label, QIcon icon, int id) : QToolButton(){
+CatalogueItem::CatalogueItem(Plat * plat) : QToolButton(){
     setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    setIcon(icon);
+    setIcon(QIcon(plat->getImageFile()));
     setIconSize(QSize(150, 120));
-    setText(label);
+    setText(plat->getLabel());
     setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
     setStyleSheet("color : black; background-color : white;");
 }

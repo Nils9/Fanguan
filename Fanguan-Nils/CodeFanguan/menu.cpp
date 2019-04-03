@@ -2,7 +2,6 @@
 
 Menu::Menu(QWidget *parent) : QWidget(parent)
 {
-
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
     QHBoxLayout * menu = new QHBoxLayout();
     menu->setAlignment(Qt::AlignCenter);

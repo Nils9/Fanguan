@@ -5,6 +5,7 @@
 #include "template.h"
 #include "recherche.h"
 #include "menu.h"
+#include "model.h"
 
 int main(int argc, char *argv[])
 {

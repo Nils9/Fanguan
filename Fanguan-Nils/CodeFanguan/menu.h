@@ -8,13 +8,16 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QPushButton>
+#include "menumodel.h"
 #include "catalogueitem.h"
+#include "plat.h"
 
 class Menu : public QWidget
 {
     Q_OBJECT
 public:
     explicit Menu(QWidget *parent = nullptr);
+
 
 signals:
 

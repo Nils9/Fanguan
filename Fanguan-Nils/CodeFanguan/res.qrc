@@ -19,5 +19,8 @@
         <file>images/tomate.png</file>
         <file>images/left.png</file>
         <file>images/right.png</file>
+        <file>images/Entrees/nems.jpeg</file>
+        <file>images/Desserts/sesame-beignets.jpeg</file>
+        <file>images/Plats/nouilles.jpg</file>
     </qresource>
 </RCC>

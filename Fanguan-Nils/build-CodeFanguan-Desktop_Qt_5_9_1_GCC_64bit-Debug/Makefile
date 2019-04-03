@@ -68,7 +68,9 @@ SOURCES       = ../CodeFanguan/main.cpp \
 		../CodeFanguan/famille.cpp \
 		../CodeFanguan/recherche.cpp \
 		../CodeFanguan/plat.cpp \
-		../CodeFanguan/catalogueitem.cpp qrc_res.cpp \
+		../CodeFanguan/catalogueitem.cpp \
+		../CodeFanguan/model.cpp \
+		../CodeFanguan/menumodel.cpp qrc_res.cpp \
 		moc_mainwindow.cpp \
 		moc_template.cpp \
 		moc_detail.cpp \
@@ -102,6 +104,8 @@ OBJECTS       = main.o \
 		recherche.o \
 		plat.o \
 		catalogueitem.o \
+		model.o \
+		menumodel.o \
 		qrc_res.o \
 		moc_mainwindow.o \
 		moc_template.o \
@@ -323,7 +327,8 @@ DIST          = ../CodeFanguan/images/angleterre.jpg \
 		../CodeFanguan/famille.h \
 		../CodeFanguan/recherche.h \
 		../CodeFanguan/plat.h \
-		../CodeFanguan/catalogueitem.h ../CodeFanguan/main.cpp \
+		../CodeFanguan/catalogueitem.h \
+		../CodeFanguan/menumodel.h ../CodeFanguan/main.cpp \
 		../CodeFanguan/mainwindow.cpp \
 		../CodeFanguan/template.cpp \
 		../CodeFanguan/detail.cpp \
@@ -341,7 +346,9 @@ DIST          = ../CodeFanguan/images/angleterre.jpg \
 		../CodeFanguan/famille.cpp \
 		../CodeFanguan/recherche.cpp \
 		../CodeFanguan/plat.cpp \
-		../CodeFanguan/catalogueitem.cpp
+		../CodeFanguan/catalogueitem.cpp \
+		../CodeFanguan/model.cpp \
+		../CodeFanguan/menumodel.cpp
 QMAKE_TARGET  = CodeFanguan
 DESTDIR       = 
 TARGET        = CodeFanguan
@@ -738,8 +745,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../CodeFanguan/res.qrc ../CodeFanguan/res.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/nils/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CodeFanguan/mainwindow.h ../CodeFanguan/template.h ../CodeFanguan/detail.h ../CodeFanguan/commande.h ../CodeFanguan/selection.h ../CodeFanguan/carte.h ../CodeFanguan/catalogue.h ../CodeFanguan/menu.h ../CodeFanguan/accueil.h ../CodeFanguan/connexion.h ../CodeFanguan/espaceabo.h ../CodeFanguan/inscription.h ../CodeFanguan/gerercompte.h ../CodeFanguan/model.h ../CodeFanguan/membre.h ../CodeFanguan/famille.h ../CodeFanguan/recherche.h ../CodeFanguan/plat.h ../CodeFanguan/catalogueitem.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CodeFanguan/main.cpp ../CodeFanguan/mainwindow.cpp ../CodeFanguan/template.cpp ../CodeFanguan/detail.cpp ../CodeFanguan/commande.cpp ../CodeFanguan/selection.cpp ../CodeFanguan/carte.cpp ../CodeFanguan/catalogue.cpp ../CodeFanguan/menu.cpp ../CodeFanguan/accueil.cpp ../CodeFanguan/connexion.cpp ../CodeFanguan/espaceabo.cpp ../CodeFanguan/inscription.cpp ../CodeFanguan/gerercompte.cpp ../CodeFanguan/membre.cpp ../CodeFanguan/famille.cpp ../CodeFanguan/recherche.cpp ../CodeFanguan/plat.cpp ../CodeFanguan/catalogueitem.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CodeFanguan/mainwindow.h ../CodeFanguan/template.h ../CodeFanguan/detail.h ../CodeFanguan/commande.h ../CodeFanguan/selection.h ../CodeFanguan/carte.h ../CodeFanguan/catalogue.h ../CodeFanguan/menu.h ../CodeFanguan/accueil.h ../CodeFanguan/connexion.h ../CodeFanguan/espaceabo.h ../CodeFanguan/inscription.h ../CodeFanguan/gerercompte.h ../CodeFanguan/model.h ../CodeFanguan/membre.h ../CodeFanguan/famille.h ../CodeFanguan/recherche.h ../CodeFanguan/plat.h ../CodeFanguan/catalogueitem.h ../CodeFanguan/menumodel.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../CodeFanguan/main.cpp ../CodeFanguan/mainwindow.cpp ../CodeFanguan/template.cpp ../CodeFanguan/detail.cpp ../CodeFanguan/commande.cpp ../CodeFanguan/selection.cpp ../CodeFanguan/carte.cpp ../CodeFanguan/catalogue.cpp ../CodeFanguan/menu.cpp ../CodeFanguan/accueil.cpp ../CodeFanguan/connexion.cpp ../CodeFanguan/espaceabo.cpp ../CodeFanguan/inscription.cpp ../CodeFanguan/gerercompte.cpp ../CodeFanguan/membre.cpp ../CodeFanguan/famille.cpp ../CodeFanguan/recherche.cpp ../CodeFanguan/plat.cpp ../CodeFanguan/catalogueitem.cpp ../CodeFanguan/model.cpp ../CodeFanguan/menumodel.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../CodeFanguan/mainwindow.ui $(DISTDIR)/
 
 
@@ -787,7 +794,10 @@ qrc_res.cpp: ../CodeFanguan/res.qrc \
 		../CodeFanguan/images/thailande.png \
 		../CodeFanguan/images/right.png \
 		../CodeFanguan/images/left.png \
-		../CodeFanguan/images/back.png
+		../CodeFanguan/images/back.png \
+		../CodeFanguan/images/Desserts/sesame-beignets.jpeg \
+		../CodeFanguan/images/Plats/nouilles.jpg \
+		../CodeFanguan/images/Entrees/nems.jpeg
 	/home/nils/Qt5.9.1/5.9.1/gcc_64/bin/rcc -name res ../CodeFanguan/res.qrc -o qrc_res.cpp
 
 qrc_res.cpp: ../CodeFanguan/res.qrc \
@@ -810,7 +820,10 @@ qrc_res.cpp: ../CodeFanguan/res.qrc \
 		../CodeFanguan/images/thailande.png \
 		../CodeFanguan/images/right.png \
 		../CodeFanguan/images/left.png \
-		../CodeFanguan/images/back.png
+		../CodeFanguan/images/back.png \
+		../CodeFanguan/images/Desserts/sesame-beignets.jpeg \
+		../CodeFanguan/images/Plats/nouilles.jpg \
+		../CodeFanguan/images/Entrees/nems.jpeg
 	/home/nils/Qt5.9.1/5.9.1/gcc_64/bin/rcc -name res ../CodeFanguan/res.qrc -o qrc_res.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -1567,6 +1580,16 @@ moc_catalogue.cpp: /home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QWidget \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfiledevice.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvector2d.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../CodeFanguan/catalogueitem.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QToolButton \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtoolbutton.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
 		../CodeFanguan/catalogue.h \
 		moc_predefs.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/bin/moc
@@ -1687,6 +1710,9 @@ moc_menu.cpp: /home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QWidget \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QGridLayout \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPushButton \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h \
+		../CodeFanguan/catalogueitem.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
 		../CodeFanguan/menu.h \
 		moc_predefs.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/bin/moc
@@ -2497,7 +2523,13 @@ main.o: ../CodeFanguan/main.cpp ../CodeFanguan/mainwindow.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
 		../CodeFanguan/menu.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		../CodeFanguan/catalogueitem.h \
+		../CodeFanguan/plat.h \
+		../CodeFanguan/model.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
+		../CodeFanguan/membre.h \
+		../CodeFanguan/famille.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../CodeFanguan/main.cpp
 
 mainwindow.o: ../CodeFanguan/mainwindow.cpp ../CodeFanguan/mainwindow.h \
@@ -2652,7 +2684,15 @@ mainwindow.o: ../CodeFanguan/mainwindow.cpp ../CodeFanguan/mainwindow.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QVBoxLayout \
 		../CodeFanguan/carte.h \
-		../CodeFanguan/catalogue.h
+		../CodeFanguan/catalogue.h \
+		../CodeFanguan/catalogueitem.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QToolButton \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtoolbutton.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../CodeFanguan/mainwindow.cpp
 
 template.o: ../CodeFanguan/template.cpp ../CodeFanguan/template.h \
@@ -3216,13 +3256,18 @@ carte.o: ../CodeFanguan/carte.cpp ../CodeFanguan/carte.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QHBoxLayout \
 		../CodeFanguan/catalogue.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPushButton \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h \
+		../CodeFanguan/catalogueitem.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QToolButton \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtoolbutton.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
+		../CodeFanguan/plat.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPushButton \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o carte.o ../CodeFanguan/carte.cpp
 
 catalogue.o: ../CodeFanguan/catalogue.cpp ../CodeFanguan/catalogue.h \
@@ -3326,20 +3371,22 @@ catalogue.o: ../CodeFanguan/catalogue.cpp ../CodeFanguan/catalogue.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfiledevice.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvector2d.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../CodeFanguan/catalogueitem.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QToolButton \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtoolbutton.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QVBoxLayout \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qboxlayout.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlayout.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlayoutitem.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QHBoxLayout \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QToolButton \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtoolbutton.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QPixmap \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QtGui \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QtGuiDepends \
@@ -3671,7 +3718,10 @@ menu.o: ../CodeFanguan/menu.cpp ../CodeFanguan/menu.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QGridLayout \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QPushButton \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qpushbutton.h \
+		../CodeFanguan/catalogueitem.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menu.o ../CodeFanguan/menu.cpp
 
 accueil.o: ../CodeFanguan/accueil.cpp ../CodeFanguan/accueil.h \
@@ -4231,7 +4281,84 @@ membre.o: ../CodeFanguan/membre.cpp ../CodeFanguan/membre.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qrefcount.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qnamespace.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qarraydata.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringbuilder.h
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringbuilder.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtgui-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qwidget.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiterator.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpair.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qregexp.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmargins.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qrect.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsize.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpoint.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpalette.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcolor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgb.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgba64.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qbrush.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvector.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qmatrix.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpolygon.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qregion.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdatastream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qline.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtransform.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpainterpath.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qimage.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixelformat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhash.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfont.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcursor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qkeysequence.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvariant.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdebug.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlocale.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qset.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurlquery.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfile.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfiledevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvector2d.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o membre.o ../CodeFanguan/membre.cpp
 
 famille.o: ../CodeFanguan/famille.cpp ../CodeFanguan/famille.h \
@@ -4264,7 +4391,84 @@ famille.o: ../CodeFanguan/famille.cpp ../CodeFanguan/famille.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qnamespace.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qarraydata.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringbuilder.h \
-		../CodeFanguan/membre.h
+		../CodeFanguan/membre.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtgui-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qwidget.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiterator.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpair.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qregexp.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmargins.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qrect.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsize.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpoint.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpalette.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcolor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgb.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgba64.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qbrush.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvector.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qmatrix.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpolygon.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qregion.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdatastream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qline.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtransform.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpainterpath.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qimage.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixelformat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhash.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfont.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcursor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qkeysequence.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvariant.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdebug.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlocale.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qset.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurlquery.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfile.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfiledevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvector2d.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o famille.o ../CodeFanguan/famille.cpp
 
 recherche.o: ../CodeFanguan/recherche.cpp ../CodeFanguan/recherche.h \
@@ -4599,8 +4803,233 @@ catalogueitem.o: ../CodeFanguan/catalogueitem.cpp ../CodeFanguan/catalogueitem.h
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfile.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfiledevice.h \
 		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvector2d.h \
-		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o catalogueitem.o ../CodeFanguan/catalogueitem.cpp
+
+model.o: ../CodeFanguan/model.cpp ../CodeFanguan/model.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstring.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qchar.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qconfig.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlogging.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qflags.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmutex.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringbuilder.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtgui-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qwidget.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiterator.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpair.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qregexp.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmargins.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qrect.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsize.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpoint.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpalette.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcolor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgb.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgba64.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qbrush.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvector.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qmatrix.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpolygon.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qregion.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdatastream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qline.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtransform.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpainterpath.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qimage.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixelformat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhash.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfont.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcursor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qkeysequence.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvariant.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdebug.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlocale.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qset.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurlquery.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfile.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfiledevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvector2d.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h \
+		../CodeFanguan/membre.h \
+		../CodeFanguan/famille.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../CodeFanguan/model.cpp
+
+menumodel.o: ../CodeFanguan/menumodel.cpp ../CodeFanguan/menumodel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstring.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qchar.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qconfig.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtcore-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsysinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlogging.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qflags.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmutex.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qnumeric.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qversiontagging.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbytearray.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qrefcount.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qnamespace.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qarraydata.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringbuilder.h \
+		../CodeFanguan/plat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/QLabel \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtgui-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qframe.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qwidget.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qalgorithms.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiterator.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpair.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringlist.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qregexp.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcoreevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmetatype.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qobject_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmargins.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qrect.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsize.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qpoint.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpalette.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcolor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgb.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qrgba64.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qbrush.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvector.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qmatrix.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpolygon.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qregion.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdatastream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qiodevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qline.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtransform.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpainterpath.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qimage.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixelformat.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qpixmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qshareddata.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qhash.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfont.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qfontinfo.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qcursor.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qkeysequence.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qevent.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qvariant.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qmap.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qdebug.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qtextstream.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qlocale.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qset.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurl.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qurlquery.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfile.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtCore/qfiledevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qvector2d.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/QIcon \
+		/home/nils/Qt5.9.1/5.9.1/gcc_64/include/QtGui/qicon.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menumodel.o ../CodeFanguan/menumodel.cpp
 
 qrc_res.o: qrc_res.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_res.o qrc_res.cpp

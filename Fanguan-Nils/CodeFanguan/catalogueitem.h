@@ -2,11 +2,12 @@
 #define CATALOGUEITEM_H
 
 #include <QToolButton>
+#include "plat.h"
 
 class CatalogueItem : public QToolButton
 {
 public:
-    CatalogueItem(QString label, QIcon icon, int id);
+    CatalogueItem(Plat * plat);
     virtual ~CatalogueItem() {}
 };
 
