@@ -66,9 +66,10 @@ Commande::Commande(QWidget *parent,  int commandeId) : QWidget(parent)
         virtual ~CommandeItem() {}
     };
 
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 11; i++) {
         grid->addWidget(new CommandeItem(0,i), i/3, i%3);
     }
+    grid->setHorizontalSpacing(30);
 
     QHBoxLayout * bottomLayout = new QHBoxLayout();
     QPushButton * sendButton = new QPushButton("Envoyer en cuisine");

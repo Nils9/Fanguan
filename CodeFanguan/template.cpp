@@ -11,7 +11,6 @@
 #include "connexion.h"
 #include "detail.h"
 
-
 Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 {
     QFont buttonFont = QFont("Arial", 18);
@@ -54,6 +53,11 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
         centralWidget = new Detail(this);
         previousWidget = 1;
         break;
+
+	case RECHERCHE:
+    	std::cout << "Ouvrir detail"<< std::endl;
+    	centralWidget = new Detail(this);
+    	break;
 
     default:
         centralWidget = new QWidget();
