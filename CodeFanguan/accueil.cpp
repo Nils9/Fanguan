@@ -45,7 +45,6 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(QFont("Arial", 18));
             setStyleSheet("color : yellow; background-color : orange;");
-
             QVBoxLayout * layout = new QVBoxLayout(this);
             QLabel * image = new QLabel();
             image->setAlignment(Qt::AlignHCenter);
@@ -59,16 +58,13 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
             title->setAlignment(Qt::AlignHCenter);
             title->setFont(QFont("Arial", 18));
             layout->addWidget(title);
-
         }
         virtual ~AccueilButton() {}
     };
-
     QPushButton * carteButton = new AccueilButton("Carte",":/images/menu.png");
     QPushButton * aboButton = new AccueilButton("Espace Habitue", ":/images/smileymaison.png");
     QPushButton * rechercheButton = new AccueilButton("Recherche",":/images/loupe.png");
     QPushButton * selectionButton = new AccueilButton("Notre Selection",":/images/toque.png");
-
 
     QHBoxLayout * buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(carteButton);
@@ -92,21 +88,10 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(serveurLayout);
     mainLayout->addStretch(5);
     setLayout(mainLayout);
-
-
-
+  
     connect(aboButton, SIGNAL(clicked()), parent, SLOT(displayEspaceAbo()));
     connect(rechercheButton, SIGNAL(clicked()), parent, SLOT(displayRecherche()));
     connect(carteButton, SIGNAL(clicked()), parent, SLOT(displayCarte()));
     connect(serveurButton, SIGNAL(clicked()), parent, SLOT(appelServeur()));
-
-
 }
-
-
-
-
-
-
-
 

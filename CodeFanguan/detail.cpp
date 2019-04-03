@@ -102,4 +102,3 @@ Detail::Detail(QWidget *parent) : QWidget(parent)
     //mainLayout fin
 
 }
-

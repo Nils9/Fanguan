@@ -27,7 +27,6 @@ Catalogue::Catalogue(QWidget *parent) : QWidget(parent)
         }
         virtual ~CatalogueItem() {}
     };
-
     QToolButton * plat1Button = new CatalogueItem("nems: 7 euros",QIcon(":/images/nouilles.jpg"),1);
     QToolButton * plat2Button = new CatalogueItem("riz: 5 euros",QIcon(":/images/nouilles.jpg"),2);
     QToolButton * plat3Button = new CatalogueItem("poulet: 11 euros",QIcon(":/images/poulet.jpg"),3);

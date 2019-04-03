@@ -3,7 +3,12 @@
 #define CONNEXION_H
 
 #include <QWidget>
-
+#include <QLayout>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QFormLayout>
+#include <QSizePolicy>
+  
 class Connexion : public QWidget
 {
     Q_OBJECT

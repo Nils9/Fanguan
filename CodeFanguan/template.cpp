@@ -35,20 +35,27 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-
-
     switch (rub) {
     case CARTE:
+        centralLayout->removeWidget(centralWidget);
         centralWidget = new Carte(this);
         break;
-    case RECHERCHE:
-        std::cout << "Ouvrir detail"<< std::endl;
-        centralWidget = new Detail(this);
+
+    case ESPACEABO:
+        centralLayout->removeWidget(centralWidget);
+        centralWidget = new EspaceAbo(this);
         break;
+
+	case RECHERCHE:
+    	std::cout << "Ouvrir detail"<< std::endl;
+    	centralWidget = new Detail(this);
+    	break;
+
     default:
-        centralWidget = new QWidget(this);
+        centralWidget = new QWidget();
         break;
     }
+
     centralWidget->setMinimumSize(QSize(600, 400));
     centralLayout->addWidget(centralWidget);
 
@@ -79,7 +86,7 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 
 void Template::displayCarte() {
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Carte());
+    setCentralWidget(new Carte(this));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -89,18 +96,32 @@ void Template::displayRecherche() {
 }
 
 void Template::displayEspaceAbo() {
-   std::cout << "Espace habitués"<<std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new EspaceAbo(this));
+    centralLayout->addWidget(centralWidget);
+    update();
 }
+
 
 void Template::displayCommande() {
    centralLayout->removeWidget(centralWidget);
-   setCentralWidget(new Commande());
+   setCentralWidget(new Commande(this));
    centralLayout->addWidget(centralWidget);
 }
 
 void Template::appelServeur() {
    std::cout << "Serveur"<< std::endl;
 }
+
+
+void Template::displayGererCompte() {
+    std::cout << "GerercOMPTE"<< std::endl;
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new GererCompte(this));
+    centralLayout->addWidget(centralWidget);
+    update();
+}
+
 
 void Template::paintEvent(QPaintEvent *){
 }

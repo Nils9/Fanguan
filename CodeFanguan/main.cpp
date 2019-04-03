@@ -1,4 +1,11 @@
 #include "mainwindow.h"
+#include "connexion.h"
+#include "inscription.h"
+#include "espaceabo.h"
+#include "accueil.h"
+#include "gerercompte.h"
+#include "catalogue.h"
+#include <QApplication>
 #include "carte.h"
 #include "template.h"
 #include <QApplication>

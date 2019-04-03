@@ -84,5 +84,4 @@ Commande::Commande(QDialog *parent,  int commandeId) : QDialog(parent)
     mainLayout->addLayout(topLayout);
     mainLayout->addLayout(grid);
     mainLayout->addLayout(bottomLayout);
-
 }
