@@ -12,5 +12,6 @@
         <file>images/cross.png</file>
         <file>images/nouilles.jpg</file>
         <file>images/poulet.jpg</file>
+        <file>images/nourriture.jpg</file>
     </qresource>
 </RCC>

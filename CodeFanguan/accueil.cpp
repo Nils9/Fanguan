@@ -90,7 +90,5 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     connect(rechercheButton, SIGNAL(clicked()), parent, SLOT(displayRecherche()));
     connect(carteButton, SIGNAL(clicked()), parent, SLOT(displayCarte()));
     connect(serveurButton, SIGNAL(clicked()), parent, SLOT(appelServeur()));
-
-
 }
 

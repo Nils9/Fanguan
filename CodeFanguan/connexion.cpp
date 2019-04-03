@@ -15,7 +15,7 @@ Connexion::Connexion(QWidget *parent) : QWidget(parent)
     formLayout->addRow(tr("&Password:"),passwordLineEdit);
     layout->addLayout(formLayout);
     QPushButton * connexionButton = new QPushButton("Connexion");
-    QPushButton * creerCompteButton = new QPushButton("Créer un compte");
+    QPushButton * creerCompteButton = new QPushButton("Creer un compte");
     connexionButton->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
     creerCompteButton->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
     layout->addWidget(connexionButton);

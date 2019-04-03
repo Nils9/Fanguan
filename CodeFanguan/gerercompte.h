@@ -21,6 +21,10 @@ private:
     QLineEdit * newMembreLineEdit = new QLineEdit();
     QPushButton * addMembreButton = new QPushButton("Ajouter");
 
+    QWidget * centralWidget;
+    QLayout * centralLayout;
+    QVBoxLayout * mainLayout;
+
 public:
     explicit GererCompte(QWidget *parent = nullptr);
 

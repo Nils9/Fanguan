@@ -30,6 +30,7 @@ public slots:
     //void displaySelection();
     void displayCommande();
     void appelServeur();
+    void displayGererCompte();
 
 private :
     QWidget * centralWidget = nullptr;

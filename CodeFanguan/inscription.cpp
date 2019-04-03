@@ -32,7 +32,7 @@ Inscription::Inscription(QWidget *parent) : QWidget(parent)
 void Inscription::displayMembres(int n){
     for(int j =0; j<=membresVector->size(); j++){
         if(membresFormLayout->rowCount()>0){
-         membresFormLayout->removeRow(0);
+         //membresFormLayout->removeRow(0);
         }
     }
     membresVector->clear();

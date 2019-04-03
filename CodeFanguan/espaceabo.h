@@ -11,6 +11,8 @@
 #include <QIcon>
 #include <QScrollArea>
 
+#include "gerercompte.h"
+
 class EspaceAbo : public QWidget
 {
     Q_OBJECT
@@ -20,6 +22,7 @@ public:
 signals:
 
 public slots:
+
 };
 
 #endif // ESPACEABO_H
