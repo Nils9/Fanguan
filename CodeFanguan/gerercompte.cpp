@@ -15,7 +15,7 @@ GererCompte::GererCompte(QWidget *parent) : QWidget(parent)
 
     QProgressBar * familleProgressBar = new QProgressBar();
     familleProgressBar->setValue(68);
-    familleProgressBar->setFormat("Habitués");
+    familleProgressBar->setFormat("Habitues");
 
     progressGridLayout = new QGridLayout();
     progressGridLayout->setAlignment(Qt::AlignCenter);
