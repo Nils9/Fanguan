@@ -1,4 +1,5 @@
 #include "gerercompte.h"
+#include "template.h"
 
 GererCompte::GererCompte(QWidget *parent) : QWidget(parent)
 {
@@ -9,7 +10,7 @@ GererCompte::GererCompte(QWidget *parent) : QWidget(parent)
     QHBoxLayout * headerVerticalLayout = new QHBoxLayout();
     QLabel * familyLabel = new QLabel("Famille Calvi");
     QToolButton * backButton = new QToolButton();
-    backButton->setIcon(QIcon(":/back.png"));
+    backButton->setIcon(QIcon(":/images/back.png"));
     headerVerticalLayout->addWidget(familyLabel);
     headerVerticalLayout->addWidget(backButton);
 
@@ -94,6 +95,7 @@ GererCompte::GererCompte(QWidget *parent) : QWidget(parent)
 
     connect(plusButton,SIGNAL(clicked()),this,SLOT(addMembreLineEdit()));
     connect(addMembreButton,SIGNAL(clicked()),this,SLOT(addMembre()));
+    connect(backButton,SIGNAL(clicked()),parent,SLOT(displayEspaceAbo()));
 
 }
 

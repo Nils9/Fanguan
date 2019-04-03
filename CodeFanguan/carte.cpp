@@ -41,7 +41,7 @@ Carte::Carte(QWidget *parent) : QWidget(parent)
 
     //Zone centrale
     centralLayout = new QHBoxLayout();
-    centralWidget = new QWidget(this);
+    centralWidget = new Catalogue(this);
     centralWidget->setMinimumSize(QSize(300, 300));
     centralLayout->addWidget(centralWidget);
 
