@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/toque.png</file>
+        <file>images/tomate.png</file>
+        <file>images/thailande.png</file>
+        <file>images/smileymaison.png</file>
+        <file>images/right.png</file>
+        <file>images/piment.png</file>
+        <file>images/nourriture.jpg</file>
+        <file>images/menu.png</file>
+        <file>images/menu.jpg</file>
+        <file>images/loupe.png</file>
+        <file>images/left.png</file>
+        <file>images/japon.jpg</file>
+        <file>images/france.jpg</file>
+        <file>images/cross.png</file>
+        <file>images/chine.png</file>
+        <file>images/carotte.png</file>
+        <file>images/bell.png</file>
+        <file>images/back.png</file>
+        <file>images/angleterre.jpg</file>
+        <file>images/Plats/nouilles.jpg</file>
+        <file>images/Entrees/nems.jpeg</file>
+        <file>images/Desserts/sesame-beignets.jpeg</file>
+    </qresource>
+</RCC>
