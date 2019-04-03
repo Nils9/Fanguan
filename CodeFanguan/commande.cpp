@@ -1,4 +1,5 @@
 #include "commande.h"
+#include "template.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -82,4 +83,6 @@ Commande::Commande(QWidget *parent,  int commandeId) : QWidget(parent)
     mainLayout->addLayout(topLayout);
     mainLayout->addLayout(grid);
     mainLayout->addLayout(bottomLayout);
+
+    connect(backButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
 }

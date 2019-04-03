@@ -9,6 +9,7 @@
 #include "selection.h"
 #include "carte.h"
 #include "connexion.h"
+#include "detail.h"
 
 
 Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
@@ -39,18 +40,26 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     case CARTE:
         centralLayout->removeWidget(centralWidget);
         centralWidget = new Carte(this);
+        previousWidget = 2;
         break;
 
     case ESPACEABO:
         centralLayout->removeWidget(centralWidget);
         centralWidget = new EspaceAbo(this);
+        previousWidget = 1;
+        break;
+
+    case RECHERCHE:
+        centralLayout->removeWidget(centralWidget);
+        centralWidget = new Detail(this);
+        previousWidget = 1;
         break;
 
     default:
         centralWidget = new QWidget();
+        previousWidget = 3;
         break;
     }
-
     centralWidget->setMinimumSize(QSize(600, 400));
     centralLayout->addWidget(centralWidget);
 
@@ -80,6 +89,7 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 }
 
 void Template::displayCarte() {
+    previousWidget = 2;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new Carte(this));
@@ -88,10 +98,12 @@ void Template::displayCarte() {
 }
 
 void Template::displayRecherche() {
+    previousWidget = 3;
    std::cout << "Recherche"<<std::endl;
 }
 
 void Template::displayEspaceAbo() {
+    previousWidget = 1;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new EspaceAbo(this));
@@ -112,13 +124,34 @@ void Template::appelServeur() {
 }
 
 
+void Template::retourCommande() {
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    if(previousWidget == 1){
+        setCentralWidget(new EspaceAbo(this));
+    }
+    if(previousWidget == 2){
+        setCentralWidget(new Carte(this));
+    }
+    if(previousWidget == 3){
+        setCentralWidget(new QWidget(this));
+    }
+    if(previousWidget == 4){
+        setCentralWidget(new GererCompte(this));
+    }
+    centralLayout->addWidget(centralWidget);
+    update();
+}
+
 void Template::displayGererCompte() {
+    previousWidget = 4;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new GererCompte(this));
     centralLayout->addWidget(centralWidget);
     update();
 }
+
 
 
 void Template::paintEvent(QPaintEvent *){

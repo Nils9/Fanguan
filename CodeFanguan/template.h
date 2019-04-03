@@ -31,8 +31,10 @@ public slots:
     void displayCommande();
     void appelServeur();
     void displayGererCompte();
+    void retourCommande();
 
 private :
+    int previousWidget;
     QWidget * centralWidget = nullptr;
     QHBoxLayout * centralLayout = new QHBoxLayout() ;
     QVBoxLayout * mainLayout = nullptr;
