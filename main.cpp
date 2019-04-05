@@ -1,3 +1,8 @@
+#include <QApplication>
+#include "carte.h"
+#include "template.h"
+#include "detail.h"
+#include "connexion.h"
 #include "mainwindow.h"
 #include "connexion.h"
 #include "inscription.h"
@@ -5,11 +10,8 @@
 #include "accueil.h"
 #include "gerercompte.h"
 #include "catalogue.h"
-#include <QApplication>
-#include "carte.h"
-#include "template.h"
-#include "detail.h"
-#include "connexion.h"
+
+
 
 int main(int argc, char *argv[])
 {
@@ -17,4 +19,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     return a.exec();
+
 }

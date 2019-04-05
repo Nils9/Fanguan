@@ -10,22 +10,24 @@
 #include <QGridLayout>
 #include <QIcon>
 
-#include"catalogue.h"
+#include "catalogue.h"
+#include "model.h"
 
 class Recherche : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Recherche(QWidget *parent = nullptr);
+    explicit Recherche(QWidget *parent = nullptr, Model * m = nullptr);
 
 signals:
 
 public slots:
 
 private:
-    QWidget * centralWidget;
-    QLayout * centralLayout;
-    QVBoxLayout * mainLayout;
+    QWidget * centralWidget = nullptr;
+    QLayout * centralLayout = nullptr;
+    QVBoxLayout * mainLayout = nullptr;
+    Model * model = nullptr;
 };
 
 #endif // RECHERCHE_H

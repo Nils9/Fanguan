@@ -1,8 +1,9 @@
 #include "espaceabo.h"
 #include "template.h"
 
-EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
+EspaceAbo::EspaceAbo(QWidget * parent, Model * m) : QWidget(parent)
 {
+    model = m;
     QHBoxLayout * layout = new QHBoxLayout(this);
     QVBoxLayout * leftVerticalLayout = new QVBoxLayout();
     leftVerticalLayout->setSizeConstraint(QLayout::SetMinimumSize);
@@ -14,8 +15,9 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
         EspaceAboLeftButton(QString label) : QPushButton(label){
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
-            setFont(QFont("Arial", 15));
-            setStyleSheet("color : white; background-color : #ff5e4d;");
+            Model * model = new Model();
+            setFont(model->getButtonFont());
+            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
         }
         virtual ~EspaceAboLeftButton() {}
     };
@@ -29,7 +31,7 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
             setIconSize(QSize(150, 120));
             setText(label);
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
-            setStyleSheet("color : white; background-color : #ff5e4d;");
+            setStyleSheet("color : black; background-color : white;");
         }
         virtual ~CatalogueItem() {}
     };
@@ -57,9 +59,9 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     platsFavorisScrollArea->setMinimumHeight(185);
     QHBoxLayout * platsFavorisLayout = new QHBoxLayout();
     platsFavorisLayout->setSpacing(10);
-    CatalogueItem * nemsButton = new CatalogueItem("Nems",QIcon(":/images/nourriture.jpg"),1);
-    CatalogueItem * samoussasButton = new CatalogueItem("Samoussas",QIcon(":/images/nourriture.jpg"),2);
-    CatalogueItem * boeufGingembreButton = new CatalogueItem("Boeuf au gingembre",QIcon(":/images/nourriture.jpg"),3);
+    CatalogueItem * nemsButton = new CatalogueItem("Nems",QIcon(":/images/nem.jpg"),1);
+    CatalogueItem * samoussasButton = new CatalogueItem("Samoussas",QIcon(":/images/samosa.jpg"),2);
+    CatalogueItem * boeufGingembreButton = new CatalogueItem("Boeuf au gingembre",QIcon(":/images/boeufaigre.jpg"),3);
     CatalogueItem * phoButton = new CatalogueItem("Pho",QIcon(":/images/nourriture.jpg"),4);
     CatalogueItem * nouillesButton = new CatalogueItem("Nouilles",QIcon(":/images/nourriture.jpg"),4);
     platsFavorisLayout->addWidget(nemsButton);
@@ -117,6 +119,8 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     rightVerticalLayout->addLayout(recommandationsWithLabelLayout);
     rightVerticalLayout->addSpacing(30);
     rightVerticalLayout->addLayout(avantagesGridLayout);
+
+    //avantagesGridLayout->setFont(model->getTextFont());
 
     layout->addLayout(leftVerticalLayout);
     layout->addLayout(rightVerticalLayout);

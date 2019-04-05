@@ -1,7 +1,8 @@
 #include "recherche.h"
 
-Recherche::Recherche(QWidget *parent) : QWidget(parent)
+Recherche::Recherche(QWidget *parent, Model * m) : QWidget(parent)
 {
+    model = m;
     QHBoxLayout * mainLayout = new QHBoxLayout();
 
     //Création de la colonne recherche
@@ -77,16 +78,19 @@ Recherche::Recherche(QWidget *parent) : QWidget(parent)
     vlayout->addWidget(countryGroupBox);
     vlayout->addWidget(typeGroupBox);
     vlayout->addWidget(ingGroupBox);
+    QFrame * buttonFrame = new QFrame();
+    buttonFrame->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
+    buttonFrame->setLayout(vlayout);
 
     //Zone centrale
     centralLayout = new QHBoxLayout();
-    centralWidget = new Catalogue(this);
+    centralWidget = new Catalogue(this, model->getCarteEntiere());
     centralWidget->setMinimumSize(QSize(300, 300));
     centralLayout->addWidget(centralWidget);
-    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-    mainLayout->addLayout(vlayout);
+    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
+
+    mainLayout->addWidget(buttonFrame);
     mainLayout->addLayout(centralLayout);
-    mainLayout->addStretch(5);
     setLayout(mainLayout);
 
     //hlayout->addLayout(vlayout);

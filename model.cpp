@@ -1,4 +1,5 @@
 #include "model.h"
+#include <QtSql>
 
 Model::Model(){
 
@@ -14,32 +15,89 @@ Model::Model(){
     fanguan->addMembre(nils);
 
     //Elaboration de la carte
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(QCoreApplication::applicationDirPath().append("/bdd/fanguan_bdd.sqlite"));
+    bool ok = db.open();
+
     //Entrées
-    Plat * e1 = new Plat(1);
-    e1->setImageFile(":/images/Entrees/nems.jpeg");
-    e1->setPrix(5);
-    addEntree(e1);
-    Plat * e2 = new Plat(4);
-    e2->setImageFile(":/images/Entrees/nems.jpeg");
-    e2->setPrix(5);
-    addEntree(e2);
-    //Plats
-    Plat * p1 = new Plat(2);
-    p1->setImageFile(":/images/Plats/nouilles.jpg");
-    p1->setPrix(10);
-    addPlat(p1);
-    //Desserts
-    Plat * d1 = new Plat(3);
-    d1->setImageFile(":/images/Desserts/sesame-beignets.jpeg");
-    d1->setPrix(4);
-    addPlat(d1);
+    if (ok) {
+
+        QString nom, fichierImage;
+        int id;
+        float prix;
+        Plat * e1 = nullptr;
+
+        //Entrées
+        QSqlQuery query(db);
+        std::cout << "## chargement desserts" << std::endl;
+        query.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'entree' ");
+        while (query.next()) {
+            id = query.value(0).toInt();
+            nom = query.value(1).toString();
+            fichierImage = query.value(2).toString();
+            prix = query.value(3).toFloat();
+            std::cout << nom.toStdString() << std::endl;
+            e1 = new Plat(id);
+            e1->setLabel(nom);
+            e1->setImageFile(fichierImage);
+            e1->setPrix(prix);
+            addEntree(e1);
+            carteEntiere.push_back(e1);
+        }
+        std::cout << "## Entree List length " << std::to_string(carteEntrees.size()) << std::endl;
+
+        //Plats
+        std::cout << "## chargement desserts" << std::endl;
+        QSqlQuery query2(db);
+        query2.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'plat' ");
+        while (query2.next()) {
+            id = query2.value(0).toInt();
+            nom = query2.value(1).toString();
+            fichierImage = query2.value(2).toString();
+            prix = query2.value(3).toFloat();
+            std::cout << nom.toStdString() << std::endl;
+            e1 = new Plat(id);
+            e1->setLabel(nom);
+            e1->setImageFile(fichierImage);
+            e1->setPrix(prix);
+            addPlat(e1);
+            carteEntiere.push_back(e1);
+        }
+
+        //Dessert
+        std::cout << "## chargement desserts" << std::endl;
+        QSqlQuery query3(db);
+        query3.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'dessert' ");
+        while (query3.next()) {
+            id = query3.value(0).toInt();
+            nom = query3.value(1).toString();
+            fichierImage = query3.value(2).toString();
+            prix = query3.value(3).toFloat();
+            std::cout << nom.toStdString() << std::endl;
+            e1 = new Plat(id);
+            e1->setLabel(nom);
+            e1->setImageFile(fichierImage);
+            e1->setPrix(prix);
+            addDessert(e1);
+            carteEntiere.push_back(e1);
+        }
+    }
+
+    else {
+        std::cout << db.lastError().text().toStdString() << std::endl;
+        std::cout << "fail" << std::endl;
+    }
+
+    std::cout << "## Menus" << std::endl;
     //Menus
     MenuModel * m1 = new MenuModel("Cantonais");
-    m1->addMenuEntree(e1);
-    m1->addMenuEntree(e2);
-    m1->addMenuPlat(p1);
-    m1->addMenuDessert(d1);
+    m1->addMenuEntree(carteEntrees[0]);
+    m1->addMenuEntree(carteEntrees[3]);
+    m1->addMenuPlat(cartePlats[0]);
+    m1->addMenuDessert(carteDesserts[0]);
     addMenu(m1);
+    std::cout << "## Model done" << std::endl;
 }
 
 void Model::addDessert(Plat *dessert){
@@ -74,5 +132,28 @@ std::vector<MenuModel*> Model::getMenus(){
     return carteMenus;
 }
 
+std::vector<Plat*>  Model::getCarteEntiere() {
+    return carteEntiere;
+}
+
+QFont Model::getTitleFont(){
+    return QFont("Helvetica", 30, QFont::Bold);
+}
+
+QFont Model::getAccueilButtonFont(){
+    return QFont("Helvetica", 15, QFont::Bold);
+}
+
+QFont Model::getButtonFont(){
+    return QFont("Helvetica", 20, QFont::Bold);
+}
+
+QFont Model::getTextFont(){
+    return QFont("Helvetica", 15);
+}
+
+QFont Model::getPlatFont(){
+    return QFont("Helvetica", 12);
+}
 
 

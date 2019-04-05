@@ -12,12 +12,14 @@
 #include <QScrollArea>
 
 #include "gerercompte.h"
+#include "model.h"
 
 class EspaceAbo : public QWidget
 {
     Q_OBJECT
 public:
-    explicit EspaceAbo(QWidget *parent = nullptr);
+    explicit EspaceAbo(QWidget *parent = nullptr, Model * m = nullptr);
+    Model * model;
 
 signals:
 

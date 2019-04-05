@@ -84,7 +84,7 @@ void GererCompte::addMembre(){
 
 void GererCompte::deleteMembre(){
     QObject * buttonClicked = sender();
-    int i = 0;
+    unsigned int i = 0;
     while((deleteButtonsVector->at(i) != buttonClicked) & (i<deleteButtonsVector->size())){
       i+=1;
     }
