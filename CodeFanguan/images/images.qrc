@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>plus.png</file>
-        <file>poubelle.png</file>
-        <file>nourriture.jpg</file>
-    </qresource>
-</RCC>

@@ -1,10 +1,14 @@
 #include "menu.h"
 #include <QGroupBox>
 
-Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
+Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
 {
+    temp = t;
     this->model = model;
     menuList = model->getMenus();
+    std::cout << "j'ai récupere les menus" << std::endl;
+    unsigned int sizeMenu = menuList.size();
+    std::cout << sizeMenu << std::endl;
 
     currentMenu = menuList[0];
     currentIndex = 0;
@@ -12,7 +16,7 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Partie en-tête du menu
-    menu = new QHBoxLayout();
+    QHBoxLayout * menu = new QHBoxLayout();
     menu->setAlignment(Qt::AlignCenter);
 
     QToolButton * flecheG = new QToolButton();
@@ -31,14 +35,28 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
     mainLayout->addLayout(menu);
 
     //Partie contenu du menu
-    columns = new QHBoxLayout();
-    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
+    QHBoxLayout * columns = new QHBoxLayout();
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrees");
     platsColumn = newColonne(currentMenu->getMenuPlats(), "Plats");
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
 
-    columns->addWidget(entreesColumn);
-    columns->addWidget(platsColumn);
-    columns->addWidget(dessertsColumn);
+    QGroupBox * entreesGroup = new QGroupBox("Entree");
+    QGroupBox * platsGroup = new QGroupBox("Plat");
+    QGroupBox * dessertsGroup = new QGroupBox("dessert");
+    entreesGroup->setLayout(entreesColumn);
+    platsGroup->setLayout(platsColumn);
+    dessertsGroup->setLayout(dessertsColumn);
+    entreesGroup->setFont(QFont("Arial", 18));
+    platsGroup->setFont(QFont("Arial", 18));
+    dessertsGroup->setFont(QFont("Arial", 18));
+
+    columns->addStretch(5);
+    columns->addWidget(entreesGroup);
+    columns->addStretch(5);
+    columns->addWidget(platsGroup);
+    columns->addStretch(5);
+    columns->addWidget(dessertsGroup);
+    columns->addStretch(5);
 
     mainLayout->addLayout(columns);
 
@@ -52,7 +70,6 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
     connect(flecheD, SIGNAL(clicked()), this, SLOT(nextMenu()));
     connect(flecheG, SIGNAL(clicked()), this, SLOT(previousMenu()));
 }
-
 
 QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
     QGroupBox * newColonne = new QGroupBox(nom);

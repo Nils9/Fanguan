@@ -136,6 +136,14 @@ void Template::displayCommande() {
    centralLayout->addWidget(centralWidget);
 }
 
+
+void Template::displayDetail(Plat* p) {
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new Detail(this, p));
+    centralLayout->addWidget(centralWidget);
+}
+
 void Template::appelServeur() {
    std::cout << "Serveur"<< std::endl;
 }

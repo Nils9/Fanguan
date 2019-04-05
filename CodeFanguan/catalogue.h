@@ -5,18 +5,18 @@
 #include <QScrollArea>
 #include "catalogueitem.h"
 #include "plat.h"
+#include "template.h"
 
 class Catalogue : public QScrollArea
 {
     Q_OBJECT
 public:
-    explicit Catalogue(QWidget *parent = nullptr, std::vector<Plat *> listePlat = std::vector<Plat *>());
-
-signals:
+    Catalogue(QWidget *parent = nullptr, Template *t = nullptr, std::vector<Plat *> listePlat = std::vector<Plat *>());
 
 public slots:
 
 private:
+    Template * temp = nullptr;
 
 };
 

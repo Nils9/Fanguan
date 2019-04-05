@@ -9,7 +9,8 @@
 #include <QFrame>
 #include <QGroupBox>
 
-Detail::Detail(QWidget *parent) : QWidget(parent)
+
+Detail::Detail(Template *parent, Plat * plat) : QWidget(parent)
 {
 
     std::vector<QString> ingredientList;
@@ -17,8 +18,8 @@ Detail::Detail(QWidget *parent) : QWidget(parent)
     ingredientList.push_back(QString("Soja"));
     ingredientList.push_back(QString("Feuille de riz"));
     ingredientList.push_back(QString("poulet"));
-    QString itemName = "Nems";
-    QString itemImage = ":/images/nourriture.jpg";
+    QString itemName = QString("%1 - %2 euros").arg(plat->getLabel()).arg(plat->getPrix());
+    QString itemImage = plat->getImageFile();
     QString itemDescription = "Specialte de la region de Canton. \n Croustillant et fondant a l'interieur. \n N'hesitez pas a le consommer avec sa sauce";
 
     //mainLayout début
@@ -79,6 +80,8 @@ Detail::Detail(QWidget *parent) : QWidget(parent)
     leftLayout->addWidget(infos);
     //leftLayout fin
 
+
+
     QFrame * rightFrame = new QFrame();
     QVBoxLayout * rightLayout =new  QVBoxLayout(rightFrame);
     QGroupBox * quantityBox = new QGroupBox(tr("Quantite"));
@@ -89,8 +92,13 @@ Detail::Detail(QWidget *parent) : QWidget(parent)
     quantity->setSuffix(tr(" unite(s)"));
     quantityLayout->addWidget(quantity);
     quantityBox->setLayout(quantityLayout);
+
+    QPushButton * validateButton = new QPushButton("Valider \n commande");
+    validateButton->setFont(QFont("Arial", 15));
+
     rightLayout->addWidget(quantityBox);
     rightLayout->addStretch(5);
+    rightLayout->addWidget(validateButton);
 
     middleLayout->addLayout(leftLayout);
     middleLayout->addWidget(rightFrame);
@@ -100,5 +108,7 @@ Detail::Detail(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(middleLayout);
     setLayout(mainLayout);
     //mainLayout fin
+
+    connect(quitButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
 
 }

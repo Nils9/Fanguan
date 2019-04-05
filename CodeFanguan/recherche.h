@@ -12,12 +12,13 @@
 
 #include "catalogue.h"
 #include "model.h"
+#include "template.h"
 
 class Recherche : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Recherche(QWidget *parent = nullptr, Model * m = nullptr);
+    explicit Recherche(Template *parent = nullptr, Model * m = nullptr);
 
 signals:
 

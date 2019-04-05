@@ -7,15 +7,14 @@
 #include <QLabel>
 #include <iostream>
 
-Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
+Carte::Carte(Template * parent, Model * m) : QWidget(parent)
 {
     model = m;
-
+    temp = parent;
     QHBoxLayout * mainLayout = new QHBoxLayout();
     QHBoxLayout * topLayout = new QHBoxLayout();
     topLayout->setSpacing(0);
-    //QString style = QString("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
-
+    
     class CarteButton : public QPushButton
     {
     public:
@@ -53,17 +52,16 @@ Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
     buttonLayout->addStretch(5);
     buttonLayout->addWidget(dessertsButton);
     buttonLayout->addStretch(5);
+
     buttonLayout->addWidget(boissonsButton);
     buttonLayout->addStretch(5);
 
     //Zone centrale
     centralLayout = new QHBoxLayout();
-    centralWidget = new Menu(nullptr, model);
+    centralWidget = new Menu(nullptr, temp, model);
     centralWidget->setMinimumSize(QSize(300, 300));
     centralWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     centralLayout->addWidget(centralWidget);
-
-
 
     mainLayout->addLayout(buttonLayout);
     mainLayout->addLayout(centralLayout);
@@ -82,7 +80,7 @@ void Carte::displayEntrees() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
     std::cout << "## Show entree " << std::to_string(model->getEntrees().size()) << std::endl;
-    setCentralWidget(new Catalogue(nullptr,model->getEntrees()));
+    setCentralWidget(new Catalogue(nullptr, temp, model->getEntrees()));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -90,7 +88,7 @@ void Carte::displayEntrees() {
 void Carte::displayPlats() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Catalogue(nullptr,model->getPlats()));
+    setCentralWidget(new Catalogue(nullptr, temp, model->getPlats()));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -98,7 +96,7 @@ void Carte::displayPlats() {
 void Carte::displayDesserts() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Catalogue(nullptr,model->getDesserts()));
+    setCentralWidget(new Catalogue(nullptr, temp, model->getDesserts()));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -106,7 +104,7 @@ void Carte::displayDesserts() {
 void Carte::displayMenus() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Menu(nullptr, model));
+    setCentralWidget(new Menu(nullptr, temp, model));
     centralLayout->addWidget(centralWidget);
     update();
 }

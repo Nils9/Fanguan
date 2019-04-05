@@ -14,6 +14,7 @@
 #include "model.h"
 #include "catalogueitem.h"
 #include "plat.h"
+#include "template.h"
 
 class Menu : public QWidget
 {
@@ -24,6 +25,7 @@ public:
     QGroupBox * newColonne(std::vector<Plat*> liste, QString type);
 
 private:
+    Template * temp = nullptr;
     Model * model;
     std::vector<MenuModel*> menuList;
     MenuModel * currentMenu;

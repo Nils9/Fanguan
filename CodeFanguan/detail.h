@@ -3,12 +3,14 @@
 #define DETAIL_H
 
 #include <QWidget>
+#include "plat.h"
+#include "template.h"
 
 class Detail : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Detail(QWidget *parent = nullptr /*, Plat plat */ );
+    explicit Detail(Template *parent = nullptr , Plat * plat = nullptr);
 
 signals:
 

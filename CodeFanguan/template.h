@@ -35,6 +35,7 @@ public slots:
     void appelServeur();
     void displayGererCompte();
     void retourCommande();
+    void displayDetail(Plat* p);
 
 private :
     Rubriques previousWidget = CARTE;

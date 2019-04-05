@@ -2,7 +2,6 @@
 #include <QtSql>
 
 Model::Model(){
-
     //Création d'une famille
     Membre * margot = new Membre("Margot", 1);
     Membre * arthur = new Membre("Arthur", 2);
@@ -18,6 +17,7 @@ Model::Model(){
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QCoreApplication::applicationDirPath().append("/bdd/fanguan_bdd.sqlite"));
+
     bool ok = db.open();
 
     //Entrées
@@ -148,6 +148,7 @@ std::vector<MenuModel*> Model::getMenus(){
 std::vector<Plat*>  Model::getCarteEntiere() {
     return carteEntiere;
 }
+
 
 QFont Model::getTitleFont(){
     return QFont("Helvetica", 30, QFont::Bold);
