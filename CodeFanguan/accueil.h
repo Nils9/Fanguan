@@ -15,8 +15,6 @@ public:
 signals:
 
 public slots:
-
-private :
 };
 
 #endif // ACCUEIL_H

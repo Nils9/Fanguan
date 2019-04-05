@@ -2,6 +2,10 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include "accueil.h"
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 #include <QLabel>
 
 Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
@@ -91,7 +95,7 @@ Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
     mainLayout->addLayout(serveurLayout);
     mainLayout->addStretch(5);
     setLayout(mainLayout);
-  
+
     connect(aboButton, SIGNAL(clicked()), parent, SLOT(displayEspaceAbo()));
     connect(rechercheButton, SIGNAL(clicked()), parent, SLOT(displayRecherche()));
     connect(carteButton, SIGNAL(clicked()), parent, SLOT(displayCarte()));

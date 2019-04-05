@@ -16,16 +16,32 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
     model = m;
 
-    //QFont buttonFont = QFont("Arial", 18);
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Barre supérieure
     QHBoxLayout * topMenuLayout = new QHBoxLayout();
 
+    QButtonGroup * topGroup = new QButtonGroup();
+    topGroup->setExclusive(true);
+
+    QString style = QString("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
+
     QPushButton * aboButton = new QPushButton(tr("Espace Habitue"));
+    topGroup->addButton(aboButton);
+    aboButton->setCheckable(true);
+    aboButton->setStyleSheet(style);
     QPushButton * carteButton = new QPushButton(tr("Carte"));
+    topGroup->addButton(carteButton);
+    carteButton->setCheckable(true);
+    carteButton->setStyleSheet(style);
     QPushButton * rechercheButton = new QPushButton(tr("Recherche"));
+    topGroup->addButton(rechercheButton);
+    rechercheButton->setCheckable(true);
+    rechercheButton->setStyleSheet(style);
     QPushButton * selectionButton = new QPushButton(tr("Selection du Chef"));
+    topGroup->addButton(selectionButton);
+    selectionButton->setCheckable(true);
+    selectionButton->setStyleSheet(style);
 
     aboButton->setFont(model->getButtonFont());
     carteButton->setFont(model->getButtonFont());

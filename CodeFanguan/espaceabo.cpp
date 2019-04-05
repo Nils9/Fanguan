@@ -31,16 +31,24 @@ EspaceAbo::EspaceAbo(QWidget * parent, Model * m) : QWidget(parent)
             setIconSize(QSize(150, 120));
             setText(label);
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
-            setStyleSheet("color : black; background-color : white;");
+            setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
+			setStyleSheet("color : black; background-color : white;");
         }
         virtual ~CatalogueItem() {}
     };
 
+    QButtonGroup * group = new QButtonGroup();
+    group->setExclusive(true);
     EspaceAboLeftButton * margotButton = new EspaceAboLeftButton("Margot");
+    group->addButton(margotButton);
     EspaceAboLeftButton * arthurButton = new EspaceAboLeftButton("Arthur");
+    group->addButton(arthurButton);
     EspaceAboLeftButton * nilsButton = new EspaceAboLeftButton("Nils");
+    group->addButton(nilsButton);
     EspaceAboLeftButton * julienButton = new EspaceAboLeftButton("Julien");
+    group->addButton(julienButton);
     EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte");
+    group->addButton(gererCompteButton);
 
     leftVerticalLayout->addWidget(margotButton);
     leftVerticalLayout->addWidget(arthurButton);
@@ -119,8 +127,6 @@ EspaceAbo::EspaceAbo(QWidget * parent, Model * m) : QWidget(parent)
     rightVerticalLayout->addLayout(recommandationsWithLabelLayout);
     rightVerticalLayout->addSpacing(30);
     rightVerticalLayout->addLayout(avantagesGridLayout);
-
-    //avantagesGridLayout->setFont(model->getTextFont());
 
     layout->addLayout(leftVerticalLayout);
     layout->addLayout(rightVerticalLayout);

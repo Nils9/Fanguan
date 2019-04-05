@@ -90,13 +90,26 @@ Model::Model(){
     }
 
     std::cout << "## Menus" << std::endl;
+
     //Menus
     MenuModel * m1 = new MenuModel("Cantonais");
     m1->addMenuEntree(carteEntrees[0]);
     m1->addMenuEntree(carteEntrees[3]);
-    m1->addMenuPlat(cartePlats[0]);
+
+    m1->addMenuPlat(cartePlats[3]);
     m1->addMenuDessert(carteDesserts[0]);
+    m1->addMenuDessert(carteDesserts[1]);
     addMenu(m1);
+
+    MenuModel * m2 = new MenuModel("Japonais");
+    m2->addMenuEntree(carteEntrees[1]);
+    m2->addMenuEntree(carteEntrees[2]);
+    m2->addMenuPlat(cartePlats[1]);
+    m2->addMenuPlat(cartePlats[2]);
+    m2->addMenuDessert(carteDesserts[0]);
+    m2->addMenuDessert(carteDesserts[1]);
+    addMenu(m2);
+
     std::cout << "## Model done" << std::endl;
 }
 

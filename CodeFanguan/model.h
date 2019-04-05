@@ -2,6 +2,7 @@
 #define MODEL_H
 #include <QString>
 #include <QFont>
+
 #include "plat.h"
 #include "membre.h"
 #include "famille.h"

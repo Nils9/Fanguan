@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QButtonGroup>
+
 #include "model.h"
 
 class Template : public QWidget
