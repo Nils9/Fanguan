@@ -122,5 +122,4 @@ void Menu::previousMenu(){
     dessertsColumn->hide();
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
     columns->addWidget(dessertsColumn);
->>>>>>> test/nils
 }

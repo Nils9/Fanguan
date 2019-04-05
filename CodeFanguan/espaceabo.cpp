@@ -17,7 +17,8 @@ EspaceAbo::EspaceAbo(QWidget * parent, Model * m) : QWidget(parent)
             setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
             Model * model = new Model();
             setFont(model->getButtonFont());
-            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
+            setCheckable(true);
+            setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
         }
         virtual ~EspaceAboLeftButton() {}
     };

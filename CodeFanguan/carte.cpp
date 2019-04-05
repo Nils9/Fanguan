@@ -14,7 +14,7 @@ Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
     QHBoxLayout * mainLayout = new QHBoxLayout();
     QHBoxLayout * topLayout = new QHBoxLayout();
     topLayout->setSpacing(0);
-    QString style = QString("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
+    //QString style = QString("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
 
     class CarteButton : public QPushButton
     {
@@ -24,6 +24,7 @@ Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(model->getButtonFont());
+            setCheckable(true);
             setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
         }
         virtual ~CarteButton() {}
