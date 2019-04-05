@@ -63,7 +63,7 @@ void Catalogue::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
 }
 
 const QMetaObject Catalogue::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_Catalogue.data,
+    { &QScrollArea::staticMetaObject, qt_meta_stringdata_Catalogue.data,
       qt_meta_data_Catalogue,  qt_static_metacall, nullptr, nullptr}
 };
 
@@ -78,12 +78,12 @@ void *Catalogue::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_Catalogue.stringdata0))
         return static_cast<void*>(const_cast< Catalogue*>(this));
-    return QWidget::qt_metacast(_clname);
+    return QScrollArea::qt_metacast(_clname);
 }
 
 int Catalogue::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QScrollArea::qt_metacall(_c, _id, _a);
     return _id;
 }
 QT_WARNING_POP

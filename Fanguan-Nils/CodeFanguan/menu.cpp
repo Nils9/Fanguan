@@ -52,20 +52,19 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
 
 }
 
-QWidget * Menu::newColonne(std::vector<Plat *> liste, QString nom){
-    QWidget * newColonne = new QWidget();
+QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
+    QGroupBox * newColonne = new QGroupBox(nom);
     QVBoxLayout * colonne = new QVBoxLayout();
-    QLabel * label = new QLabel(nom);
-    label->setFont(QFont("Arial", 18));
-    colonne->addWidget(label);
-    colonne->setAlignment(label, Qt::AlignCenter);
     colonne->addStretch(5);
+    QButtonGroup * group = new QButtonGroup();
+    group->setExclusive(true);
 
     for(int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
         CatalogueItem * item = new CatalogueItem(plat);
         item->setCheckable(true);
         item->setStyleSheet(QString("QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
+        group->addButton(item);
         colonne->addWidget(item);
         colonne->addStretch(5);
     }
@@ -94,7 +93,6 @@ void Menu::nextMenu(){
     dessertsColumn->hide();
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
     columns->addWidget(dessertsColumn);
-
 }
 
 void Menu::previousMenu(){

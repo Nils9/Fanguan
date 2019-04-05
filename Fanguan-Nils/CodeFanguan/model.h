@@ -12,9 +12,10 @@ private:
     QString langage = "French";
 
     //Carte du restaurant
-    std::vector<Plat*> carteEntrees;
-    std::vector<Plat*> cartePlats;
-    std::vector<Plat*> carteDesserts;
+    std::vector<Plat*> carteEntrees = std::vector<Plat*>();
+    std::vector<Plat*> cartePlats= std::vector<Plat*>();
+    std::vector<Plat*> carteDesserts= std::vector<Plat*>();
+    std::vector<Plat*> carteEntiere= std::vector<Plat*>();
     std::vector<MenuModel*> carteMenus;
 
     //Liste des familles du restaurant
@@ -35,6 +36,7 @@ public:
     std::vector<Plat*> getEntrees();
     std::vector<Plat*> getPlats();
     std::vector<Plat*> getDesserts();
+    std::vector<Plat*> getCarteEntiere();
     std::vector<MenuModel*> getMenus();
 
     //Mise à jour de la carte

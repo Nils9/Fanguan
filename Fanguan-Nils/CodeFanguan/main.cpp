@@ -1,18 +1,24 @@
-#include "mainwindow.h"
-#include "carte.h"
-#include "template.h"
+
 #include <QApplication>
+#include <QFile>
 #include "template.h"
-#include "recherche.h"
-#include "menu.h"
-#include "model.h"
+#include "detail.h"
+#include "connexion.h"
+#include "mainwindow.h"
+#include "connexion.h"
+#include "inscription.h"
+#include "espaceabo.h"
+#include "accueil.h"
+#include "gerercompte.h"
+#include "catalogue.h"
+
+
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication  a(argc, argv);
     MainWindow w;
-    Model* model = new Model();
-    w.setCentralWidget(new Menu(nullptr, model));
     w.show();
     return a.exec();
+
 }

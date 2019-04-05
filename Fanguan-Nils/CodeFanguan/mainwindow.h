@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "model.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -16,6 +16,7 @@ public:
     ~MainWindow();
 
 public slots :
+    inline const Model * getModel() {return model;}
     void displayCarte();
     void displayEspaceAbo();
     void displayRecherche();
@@ -23,7 +24,7 @@ public slots :
 
 private:
     Ui::MainWindow *ui;
+    Model * model = nullptr;
 };
 
 #endif // MAINWINDOW_H
-

@@ -19,8 +19,25 @@
         <file>images/tomate.png</file>
         <file>images/left.png</file>
         <file>images/right.png</file>
-        <file>images/Entrees/nems.jpeg</file>
-        <file>images/Desserts/sesame-beignets.jpeg</file>
-        <file>images/Plats/nouilles.jpg</file>
+        <file>images/boeufaigre.jpg</file>
+        <file>images/canardlaque.jpg</file>
+        <file>images/canton.jpg</file>
+        <file>images/katsudon.jpg</file>
+        <file>images/maki.jpg</file>
+        <file>images/mochi.jpg</file>
+        <file>images/nem.jpg</file>
+        <file>images/nouilles.jpg</file>
+        <file>images/plus.png</file>
+        <file>images/poubelle.png</file>
+        <file>images/poulet.jpg</file>
+        <file>images/pouletthai.jpg</file>
+        <file>images/rouleau.jpg</file>
+        <file>images/saladefruit.jpg</file>
+        <file>images/samosa.jpg</file>
+        <file>images/sashimisaumon.jpg</file>
+        <file>images/sashimithon.jpg</file>
+        <file>images/takoyaki.jpg</file>
+        <file>images/tempura.jpg</file>
+        <file>images/toriyaki.jpg</file>
     </qresource>
 </RCC>

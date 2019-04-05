@@ -9,20 +9,40 @@
 #include "selection.h"
 #include "carte.h"
 #include "connexion.h"
+#include "detail.h"
+#include "recherche.h"
 
-
-Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
+Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
+    model = m;
+
     QFont buttonFont = QFont("Arial", 18);
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Barre supérieure
     QHBoxLayout * topMenuLayout = new QHBoxLayout();
 
+    QButtonGroup * topGroup = new QButtonGroup();
+    topGroup->setExclusive(true);
+
+    QString style = QString("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
+
     QPushButton * aboButton = new QPushButton(tr("Espace Habitue"));
+    topGroup->addButton(aboButton);
+    aboButton->setCheckable(true);
+    aboButton->setStyleSheet(style);
     QPushButton * carteButton = new QPushButton(tr("Carte"));
+    topGroup->addButton(carteButton);
+    carteButton->setCheckable(true);
+    carteButton->setStyleSheet(style);
     QPushButton * rechercheButton = new QPushButton(tr("Recherche"));
+    topGroup->addButton(rechercheButton);
+    rechercheButton->setCheckable(true);
+    rechercheButton->setStyleSheet(style);
     QPushButton * selectionButton = new QPushButton(tr("Selection du Chef"));
+    topGroup->addButton(selectionButton);
+    selectionButton->setCheckable(true);
+    selectionButton->setStyleSheet(style);
 
     aboButton->setFont(buttonFont);
     carteButton->setFont(buttonFont);
@@ -35,14 +55,23 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-
-
+    previousWidget = rub;
     switch (rub) {
     case CARTE:
-        centralWidget = new Carte(this);
+        setCentralWidget(new Carte(this, model));
         break;
+
+    case ESPACEABO:
+        setCentralWidget(new EspaceAbo(this));
+        break;
+
+    case RECHERCHE:
+        setCentralWidget(new Recherche(this, model));
+        break;
+
     default:
-        centralWidget = new QWidget(this);
+        centralWidget = new QWidget();
+        previousWidget = CARTE;
         break;
     }
     centralWidget->setMinimumSize(QSize(600, 400));
@@ -74,29 +103,79 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 }
 
 void Template::displayCarte() {
+    previousWidget = CARTE;
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Carte());
+    centralWidget->hide();
+    setCentralWidget(new Carte(this, model));
     centralLayout->addWidget(centralWidget);
     update();
 }
 
 void Template::displayRecherche() {
-   std::cout << "Recherche"<<std::endl;
+    previousWidget = RECHERCHE;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new Recherche(this, model));
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
 void Template::displayEspaceAbo() {
-   std::cout << "Espace habitués"<<std::endl;
+    previousWidget = ESPACEABO;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new EspaceAbo(this));
+    centralLayout->addWidget(centralWidget);
+    update();
 }
+
 
 void Template::displayCommande() {
    centralLayout->removeWidget(centralWidget);
-   setCentralWidget(new Commande());
+   centralWidget->hide();
+   setCentralWidget(new Commande(this));
    centralLayout->addWidget(centralWidget);
 }
 
 void Template::appelServeur() {
    std::cout << "Serveur"<< std::endl;
 }
+
+
+void Template::retourCommande() {
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+
+    switch (previousWidget) {
+    case ESPACEABO:
+        setCentralWidget(new EspaceAbo(this));
+        break;
+    case RECHERCHE:
+        setCentralWidget(new Recherche(this, model));
+        break;
+    case CARTE:
+        setCentralWidget(new Carte(this, model));
+        break;
+    case GERERCOMPTE:
+        setCentralWidget(new GererCompte(this));
+        break;
+    default:
+        break;
+    }
+    centralLayout->addWidget(centralWidget);
+    update();
+}
+
+void Template::displayGererCompte() {
+    previousWidget = GERERCOMPTE;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new GererCompte(this));
+    centralLayout->addWidget(centralWidget);
+    update();
+}
+
+
 
 void Template::paintEvent(QPaintEvent *){
 }

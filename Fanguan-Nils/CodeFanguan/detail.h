@@ -8,7 +8,7 @@ class Detail : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Detail(QWidget *parent = nullptr);
+    explicit Detail(QWidget *parent = nullptr /*, Plat plat */ );
 
 signals:
 

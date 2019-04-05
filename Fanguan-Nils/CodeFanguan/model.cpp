@@ -1,6 +1,9 @@
 #include "model.h"
+#include <QtSql>
 
 Model::Model(){
+
+
 
     //Création d'une famille
     Membre * margot = new Membre("Margot", 1);
@@ -14,55 +17,101 @@ Model::Model(){
     fanguan->addMembre(nils);
 
     //Elaboration de la carte
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(QCoreApplication::applicationDirPath().append("/bdd/fanguan_bdd.sqlite"));
+    bool ok = db.open();
+
     //Entrées
-    Plat * e1 = new Plat(1);
-    e1->setImageFile(":/images/Entrees/nems.jpeg");
-    e1->setPrix(5);
-    e1->setLabel("Nems Poulet");
-    addEntree(e1);
-    Plat * e2 = new Plat(4);
-    e2->setImageFile(":/images/Entrees/nems.jpeg");
-    e2->setPrix(5);
-    e2->setLabel("Nems Porc");
-    addEntree(e2);
-    Plat * e3 = new Plat(5);
-    e3->setImageFile(":/images/Entrees/nems.jpeg");
-    e3->setPrix(5);
-    e3->setLabel("Nems Crevettes");
-    addEntree(e3);
-    //Plats
-    Plat * p1 = new Plat(2);
-    p1->setImageFile(":/images/Plats/nouilles.jpg");
-    p1->setPrix(10);
-    p1->setLabel("Nouilles");
-    addPlat(p1);
-    //Desserts
-    Plat * d1 = new Plat(3);
-    d1->setImageFile(":/images/Desserts/sesame-beignets.jpeg");
-    d1->setPrix(4);
-    d1->setLabel("Beignets de sésame");
-    addPlat(d1);
+    if (ok) {
+
+        QString nom, fichierImage;
+        int id;
+        float prix;
+        Plat * e1 = nullptr;
+
+        //Entrées
+        QSqlQuery query(db);
+        std::cout << "## chargement desserts" << std::endl;
+        query.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'entree' ");
+        while (query.next()) {
+            id = query.value(0).toInt();
+            nom = query.value(1).toString();
+            fichierImage = query.value(2).toString();
+            prix = query.value(3).toFloat();
+            std::cout << nom.toStdString() << std::endl;
+            e1 = new Plat(id);
+            e1->setLabel(nom);
+            e1->setImageFile(fichierImage);
+            e1->setPrix(prix);
+            addEntree(e1);
+            carteEntiere.push_back(e1);
+        }
+        std::cout << "## Entree List length " << std::to_string(carteEntrees.size()) << std::endl;
+
+        //Plats
+        std::cout << "## chargement desserts" << std::endl;
+        QSqlQuery query2(db);
+        query2.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'plat' ");
+        while (query2.next()) {
+            id = query2.value(0).toInt();
+            nom = query2.value(1).toString();
+            fichierImage = query2.value(2).toString();
+            prix = query2.value(3).toFloat();
+            std::cout << nom.toStdString() << std::endl;
+            e1 = new Plat(id);
+            e1->setLabel(nom);
+            e1->setImageFile(fichierImage);
+            e1->setPrix(prix);
+            addPlat(e1);
+            carteEntiere.push_back(e1);
+        }
+
+        //Dessert
+        std::cout << "## chargement desserts" << std::endl;
+        QSqlQuery query3(db);
+        query3.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'dessert' ");
+        while (query3.next()) {
+            id = query3.value(0).toInt();
+            nom = query3.value(1).toString();
+            fichierImage = query3.value(2).toString();
+            prix = query3.value(3).toFloat();
+            std::cout << nom.toStdString() << std::endl;
+            e1 = new Plat(id);
+            e1->setLabel(nom);
+            e1->setImageFile(fichierImage);
+            e1->setPrix(prix);
+            addDessert(e1);
+            carteEntiere.push_back(e1);
+        }
+    }
+
+    else {
+        std::cout << db.lastError().text().toStdString() << std::endl;
+        std::cout << "fail" << std::endl;
+    }
+
+    std::cout << "## Menus" << std::endl;
+
     //Menus
     MenuModel * m1 = new MenuModel("Cantonais");
-    m1->addMenuEntree(e1);
-    m1->addMenuEntree(e2);
-    //m1->addMenuEntree(e3);
-    m1->addMenuPlat(p1);
-    m1->addMenuDessert(d1);
+    m1->addMenuEntree(carteEntrees[0]);
+    m1->addMenuEntree(carteEntrees[3]);
+    m1->addMenuPlat(cartePlats[3]);
+    m1->addMenuDessert(carteDesserts[0]);
+    m1->addMenuDessert(carteDesserts[1]);
     addMenu(m1);
+
     MenuModel * m2 = new MenuModel("Japonais");
-    m2->addMenuEntree(e1);
-    m2->addMenuEntree(e3);
-    m2->addMenuPlat(d1);
-    m2->addMenuDessert(p1);
+    m2->addMenuEntree(carteEntrees[1]);
+    m2->addMenuEntree(carteEntrees[2]);
+    m2->addMenuPlat(cartePlats[1]);
+    m2->addMenuPlat(cartePlats[2]);
+    m2->addMenuDessert(carteDesserts[0]);
+    m2->addMenuDessert(carteDesserts[1]);
     addMenu(m2);
-    MenuModel * m3 = new MenuModel("Thaïlandais");
-    m3->addMenuEntree(e1);
-    m3->addMenuEntree(e2);
-    m3->addMenuEntree(e3);
-    m3->addMenuPlat(p1);
-    m3->addMenuDessert(d1);
-    addMenu(m3);
+
+    std::cout << "## Model done" << std::endl;
 }
 
 void Model::addDessert(Plat *dessert){
@@ -95,6 +144,10 @@ std::vector<Plat*> Model::getDesserts(){
 
 std::vector<MenuModel*> Model::getMenus(){
     return carteMenus;
+}
+
+std::vector<Plat*>  Model::getCarteEntiere() {
+    return carteEntiere;
 }
 
 

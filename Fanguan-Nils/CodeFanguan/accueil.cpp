@@ -2,6 +2,10 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include "accueil.h"
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 #include <QLabel>
 
 Accueil::Accueil(QWidget *parent) : QWidget(parent)
@@ -13,10 +17,13 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
 
     QPushButton * frButton = new QPushButton("Fr");
     frButton->setIcon(QIcon(":/images/france.jpg"));
+    frButton->setMinimumSize(QSize(50, 40));
     QPushButton * engButton = new QPushButton("Eng");
     engButton->setIcon(QIcon(":/images/angleterre.jpg"));
+    engButton->setMinimumSize(QSize(50, 40));
     QPushButton * chButton = new QPushButton("Ch");
     chButton->setIcon(QIcon(":/images/chine.png"));
+    chButton->setMinimumSize(QSize(50, 40));
 
     QSizePolicy langSizePolicy = QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     frButton->setSizePolicy(langSizePolicy);
@@ -41,8 +48,7 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
             setMinimumSize(QSize(200, 150));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(QFont("Arial", 18));
-            setStyleSheet("color : yellow; background-color : orange;");
-
+            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
             QVBoxLayout * layout = new QVBoxLayout(this);
             QLabel * image = new QLabel();
             image->setAlignment(Qt::AlignHCenter);
@@ -56,16 +62,13 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
             title->setAlignment(Qt::AlignHCenter);
             title->setFont(QFont("Arial", 18));
             layout->addWidget(title);
-
         }
         virtual ~AccueilButton() {}
     };
-
     QPushButton * carteButton = new AccueilButton("Carte",":/images/menu.png");
     QPushButton * aboButton = new AccueilButton("Espace Habitue", ":/images/smileymaison.png");
     QPushButton * rechercheButton = new AccueilButton("Recherche",":/images/loupe.png");
     QPushButton * selectionButton = new AccueilButton("Notre Selection",":/images/toque.png");
-
 
     QHBoxLayout * buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(carteButton);
@@ -90,20 +93,8 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     mainLayout->addStretch(5);
     setLayout(mainLayout);
 
-
-
     connect(aboButton, SIGNAL(clicked()), parent, SLOT(displayEspaceAbo()));
     connect(rechercheButton, SIGNAL(clicked()), parent, SLOT(displayRecherche()));
     connect(carteButton, SIGNAL(clicked()), parent, SLOT(displayCarte()));
     connect(serveurButton, SIGNAL(clicked()), parent, SLOT(appelServeur()));
-
-
 }
-
-
-
-
-
-
-
-
