@@ -11,7 +11,7 @@
 #include <QPushButton>
 #include <QScrollArea>
 #include <iostream>
-  
+
 class Inscription : public QWidget
 {
     Q_OBJECT

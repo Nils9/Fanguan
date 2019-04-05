@@ -14,6 +14,7 @@ Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
     QHBoxLayout * mainLayout = new QHBoxLayout();
     QHBoxLayout * topLayout = new QHBoxLayout();
     topLayout->setSpacing(0);
+    //QString style = QString("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
 
     class CarteButton : public QPushButton
     {
@@ -23,17 +24,24 @@ Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(model->getButtonFont());
-            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
+            setCheckable(true);
+            setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
         }
         virtual ~CarteButton() {}
     };
 
+    QButtonGroup * group = new QButtonGroup();
+    group->setExclusive(true);
     QPushButton * entreesButton = new CarteButton("Entrees");
+    group->addButton(entreesButton);
     QPushButton * platsButton = new CarteButton("Plats");
+    group->addButton(platsButton);
     QPushButton * dessertsButton = new CarteButton("Desserts");
+    group->addButton(dessertsButton);
     QPushButton * menusButton = new CarteButton("Menus");
-    //menusButton->setStyleSheet("background-color : #FFFF66 ;");
+    group->addButton(menusButton);
     QPushButton * boissonsButton = new CarteButton("Boissons");
+    group->addButton(boissonsButton);
 
     QVBoxLayout * buttonLayout = new QVBoxLayout();
     buttonLayout->addStretch(5);
@@ -113,4 +121,3 @@ void Carte::displayBoissons() {
 
 void Carte::paintEvent(QPaintEvent *){
 }
-

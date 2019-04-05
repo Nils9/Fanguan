@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QGroupBox>
+#include <QButtonGroup>
 #include "menumodel.h"
 #include "model.h"
 #include "catalogueitem.h"
@@ -19,7 +21,7 @@ class Menu : public QWidget
 
 public:
     explicit Menu(QWidget *parent = nullptr, Model * model = nullptr);
-    QVBoxLayout * newColonne(std::vector<Plat*> liste, QString type);
+    QGroupBox * newColonne(std::vector<Plat*> liste, QString type);
 
 private:
     Model * model;
@@ -27,13 +29,18 @@ private:
     MenuModel * currentMenu;
     int currentIndex; //index du menu courant dans la liste
     QLabel * menuLabel;
-    QVBoxLayout * entreesColumn;
-    QVBoxLayout * platsColumn;
-    QVBoxLayout * dessertsColumn;
+
+    QHBoxLayout * menu;
+    QHBoxLayout * columns;
+    QWidget * entreesColumn;
+    QWidget * platsColumn;
+    QWidget * dessertsColumn;
 
 signals:
 
 public slots:
+    void nextMenu();
+    void previousMenu();
 };
 
 #endif // MENU_H
