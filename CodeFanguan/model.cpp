@@ -20,6 +20,7 @@ Model::Model(){
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QCoreApplication::applicationDirPath().append("/bdd/fanguan_bdd.sqlite"));
+    std::cout <<QCoreApplication::applicationDirPath().append("/bdd/fanguan_bdd.sqlite").toStdString()<< std::endl;
     bool ok = db.open();
 
     //Entrées

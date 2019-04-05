@@ -6,12 +6,13 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include "model.h"
+#include "template.h"
 
 class Carte : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Carte(QWidget *parent = nullptr, Model * m = nullptr);
+    explicit Carte(Template *parent = nullptr, Model * m = nullptr);
     void setCentralWidget(QWidget * w) {
         centralWidget =  w;
     }
@@ -31,6 +32,7 @@ private:
     QWidget * centralWidget = nullptr;
     QLayout * centralLayout = nullptr;
     QVBoxLayout * mainLayout;
+    Template * temp;
 };
 
 #endif // CARTE_H

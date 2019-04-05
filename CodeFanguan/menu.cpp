@@ -1,8 +1,9 @@
 #include "menu.h"
 #include <QGroupBox>
 
-Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
+Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
 {
+    temp = t;
     this->model = model;
     menuList = model->getMenus();
     std::cout << "j'ai récupere les menus" << std::endl;
@@ -76,7 +77,7 @@ QVBoxLayout * Menu::newColonne(std::vector<Plat *> liste, QString type){
     colonne->addStretch(5);
     for(unsigned int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
-        CatalogueItem * item = new CatalogueItem(plat);
+        CatalogueItem * item = new CatalogueItem(temp, plat);
         item->setCheckable(true);
         item->setStyleSheet(QString("QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
         colonne->addWidget(item);

@@ -12,16 +12,18 @@
 #include "model.h"
 #include "catalogueitem.h"
 #include "plat.h"
+#include "template.h"
 
 class Menu : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Menu(QWidget *parent = nullptr, Model * model = nullptr);
+    explicit Menu(QWidget *parent = nullptr, Template * t = nullptr, Model * model = nullptr);
     QVBoxLayout * newColonne(std::vector<Plat*> liste, QString type);
 
 private:
+    Template * temp = nullptr;
     Model * model;
     std::vector<MenuModel*> menuList;
     MenuModel * currentMenu;
