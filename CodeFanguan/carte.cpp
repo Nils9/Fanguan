@@ -18,11 +18,11 @@ Carte::Carte(Template * parent, Model * m) : QWidget(parent)
     class CarteButton : public QPushButton
     {
     public:
-        CarteButton(QString label) : QPushButton(label){
-            Model * model = new Model();
+        CarteButton(QString label, Model * m) : QPushButton(label){
+            //Model * model = new Model();
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
-            setFont(model->getButtonFont());
+            setFont(m->getButtonFont());
             setCheckable(true);
             setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
         }
@@ -31,15 +31,15 @@ Carte::Carte(Template * parent, Model * m) : QWidget(parent)
 
     QButtonGroup * group = new QButtonGroup();
     group->setExclusive(true);
-    QPushButton * entreesButton = new CarteButton("Entrees");
+    QPushButton * entreesButton = new CarteButton("Entrees", model);
     group->addButton(entreesButton);
-    QPushButton * platsButton = new CarteButton("Plats");
+    QPushButton * platsButton = new CarteButton("Plats", model);
     group->addButton(platsButton);
-    QPushButton * dessertsButton = new CarteButton("Desserts");
+    QPushButton * dessertsButton = new CarteButton("Desserts", model);
     group->addButton(dessertsButton);
-    QPushButton * menusButton = new CarteButton("Menus");
+    QPushButton * menusButton = new CarteButton("Menus", model);
     group->addButton(menusButton);
-    QPushButton * boissonsButton = new CarteButton("Boissons");
+    QPushButton * boissonsButton = new CarteButton("Boissons", model);
     group->addButton(boissonsButton);
 
     QVBoxLayout * buttonLayout = new QVBoxLayout();

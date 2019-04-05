@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 #include "carte.h"
 #include <QApplication>
 

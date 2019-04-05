@@ -15,15 +15,10 @@ EspaceAbo::EspaceAbo(QWidget * parent, Model * m) : QWidget(parent)
         EspaceAboLeftButton(QString label) : QPushButton(label){
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
-<<<<<<< HEAD:CodeFanguan/espaceabo.cpp
             Model * model = new Model();
             setFont(model->getButtonFont());
             setCheckable(true);
             setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
-=======
-            setFont(QFont("Arial", 15));
-            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
->>>>>>> origin/ArthurQtCodeBranche:CodeFanguan/espaceabo.cpp
         }
         virtual ~EspaceAboLeftButton() {}
     };

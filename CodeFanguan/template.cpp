@@ -138,6 +138,7 @@ void Template::displayCommande() {
 
 
 void Template::displayDetail(Plat* p) {
+    std::cout << "## SLOT" << std::endl;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new Detail(this, p));

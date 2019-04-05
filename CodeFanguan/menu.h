@@ -15,13 +15,14 @@
 #include "catalogueitem.h"
 #include "plat.h"
 #include "template.h"
+#include <QBoxLayout>
 
 class Menu : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Menu(QWidget *parent = nullptr, Model * model = nullptr);
+    explicit Menu(QWidget *parent = nullptr, Template * temp = nullptr, Model * model = nullptr);
     QGroupBox * newColonne(std::vector<Plat*> liste, QString type);
 
 private:

@@ -35,28 +35,14 @@ Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
     mainLayout->addLayout(menu);
 
     //Partie contenu du menu
-    QHBoxLayout * columns = new QHBoxLayout();
-    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrees");
+    columns = new QHBoxLayout();
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
     platsColumn = newColonne(currentMenu->getMenuPlats(), "Plats");
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
 
-    QGroupBox * entreesGroup = new QGroupBox("Entree");
-    QGroupBox * platsGroup = new QGroupBox("Plat");
-    QGroupBox * dessertsGroup = new QGroupBox("dessert");
-    entreesGroup->setLayout(entreesColumn);
-    platsGroup->setLayout(platsColumn);
-    dessertsGroup->setLayout(dessertsColumn);
-    entreesGroup->setFont(QFont("Arial", 18));
-    platsGroup->setFont(QFont("Arial", 18));
-    dessertsGroup->setFont(QFont("Arial", 18));
-
-    columns->addStretch(5);
-    columns->addWidget(entreesGroup);
-    columns->addStretch(5);
-    columns->addWidget(platsGroup);
-    columns->addStretch(5);
-    columns->addWidget(dessertsGroup);
-    columns->addStretch(5);
+    columns->addWidget(entreesColumn);
+    columns->addWidget(platsColumn);
+    columns->addWidget(dessertsColumn);
 
     mainLayout->addLayout(columns);
 
@@ -80,9 +66,9 @@ QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
 
     for(int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
-        CatalogueItem * item = new CatalogueItem(plat);
+        CatalogueItem * item = new CatalogueItem(temp, plat);
         item->setCheckable(true);
-        item->setStyleSheet(QString("QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
+        item->setStyleSheet(QString(" QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
         group->addButton(item);
         colonne->addWidget(item);
         colonne->addStretch(5);
