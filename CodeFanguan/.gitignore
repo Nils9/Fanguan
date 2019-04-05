@@ -2,3 +2,4 @@
 *.pro
 *.pro.user
 /build-CodeFanguan-Desktop-Debug/
+/.git/
