@@ -57,9 +57,9 @@ EspaceAbo::EspaceAbo(QWidget *parent) : QWidget(parent)
     platsFavorisScrollArea->setMinimumHeight(185);
     QHBoxLayout * platsFavorisLayout = new QHBoxLayout();
     platsFavorisLayout->setSpacing(10);
-    CatalogueItem * nemsButton = new CatalogueItem("Nems",QIcon(":/images/nourriture.jpg"),1);
-    CatalogueItem * samoussasButton = new CatalogueItem("Samoussas",QIcon(":/images/nourriture.jpg"),2);
-    CatalogueItem * boeufGingembreButton = new CatalogueItem("Boeuf au gingembre",QIcon(":/images/nourriture.jpg"),3);
+    CatalogueItem * nemsButton = new CatalogueItem("Nems",QIcon(":/images/nem.jpg"),1);
+    CatalogueItem * samoussasButton = new CatalogueItem("Samoussas",QIcon(":/images/samosa.jpg"),2);
+    CatalogueItem * boeufGingembreButton = new CatalogueItem("Boeuf au gingembre",QIcon(":/images/boeufaigre.jpg"),3);
     CatalogueItem * phoButton = new CatalogueItem("Pho",QIcon(":/images/nourriture.jpg"),4);
     CatalogueItem * nouillesButton = new CatalogueItem("Nouilles",QIcon(":/images/nourriture.jpg"),4);
     platsFavorisLayout->addWidget(nemsButton);

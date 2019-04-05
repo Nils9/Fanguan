@@ -1,11 +1,12 @@
 #include "menu.h"
+#include <QGroupBox>
 
 Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
 {
     this->model = model;
     menuList = model->getMenus();
-    std::cout << "j'ai récupéré les menus" << std::endl;
-    int sizeMenu = menuList.size();
+    std::cout << "j'ai récupere les menus" << std::endl;
+    unsigned int sizeMenu = menuList.size();
     std::cout << sizeMenu << std::endl;
 
     currentMenu = menuList[0];
@@ -34,19 +35,33 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
 
     //Partie contenu du menu
     QHBoxLayout * columns = new QHBoxLayout();
-    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrees");
     platsColumn = newColonne(currentMenu->getMenuPlats(), "Plats");
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
 
-    columns->addLayout(entreesColumn);
-    columns->addLayout(platsColumn);
-    columns->addLayout(dessertsColumn);
+    QGroupBox * entreesGroup = new QGroupBox("Entree");
+    QGroupBox * platsGroup = new QGroupBox("Plat");
+    QGroupBox * dessertsGroup = new QGroupBox("dessert");
+    entreesGroup->setLayout(entreesColumn);
+    platsGroup->setLayout(platsColumn);
+    dessertsGroup->setLayout(dessertsColumn);
+    entreesGroup->setFont(QFont("Arial", 18));
+    platsGroup->setFont(QFont("Arial", 18));
+    dessertsGroup->setFont(QFont("Arial", 18));
+
+    columns->addStretch(5);
+    columns->addWidget(entreesGroup);
+    columns->addStretch(5);
+    columns->addWidget(platsGroup);
+    columns->addStretch(5);
+    columns->addWidget(dessertsGroup);
+    columns->addStretch(5);
 
     mainLayout->addLayout(columns);
 
     QHBoxLayout * choiceLayout = new QHBoxLayout();
     QPushButton * choiceButton = new QPushButton(tr("Valider votre menu"));
-    choiceLayout->setAlignment(Qt::AlignCenter);
+    choiceButton->setFont(QFont("Arial", 22));
     choiceLayout->addWidget(choiceButton);
 
     mainLayout->addLayout(choiceLayout);
@@ -55,10 +70,11 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
 
 QVBoxLayout * Menu::newColonne(std::vector<Plat *> liste, QString type){
     QVBoxLayout * colonne = new QVBoxLayout();
+
     QLabel * label = new QLabel(type);
     label->setFont(QFont("Arial", 18));
     colonne->addStretch(5);
-    for(int i = 0; i < liste.size(); i++){
+    for(unsigned int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
         CatalogueItem * item = new CatalogueItem(plat);
         item->setCheckable(true);

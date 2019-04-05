@@ -5,12 +5,13 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include "model.h"
 
 class Carte : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Carte(QWidget *parent = nullptr);
+    explicit Carte(QWidget *parent = nullptr, Model * m = nullptr);
     void setCentralWidget(QWidget * w) {
         centralWidget =  w;
     }
@@ -26,8 +27,9 @@ public slots:
     void displayBoissons();
 
 private:
-    QWidget * centralWidget;
-    QLayout * centralLayout;
+    Model * model = nullptr;
+    QWidget * centralWidget = nullptr;
+    QLayout * centralLayout = nullptr;
     QVBoxLayout * mainLayout;
 };
 

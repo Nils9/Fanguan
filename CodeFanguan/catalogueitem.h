@@ -8,6 +8,7 @@ class CatalogueItem : public QToolButton
 {
 public:
     CatalogueItem(Plat * plat);
+
     virtual ~CatalogueItem() {}
 };
 
