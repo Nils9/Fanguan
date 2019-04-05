@@ -10,10 +10,13 @@
 #include "carte.h"
 #include "connexion.h"
 #include "detail.h"
+#include "recherche.h"
 
-Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
+Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
-    QFont buttonFont = QFont("Arial", 18);
+    model = m;
+
+    //QFont buttonFont = QFont("Arial", 18);
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Barre supérieure
@@ -24,10 +27,10 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     QPushButton * rechercheButton = new QPushButton(tr("Recherche"));
     QPushButton * selectionButton = new QPushButton(tr("Selection du Chef"));
 
-    aboButton->setFont(buttonFont);
-    carteButton->setFont(buttonFont);
-    rechercheButton->setFont(buttonFont);
-    selectionButton->setFont(buttonFont);
+    aboButton->setFont(model->getButtonFont());
+    carteButton->setFont(model->getButtonFont());
+    rechercheButton->setFont(model->getButtonFont());
+    selectionButton->setFont(model->getButtonFont());
 
     topMenuLayout->addWidget(aboButton);
     topMenuLayout->addWidget(carteButton);
@@ -35,33 +38,23 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
+    previousWidget = rub;
     switch (rub) {
     case CARTE:
-        centralLayout->removeWidget(centralWidget);
-        centralWidget = new Carte(this);
-        previousWidget = 2;
+        setCentralWidget(new Carte(this, model));
         break;
 
     case ESPACEABO:
-        centralLayout->removeWidget(centralWidget);
-        centralWidget = new EspaceAbo(this);
-        previousWidget = 1;
-        break;
-
-    case RECHERCHE:
-        centralLayout->removeWidget(centralWidget);
-        centralWidget = new Detail(this);
-        previousWidget = 1;
+        setCentralWidget(new EspaceAbo(this));
         break;
 
 	case RECHERCHE:
-    	std::cout << "Ouvrir detail"<< std::endl;
-    	centralWidget = new Detail(this);
-    	break;
+        setCentralWidget(new Recherche(this, model));
+        break;
 
     default:
         centralWidget = new QWidget();
-        previousWidget = 3;
+        previousWidget = CARTE;
         break;
     }
     centralWidget->setMinimumSize(QSize(600, 400));
@@ -73,8 +66,8 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
     QPushButton * serveurButton = new QPushButton(tr("Appeler Serveur"));
     QPushButton * commandeButton = new QPushButton(tr("Commande"));
 
-    serveurButton->setFont(buttonFont);
-    commandeButton->setFont(buttonFont);
+    serveurButton->setFont(model->getButtonFont());
+    commandeButton->setFont(model->getButtonFont());
 
     bottomMenuLayout->addWidget(serveurButton);
     bottomMenuLayout->addWidget(commandeButton);
@@ -93,21 +86,25 @@ Template::Template(QWidget *parent, Rubriques rub) : QWidget(parent)
 }
 
 void Template::displayCarte() {
-    previousWidget = 2;
+    previousWidget = CARTE;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new Carte(this));
+    setCentralWidget(new Carte(this, model));
     centralLayout->addWidget(centralWidget);
     update();
 }
 
 void Template::displayRecherche() {
-    previousWidget = 3;
-   std::cout << "Recherche"<<std::endl;
+    previousWidget = RECHERCHE;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new Recherche(this, model));
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
 void Template::displayEspaceAbo() {
-    previousWidget = 1;
+    previousWidget = ESPACEABO;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new EspaceAbo(this));
@@ -131,24 +128,29 @@ void Template::appelServeur() {
 void Template::retourCommande() {
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    if(previousWidget == 1){
+
+    switch (previousWidget) {
+    case ESPACEABO:
         setCentralWidget(new EspaceAbo(this));
-    }
-    if(previousWidget == 2){
-        setCentralWidget(new Carte(this));
-    }
-    if(previousWidget == 3){
-        setCentralWidget(new QWidget(this));
-    }
-    if(previousWidget == 4){
+        break;
+    case RECHERCHE:
+        setCentralWidget(new Recherche(this, model));
+        break;
+    case CARTE:
+        setCentralWidget(new Carte(this, model));
+        break;
+    case GERERCOMPTE:
         setCentralWidget(new GererCompte(this));
+        break;
+    default:
+        break;
     }
     centralLayout->addWidget(centralWidget);
     update();
 }
 
 void Template::displayGererCompte() {
-    previousWidget = 4;
+    previousWidget = GERERCOMPTE;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new GererCompte(this));

@@ -5,15 +5,17 @@
 #include "template.h"
 #include "carte.h"
 #include "catalogue.h"
+#include "gerercompte.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     //ui->setupUi(this);
+    model = new Model();
     setCentralWidget(new Accueil(this));
-    setMinimumSize(900, 600);
-    setStyleSheet(" QMainWindow {background-color : #ff5e4d}; QPushButton {background-color : yellow;}");
+    setMinimumSize(1024, 740);
+    setStyleSheet(" QMainWindow {background-color : white}; QPushButton {color black; background-color :#FFCB60;;}");
 }
 
 MainWindow::~MainWindow()
@@ -22,15 +24,15 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::displayCarte() {
-    setCentralWidget(new Template(this, Template::CARTE));
+    setCentralWidget(new Template(this, model, Template::CARTE));
 }
 
 void MainWindow::displayRecherche() {
-    setCentralWidget(new Template(this, Template::RECHERCHE));
+    setCentralWidget(new Template(this, model, Template::RECHERCHE));
 }
 
 void MainWindow::displayEspaceAbo() {
-    setCentralWidget(new Template(this, Template::ESPACEABO));
+    setCentralWidget(new Template(this, model, Template::ESPACEABO));
 }
 
 void MainWindow::appelServeur() {

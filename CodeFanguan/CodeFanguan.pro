@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,7 +38,14 @@ SOURCES += \
     connexion.cpp \
     espaceabo.cpp \
     inscription.cpp \
-    gerercompte.cpp
+    gerercompte.cpp \
+    catalogueitem.cpp \
+    famille.cpp \
+    recherche.cpp \
+    menumodel.cpp \
+    plat.cpp \
+    membre.cpp \
+    model.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -54,7 +61,13 @@ HEADERS += \
     espaceabo.h \
     inscription.h \
     gerercompte.h \
-    model.h
+    model.h \
+    catalogueitem.h \
+    famille.h \
+    recherche.h \
+    menumodel.h \
+    plat.h \
+    membre.h
 
 FORMS += \
         mainwindow.ui
@@ -65,7 +78,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    images/images.qrc
+    res.qrc
 
 DISTFILES += \
     images/plus.png

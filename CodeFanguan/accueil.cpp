@@ -4,8 +4,10 @@
 #include <QPushButton>
 #include <QLabel>
 
-Accueil::Accueil(QWidget *parent) : QWidget(parent)
+Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
 {
+    model = m ;
+
     QVBoxLayout * mainLayout = new QVBoxLayout();
 
     QHBoxLayout * topLayout = new QHBoxLayout();
@@ -33,7 +35,7 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
 
     QLabel * welcomeSentence = new QLabel("Bienvenue chez Fanguan");
     welcomeSentence->setAlignment(Qt::AlignHCenter);
-    welcomeSentence->setFont(QFont("Arial", 30));
+    welcomeSentence->setFont(model->getTitleFont());
     welcomeSentence->setSizePolicy(QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum));
 
 
@@ -41,10 +43,11 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     {
     public:
         AccueilButton(QString label, QString imageFile) : QPushButton() {
+            Model * model = new Model();
             setMinimumSize(QSize(200, 150));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
-            setFont(QFont("Arial", 18));
-            setStyleSheet("color : yellow; background-color : orange;");
+            setFont(model->getAccueilButtonFont());
+            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
             QVBoxLayout * layout = new QVBoxLayout(this);
             QLabel * image = new QLabel();
             image->setAlignment(Qt::AlignHCenter);
@@ -56,7 +59,7 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
 
             QLabel* title = new QLabel(label);
             title->setAlignment(Qt::AlignHCenter);
-            title->setFont(QFont("Arial", 18));
+            title->setFont(model->getAccueilButtonFont());
             layout->addWidget(title);
         }
         virtual ~AccueilButton() {}
@@ -67,8 +70,8 @@ Accueil::Accueil(QWidget *parent) : QWidget(parent)
     QPushButton * selectionButton = new AccueilButton("Notre Selection",":/images/toque.png");
 
     QHBoxLayout * buttonLayout = new QHBoxLayout();
-    buttonLayout->addWidget(carteButton);
     buttonLayout->addWidget(aboButton);
+    buttonLayout->addWidget(carteButton);
     buttonLayout->addWidget(rechercheButton);
     buttonLayout->addWidget(selectionButton);
     buttonLayout->setSpacing(50);
