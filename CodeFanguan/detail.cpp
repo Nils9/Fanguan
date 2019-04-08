@@ -12,6 +12,7 @@
 
 Detail::Detail(Template *parent, Plat * plat) : QWidget(parent)
 {
+    std::cout << "## Constructeur" << std::endl;
 
     std::vector<QString> ingredientList;
     ingredientList.push_back(QString("Carotte"));
@@ -19,8 +20,10 @@ Detail::Detail(Template *parent, Plat * plat) : QWidget(parent)
     ingredientList.push_back(QString("Feuille de riz"));
     ingredientList.push_back(QString("poulet"));
     QString itemName = QString("%1 - %2 euros").arg(plat->getLabel()).arg(plat->getPrix());
+    std::cout << itemName.toStdString() << std::endl;
     QString itemImage = plat->getImageFile();
     QString itemDescription = "Specialte de la region de Canton. \n Croustillant et fondant a l'interieur. \n N'hesitez pas a le consommer avec sa sauce";
+
 
     //mainLayout début
     QVBoxLayout * mainLayout = new QVBoxLayout();

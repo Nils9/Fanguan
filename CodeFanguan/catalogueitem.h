@@ -4,6 +4,8 @@
 #include <QToolButton>
 #include "plat.h"
 #include "catalogue.h"
+#include "template.h"
+#include "model.h"
 
 class CatalogueItem : public QToolButton
 {
@@ -21,7 +23,8 @@ public slots:
 
 private:
     Plat* plat = nullptr;
-
+    Model * model = nullptr;
 };
 
 #endif // CATALOGUEITEM_H
+

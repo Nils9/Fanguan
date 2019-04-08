@@ -3,6 +3,7 @@
 #define CATALOGUE_H
 
 #include <QScrollArea>
+#include "catalogueitem.h"
 #include "plat.h"
 #include "template.h"
 

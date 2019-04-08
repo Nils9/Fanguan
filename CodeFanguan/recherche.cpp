@@ -1,5 +1,6 @@
 #include "recherche.h"
 
+
 Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
 {
     model = m;

@@ -2,4 +2,6 @@
 *.pro
 *.pro.user
 /build-CodeFanguan-Desktop-Debug/
+/.git/
+*.pro.user.ba81017
 *.pro.user.15ca5f3.20

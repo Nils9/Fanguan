@@ -12,6 +12,7 @@ Membre::Membre(QString name, int id){
     this->favoris = new std::vector<Plat*>();
     this->recommendations = new std::vector<Plat*>();
     this->avantages = new std::vector<QString>();
+    this->progress = 0;
 }
 
 
@@ -53,4 +54,12 @@ void Membre::addAvantage(QString avantage){
 
 std::vector<QString> * Membre::getAvantages(){
     return avantages;
+}
+
+int Membre::getProgress(){
+    return progress;
+}
+
+void Membre::setProgress(int value){
+    progress = value;
 }

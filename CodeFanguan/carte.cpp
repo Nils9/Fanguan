@@ -11,37 +11,50 @@ Carte::Carte(Template * parent, Model * m) : QWidget(parent)
 {
     model = m;
     temp = parent;
-
     QHBoxLayout * mainLayout = new QHBoxLayout();
     QHBoxLayout * topLayout = new QHBoxLayout();
     topLayout->setSpacing(0);
-
+    
     class CarteButton : public QPushButton
     {
     public:
-        CarteButton(QString label) : QPushButton(label){
+        CarteButton(QString label, Model * m) : QPushButton(label){
+            //Model * model = new Model();
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
-            setFont(QFont("Arial", 13));
-            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
+            setFont(m->getButtonFont());
+            setCheckable(true);
+            setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
         }
         virtual ~CarteButton() {}
     };
 
-    QPushButton * entreesButton = new CarteButton("Entrees");
-    QPushButton * platsButton = new CarteButton("Plats");
-    QPushButton * dessertsButton = new CarteButton("Desserts");
-    QPushButton * menusButton = new CarteButton("Menus");
-    menusButton->setStyleSheet("background-color : #FFFF66 ;");
-    QPushButton * boissonsButton = new CarteButton("Boissons");
+    QButtonGroup * group = new QButtonGroup();
+    group->setExclusive(true);
+    QPushButton * entreesButton = new CarteButton("Entrees", model);
+    group->addButton(entreesButton);
+    QPushButton * platsButton = new CarteButton("Plats", model);
+    group->addButton(platsButton);
+    QPushButton * dessertsButton = new CarteButton("Desserts", model);
+    group->addButton(dessertsButton);
+    QPushButton * menusButton = new CarteButton("Menus", model);
+    group->addButton(menusButton);
+    QPushButton * boissonsButton = new CarteButton("Boissons", model);
+    group->addButton(boissonsButton);
 
     QVBoxLayout * buttonLayout = new QVBoxLayout();
+    buttonLayout->addStretch(5);
     buttonLayout->addWidget(menusButton);
+    buttonLayout->addStretch(5);
     buttonLayout->addWidget(entreesButton);
+    buttonLayout->addStretch(5);
     buttonLayout->addWidget(platsButton);
+    buttonLayout->addStretch(5);
     buttonLayout->addWidget(dessertsButton);
+    buttonLayout->addStretch(5);
+
     buttonLayout->addWidget(boissonsButton);
-    buttonLayout->setSpacing(50);
+    buttonLayout->addStretch(5);
 
     //Zone centrale
     centralLayout = new QHBoxLayout();
@@ -50,8 +63,6 @@ Carte::Carte(Template * parent, Model * m) : QWidget(parent)
     centralWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     centralLayout->addWidget(centralWidget);
 
-
-  
     mainLayout->addLayout(buttonLayout);
     mainLayout->addLayout(centralLayout);
     setLayout(mainLayout);
@@ -108,4 +119,3 @@ void Carte::displayBoissons() {
 
 void Carte::paintEvent(QPaintEvent *){
 }
-
