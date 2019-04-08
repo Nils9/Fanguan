@@ -12,6 +12,7 @@
 #include "detail.h"
 #include "recherche.h"
 #include "inscription.h"
+#include "espaceabo.h"
 
 Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
@@ -172,7 +173,7 @@ void Template::retourCommande() {
 
     switch (previousWidget) {
     case ESPACEABO:
-        setCentralWidget(new EspaceAbo(this));
+        setCentralWidget(new EspaceAbo(this, model));
         break;
     case RECHERCHE:
         setCentralWidget(new Recherche(this, model));

@@ -14,15 +14,17 @@
 #include "catalogueitem.h"
 #include "gerercompte.h"
 #include "model.h"
+#include "template.h"
 
 class EspaceAbo : public QWidget
 {
     Q_OBJECT
 private:
     Model * model;
+    Template * temp;
 
 public:
-    explicit EspaceAbo(QWidget *parent = nullptr, Model * m = nullptr, int indiceMembreCourant = 0);
+    explicit EspaceAbo(Template * t = nullptr, Model * m = nullptr, int indiceMembreCourant = 0);
 
 signals:
     void membreChanged();

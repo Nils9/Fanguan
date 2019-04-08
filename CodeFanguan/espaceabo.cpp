@@ -1,10 +1,9 @@
 #include "espaceabo.h"
-#include "template.h"
 
-
-EspaceAbo::EspaceAbo(QWidget *parent, Model * m, int indiceMembreCourant) : QWidget(parent)
+EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget(t)
 {
     model = m;
+    temp = t;
     Membre * membreCourant = model->getClients()[model->getIndiceFamilleCourante()]->getMembres()->at(indiceMembreCourant);
     int indice = m->getIndiceFamilleCourante();
     Famille * famille = model->getClients()[indice];
@@ -52,7 +51,7 @@ EspaceAbo::EspaceAbo(QWidget *parent, Model * m, int indiceMembreCourant) : QWid
     platsFavorisLayout->setSpacing(10);
     std::vector<Plat*>* favoris = model->getClients()[model->getIndiceFamilleCourante()]->getMembres()->at(indiceMembreCourant)->getFavoris();
     for(int i = 0; i<favoris->size();i++){
-        CatalogueItem * item = new CatalogueItem(favoris->at(i));
+        CatalogueItem * item = new CatalogueItem(temp, favoris->at(i));
         platsFavorisLayout->addWidget(item);
     }
     platsFavorisContentWidget->setLayout(platsFavorisLayout);
@@ -76,7 +75,7 @@ EspaceAbo::EspaceAbo(QWidget *parent, Model * m, int indiceMembreCourant) : QWid
 
     std::vector<Plat*>* recommandations = membreCourant->getRecommendations();
     for(int i = 0; i<recommandations->size();i++){
-        CatalogueItem * item = new CatalogueItem(favoris->at(i));
+        CatalogueItem * item = new CatalogueItem(temp, favoris->at(i));
         recommandationsLayout->addWidget(item);
     }
     recommandationsContentWidget->setLayout(recommandationsLayout);
@@ -110,8 +109,8 @@ EspaceAbo::EspaceAbo(QWidget *parent, Model * m, int indiceMembreCourant) : QWid
     layout->addLayout(leftVerticalLayout);
     layout->addLayout(rightVerticalLayout);
 
-    connect(gererCompteButton, SIGNAL(clicked()), parent, SLOT(displayGererCompte()));
-    connect(membresButtonGroup,SIGNAL(buttonClicked(int)),parent,SLOT(displayEspaceAbo(int)));
+    connect(gererCompteButton, SIGNAL(clicked()), temp, SLOT(displayGererCompte()));
+    connect(membresButtonGroup,SIGNAL(buttonClicked(int)),temp,SLOT(displayEspaceAbo(int)));
 }
 
 

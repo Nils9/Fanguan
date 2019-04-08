@@ -172,8 +172,6 @@ std::vector<Plat*>  Model::getCarteEntiere() {
     return carteEntiere;
 }
 
-<<<<<<< HEAD
-
 QFont Model::getTitleFont(){
     return QFont("Helvetica", 30, QFont::Bold);
 }
@@ -194,8 +192,6 @@ QFont Model::getPlatFont(){
     return QFont("Helvetica", 12);
 }
 
-
-=======
 std::vector<Famille*> Model::getClients(){
     return clients;
 }
@@ -212,4 +208,3 @@ void Model::setIndiceFamilleCourante(int indice){
     indiceFamilleCourante = indice;
 }
 
->>>>>>> test/julienCode
