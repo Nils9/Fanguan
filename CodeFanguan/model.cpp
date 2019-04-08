@@ -4,14 +4,25 @@
 Model::Model(){
     //Création d'une famille
     Membre * margot = new Membre("Margot", 1);
+    margot->setProgress(56);
+    margot->addAvantage("Dessert à moitié prix");
     Membre * arthur = new Membre("Arthur", 2);
+    arthur->setProgress(89);
+    arthur->addAvantage("-10% sur les nems");
     Membre * julien = new Membre("Julien", 3);
+    julien->setProgress(63);
+    julien->addAvantage("Saqué offert");
     Membre * nils = new Membre("Nils", 4);
-    Famille * fanguan = new Famille("Fanguan", "fanguan");
+    nils->setProgress(58);
+    nils->addAvantage("Riz à volonté");
+    Famille * fanguan = new Famille("Fanguan", "password");
     fanguan->addMembre(margot);
     fanguan->addMembre(arthur);
     fanguan->addMembre(julien);
     fanguan->addMembre(nils);
+    clients.push_back(fanguan);
+    indiceFamilleCourante = 0;
+
 
     //Elaboration de la carte
 
@@ -111,6 +122,18 @@ Model::Model(){
     addMenu(m2);
 
     std::cout << "## Model done" << std::endl;
+
+    //Ajout plats favoris et recommandations à famille Fanguan
+    for(int i = 0; i+3<carteEntiere.size(); i+=4){
+        margot->addFavori(carteEntiere[i]);
+        margot->addRecommendation(carteEntiere[i]);
+        arthur->addFavori(carteEntiere[i+1]);
+        arthur->addRecommendation(carteEntiere[i+1]);
+        julien->addFavori(carteEntiere[i+2]);
+        julien->addRecommendation(carteEntiere[i+2]);
+        nils->addFavori(carteEntiere[i+3]);
+        nils->addRecommendation(carteEntiere[i+3]);
+    }
 }
 
 void Model::addDessert(Plat *dessert){
@@ -149,6 +172,7 @@ std::vector<Plat*>  Model::getCarteEntiere() {
     return carteEntiere;
 }
 
+<<<<<<< HEAD
 
 QFont Model::getTitleFont(){
     return QFont("Helvetica", 30, QFont::Bold);
@@ -171,3 +195,21 @@ QFont Model::getPlatFont(){
 }
 
 
+=======
+std::vector<Famille*> Model::getClients(){
+    return clients;
+}
+
+void Model::addFamille(Famille * famille){
+    clients.push_back(famille);
+}
+
+int Model::getIndiceFamilleCourante(){
+    return indiceFamilleCourante;
+}
+
+void Model::setIndiceFamilleCourante(int indice){
+    indiceFamilleCourante = indice;
+}
+
+>>>>>>> test/julienCode

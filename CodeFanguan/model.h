@@ -10,7 +10,7 @@
 
 class Model{
 private:
-    bool connected;
+    bool connected = false;
     QString langage = "French";
 
     //Carte du restaurant
@@ -22,6 +22,7 @@ private:
 
     //Liste des familles du restaurant
     std::vector<Famille*> clients;
+    int indiceFamilleCourante;
 
 public:
     Model();
@@ -40,6 +41,12 @@ public:
     std::vector<Plat*> getCarteEntiere();
     std::vector<MenuModel*> getMenus();
 
+    //Accès liste famille et indice famille courante
+    std::vector<Famille*> getClients();
+    void addFamille(Famille * famille);
+    int getIndiceFamilleCourante();
+    void setIndiceFamilleCourante(int indice);
+
     //Mise à jour de la carte
     void addEntree(Plat * entree);
     void addPlat(Plat * plat);
@@ -52,6 +59,7 @@ public:
     QFont getButtonFont();
     QFont getTextFont();
     QFont getPlatFont();
+
 };
 
 #endif // MODEL_H

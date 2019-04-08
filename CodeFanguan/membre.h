@@ -16,6 +16,7 @@ private:
     std::vector<Plat*> * favoris;
     std::vector<Plat*> * recommendations;
     std::vector<QString> * avantages;
+    int progress;
 
 public:
     Membre();
@@ -30,6 +31,9 @@ public:
     void addRecommendation(Plat * plat);
     std::vector<QString> * getAvantages();
     void addAvantage(QString avantage);
+    int getProgress();
+    void setProgress(int value);
+
 
 };
 

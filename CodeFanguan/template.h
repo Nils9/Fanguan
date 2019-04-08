@@ -16,7 +16,7 @@ class Template : public QWidget
 {
     Q_OBJECT
 public:
-    enum Rubriques{CARTE = 0, ESPACEABO, RECHERCHE, SELECTION, GERERCOMPTE};
+    enum Rubriques{CARTE = 0, ESPACEABO, CONNEXION, INSCRIPTION, RECHERCHE, SELECTION, GERERCOMPTE};
     explicit Template(QWidget *parent = nullptr, Model *m =nullptr, Rubriques rub = CARTE);
     QWidget * getCentralWidget();
     void setCentralWidget(QWidget * w) {
@@ -28,7 +28,8 @@ signals:
 
 public slots:
     void displayCarte();
-    void displayEspaceAbo();
+    void displayEspaceAbo(int i=0);
+    void displayInscription();
     void displayRecherche();
     //void displaySelection();
     void displayCommande();

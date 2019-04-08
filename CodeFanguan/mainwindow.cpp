@@ -32,7 +32,7 @@ void MainWindow::displayRecherche() {
 }
 
 void MainWindow::displayEspaceAbo() {
-    setCentralWidget(new Template(this, model, Template::ESPACEABO));
+    setCentralWidget(new Template(this, model, Template::CONNEXION));
 }
 
 void MainWindow::appelServeur() {

@@ -1,13 +1,14 @@
 #include "inscription.h"
 
-Inscription::Inscription(QWidget *parent) : QWidget(parent)
+Inscription::Inscription(QWidget *parent, Model * m) : QWidget(parent)
 {
+    model = m;
     QVBoxLayout * layout = new QVBoxLayout(this);
     layout->setAlignment(Qt::AlignCenter);
     layout->setMargin(100);
     QFormLayout * formLayout = new QFormLayout();
-    QLineEdit * nomCompteLineEdit = new QLineEdit();
-    QLineEdit * passwordLineEdit = new QLineEdit();
+    nomCompteLineEdit = new QLineEdit();
+    passwordLineEdit = new QLineEdit();
     passwordLineEdit->setEchoMode(QLineEdit::Password);
     QSpinBox * nombrePersonnesSpinBox = new QSpinBox();
     scrollArea = new QScrollArea();
@@ -26,13 +27,15 @@ Inscription::Inscription(QWidget *parent) : QWidget(parent)
     layout->addWidget(validerButton);
 
     connect(nombrePersonnesSpinBox,SIGNAL(valueChanged(int)),this,SLOT(displayMembres(int)));
+    connect(validerButton,SIGNAL(clicked()),this,SLOT(addFamille()));
+    connect(this,SIGNAL(compteCree()),parent,SLOT(displayEspaceAbo()));
 
 }
 
 void Inscription::displayMembres(int n){
     for(int j =0; j<=membresVector->size(); j++){
         if(membresFormLayout->rowCount()>0){
-         //membresFormLayout->removeRow(0);
+         membresFormLayout->removeRow(0);
         }
     }
     membresVector->clear();
@@ -46,4 +49,21 @@ void Inscription::displayMembres(int n){
     QWidget * contentWidget = new QWidget();
     contentWidget->setLayout(membresFormLayout);
     scrollArea->setWidget(contentWidget);
+}
+
+void Inscription::addFamille(){
+    Famille * newFamille = new Famille(nomCompteLineEdit->text(),passwordLineEdit->text());
+    int nextId = 0;
+    for(int i = 0; i<model->getClients().size();i++){       //on calcule nombre de membres
+        nextId+=model->getClients()[i]->getSize();
+    }
+    for(int i = 0; i<membresVector->size();i++){
+        Membre * newMembre = new Membre(membresVector->at(i)->text(),nextId);
+        newFamille->addMembre(newMembre);
+        nextId+=1;
+    }
+    model->addFamille(newFamille);
+    model->setIndiceFamilleCourante(model->getClients().size()-1);
+    model->setConnected(true);
+    emit(compteCree());
 }

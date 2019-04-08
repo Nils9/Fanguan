@@ -11,6 +11,7 @@
 #include "connexion.h"
 #include "detail.h"
 #include "recherche.h"
+#include "inscription.h"
 
 Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
@@ -60,8 +61,8 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
         setCentralWidget(new Carte(this, model));
         break;
 
-    case ESPACEABO:
-        setCentralWidget(new EspaceAbo(this));
+    case CONNEXION:
+        setCentralWidget(new Connexion(this, model));
         break;
 
 	case RECHERCHE:
@@ -119,11 +120,26 @@ void Template::displayRecherche() {
     update();
 }
 
-void Template::displayEspaceAbo() {
-    previousWidget = ESPACEABO;
+void Template::displayEspaceAbo(int i) {
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new EspaceAbo(this));
+    if(model->getConnected()){
+        previousWidget = ESPACEABO;
+        setCentralWidget(new EspaceAbo(this,model,i));
+    }
+    else{
+        previousWidget = CONNEXION;
+        setCentralWidget(new Connexion(this,model));
+    }
+    centralLayout->addWidget(centralWidget);
+    update();
+}
+
+void Template::displayInscription(){
+    previousWidget = INSCRIPTION;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new Inscription(this, model));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -178,11 +194,10 @@ void Template::displayGererCompte() {
     previousWidget = GERERCOMPTE;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new GererCompte(this));
+    setCentralWidget(new GererCompte(this,model));
     centralLayout->addWidget(centralWidget);
     update();
 }
-
 
 
 void Template::paintEvent(QPaintEvent *){

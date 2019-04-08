@@ -8,20 +8,24 @@
 #include <QLabel>
 #include <QTextListFormat>
 #include <QToolButton>
+#include <QButtonGroup>
 #include <QIcon>
 #include <QScrollArea>
-
+#include "catalogueitem.h"
 #include "gerercompte.h"
 #include "model.h"
 
 class EspaceAbo : public QWidget
 {
     Q_OBJECT
-public:
-    explicit EspaceAbo(QWidget *parent = nullptr, Model * m = nullptr);
+private:
     Model * model;
 
+public:
+    explicit EspaceAbo(QWidget *parent = nullptr, Model * m = nullptr, int indiceMembreCourant = 0);
+
 signals:
+    void membreChanged();
 
 public slots:
 
