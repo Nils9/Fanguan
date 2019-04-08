@@ -29,7 +29,7 @@ GererCompte::GererCompte(QWidget *parent, Model * m) : QWidget(parent)
     plusButton->setStyleSheet("QToolButton{border-radius: 0px;}");
     progressGridLayout->addWidget(plusButton,5,1);
 
-    for(int i = 0; i<membres->size();i++){
+    for(unsigned int i = 0; i<membres->size();i++){
         addDeleteButton(i,0);
         addLabel(i,1,membres->at(i)->getName());
         addProgressBar(i,2,membres->at(i)->getProgress());

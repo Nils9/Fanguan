@@ -28,7 +28,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     };
     QButtonGroup * membresButtonGroup = new QButtonGroup();
     membresButtonGroup->setExclusive(true);
-    for(int i = 0; i<membres->size();i++){
+    for(unsigned int i = 0; i<membres->size();i++){
         EspaceAboLeftButton * membreButton = new EspaceAboLeftButton(membres->at(i)->getName());
         leftVerticalLayout->addWidget(membreButton);
         membresButtonGroup->addButton(membreButton,i);
@@ -50,7 +50,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     QHBoxLayout * platsFavorisLayout = new QHBoxLayout();
     platsFavorisLayout->setSpacing(10);
     std::vector<Plat*>* favoris = model->getClients()[model->getIndiceFamilleCourante()]->getMembres()->at(indiceMembreCourant)->getFavoris();
-    for(int i = 0; i<favoris->size();i++){
+    for(unsigned int i = 0; i<favoris->size();i++){
         CatalogueItem * item = new CatalogueItem(temp, favoris->at(i));
         platsFavorisLayout->addWidget(item);
     }
@@ -74,7 +74,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     recommandationsLayout->setSpacing(10);
 
     std::vector<Plat*>* recommandations = membreCourant->getRecommendations();
-    for(int i = 0; i<recommandations->size();i++){
+    for(unsigned int i = 0; i<recommandations->size();i++){
         CatalogueItem * item = new CatalogueItem(temp, favoris->at(i));
         recommandationsLayout->addWidget(item);
     }
@@ -91,7 +91,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     QGridLayout * avantagesGridLayout = new QGridLayout();
     avantagesGridLayout->setAlignment(Qt::AlignCenter);
     avantagesGridLayout->addWidget(avantagesPersoLabel,1,1);
-    for(int i = 0; i<membreCourant->getAvantages()->size();i++){
+    for(unsigned int i = 0; i<membreCourant->getAvantages()->size();i++){
         QLabel * avantage = new QLabel(membreCourant->getAvantages()->at(i));
         avantagesGridLayout->addWidget(avantage,i+2,1);
     }

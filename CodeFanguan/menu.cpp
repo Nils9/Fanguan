@@ -64,7 +64,7 @@ QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
     QButtonGroup * group = new QButtonGroup();
     group->setExclusive(true);
 
-    for(int i = 0; i < liste.size(); i++){
+    for(unsigned int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
         CatalogueItem * item = new CatalogueItem(temp, plat);
         item->setCheckable(true);

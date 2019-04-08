@@ -124,7 +124,7 @@ Model::Model(){
     std::cout << "## Model done" << std::endl;
 
     //Ajout plats favoris et recommandations à famille Fanguan
-    for(int i = 0; i+3<carteEntiere.size(); i+=4){
+    for(unsigned int i = 0; i+3<carteEntiere.size(); i+=4){
         margot->addFavori(carteEntiere[i]);
         margot->addRecommendation(carteEntiere[i]);
         arthur->addFavori(carteEntiere[i+1]);
