@@ -1,6 +1,7 @@
 #include "commandemodel.h"
 
-CommandeModel::CommandeModel()
+CommandeModel::CommandeModel(Plat * p,  int nb)
 {
-
+    plat = p;
+    nbUnites = nb;
 }

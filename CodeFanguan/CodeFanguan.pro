@@ -45,7 +45,9 @@ SOURCES += \
     menumodel.cpp \
     plat.cpp \
     membre.cpp \
-    model.cpp
+    model.cpp \
+    commandemodel.cpp \
+    quantityspinbox.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -67,7 +69,9 @@ HEADERS += \
     recherche.h \
     menumodel.h \
     plat.h \
-    membre.h
+    membre.h \
+    commandemodel.h \
+    quantityspinbox.h
 
 FORMS += \
         mainwindow.ui

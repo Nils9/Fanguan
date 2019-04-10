@@ -8,7 +8,6 @@ Membre::Membre()
 Membre::Membre(QString name, int id){
     this->name = name;
     this->id = id;
-    this->commande = new std::vector<Plat*>();
     this->favoris = new std::vector<Plat*>();
     this->recommendations = new std::vector<Plat*>();
     this->avantages = new std::vector<QString>();
@@ -22,14 +21,6 @@ int Membre::getId(){
 
 QString Membre::getName(){
     return name;
-}
-
-std::vector<Plat*>* Membre::getCommande(){
-    return commande;
-}
-
-void Membre::addCommande(Plat *plat){
-    commande->push_back(plat);
 }
 
 void Membre::addFavori(Plat *plat){

@@ -49,6 +49,8 @@ Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
     QHBoxLayout * choiceLayout = new QHBoxLayout();
     QPushButton * choiceButton = new QPushButton(tr("Valider votre menu"));
     choiceLayout->setAlignment(Qt::AlignCenter);
+    choiceButton->setFont(model->getButtonFont());
+    choiceButton->setStyleSheet("background-color: #FFECB3");
     choiceLayout->addWidget(choiceButton);
 
     mainLayout->addLayout(choiceLayout);
@@ -67,6 +69,7 @@ QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
     for(unsigned int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
         CatalogueItem * item = new CatalogueItem(temp, plat);
+        item->setInMenu(true);
         item->setCheckable(true);
         item->setStyleSheet(QString(" QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
         group->addButton(item);

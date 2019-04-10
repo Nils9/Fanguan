@@ -14,6 +14,7 @@ public:
     explicit CatalogueItem(Template * parent = nullptr, Plat * plat = nullptr);
     virtual ~CatalogueItem() {}
     const Plat * getPlat() {return plat;}
+    void setInMenu(bool b) {inMenu = b;}
 
 signals:
     void detailRequis(Plat * p);
@@ -24,6 +25,7 @@ public slots:
 private:
     Plat* plat = nullptr;
     Model * model = nullptr;
+    bool inMenu = false;
 };
 
 #endif // CATALOGUEITEM_H

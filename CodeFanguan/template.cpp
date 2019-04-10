@@ -158,7 +158,7 @@ void Template::displayDetail(Plat* p) {
     std::cout << "## SLOT" << std::endl;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new Detail(this, p));
+    setCentralWidget(new Detail(this, model, p));
     centralLayout->addWidget(centralWidget);
 }
 

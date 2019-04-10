@@ -16,10 +16,9 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     class EspaceAboLeftButton : public QPushButton
     {
     public:
-        EspaceAboLeftButton(QString label) : QPushButton(label){
+        EspaceAboLeftButton(QString label, Model * model) : QPushButton(label){
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
-            Model * model = new Model();
             setFont(model->getButtonFont());
             setCheckable(true);
             setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
@@ -29,12 +28,12 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     QButtonGroup * membresButtonGroup = new QButtonGroup();
     membresButtonGroup->setExclusive(true);
     for(unsigned int i = 0; i<membres->size();i++){
-        EspaceAboLeftButton * membreButton = new EspaceAboLeftButton(membres->at(i)->getName());
+        EspaceAboLeftButton * membreButton = new EspaceAboLeftButton(membres->at(i)->getName(), model);
         leftVerticalLayout->addWidget(membreButton);
         membresButtonGroup->addButton(membreButton,i);
     }
     membresButtonGroup->button(indiceMembreCourant)->setChecked(true);
-    EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte");
+    EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte", model);
     leftVerticalLayout->addWidget(gererCompteButton);
 
     QVBoxLayout * platsFavorisWithLabelLayout = new QVBoxLayout();

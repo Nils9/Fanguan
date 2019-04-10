@@ -7,6 +7,7 @@
 #include "membre.h"
 #include "famille.h"
 #include "menumodel.h"
+#include "commandemodel.h"
 
 class Model{
 private:
@@ -15,10 +16,12 @@ private:
 
     //Carte du restaurant
     std::vector<Plat*> carteEntrees = std::vector<Plat*>();
-    std::vector<Plat*> cartePlats= std::vector<Plat*>();
-    std::vector<Plat*> carteDesserts= std::vector<Plat*>();
-    std::vector<Plat*> carteEntiere= std::vector<Plat*>();
-    std::vector<MenuModel*> carteMenus;
+    std::vector<Plat*> cartePlats = std::vector<Plat*>();
+    std::vector<Plat*> carteDesserts = std::vector<Plat*>();
+    std::vector<Plat*> carteEntiere = std::vector<Plat*>();
+    std::vector<MenuModel*> carteMenus = std::vector<MenuModel*>();
+
+    std::vector<CommandeModel*> listeCommandes = std::vector<CommandeModel*>();
 
     //Liste des familles du restaurant
     std::vector<Famille*> clients;
@@ -46,6 +49,10 @@ public:
     void addFamille(Famille * famille);
     int getIndiceFamilleCourante();
     void setIndiceFamilleCourante(int indice);
+
+    //Accès à la liste des commandes (dans le cas non connecté
+    std::vector<CommandeModel*> getCommandes() {return listeCommandes;}
+    void addCommande(CommandeModel * cm) {listeCommandes.push_back(cm);}
 
     //Mise à jour de la carte
     void addEntree(Plat * entree);
