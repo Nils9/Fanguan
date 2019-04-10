@@ -54,3 +54,19 @@ int Membre::getProgress(){
 void Membre::setProgress(int value){
     progress = value;
 }
+
+void Membre::addCommande(CommandeModel * com) {
+    listeCommandes.push_back(com);
+}
+
+float Membre::getSousTotal(){
+    sousTotal = 0;
+    for(int i = 0; i < listeCommandes.size(); i++){
+        CommandeModel * cm = listeCommandes[i];
+        int quantity = cm->getNbUnites();
+        Plat * p = cm->getPlat();
+        sousTotal += p->getPrix()*quantity;
+    }
+
+    return sousTotal;
+}

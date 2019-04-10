@@ -208,3 +208,29 @@ void Model::setIndiceFamilleCourante(int indice){
     indiceFamilleCourante = indice;
 }
 
+void Model::addCommande(CommandeModel * cm){
+    listeCommandes.push_back(cm);
+}
+
+void Model::setTotal(float t){
+    total = t;
+}
+
+void Model::calculateTotal(){
+    total = 0;
+    if(connected){
+        Famille * famille = clients[indiceFamilleCourante];
+        for(int i = 0; i < famille->getSize(); i++){
+            Membre * membre = famille->getMembres()->at(i);
+            total += membre->getSousTotal();
+        }
+    }
+    else{
+        for(int i = 0; i < listeCommandes.size(); i++){
+            CommandeModel * cm = listeCommandes[i];
+            int quantity = cm->getNbUnites();
+            Plat * p = cm->getPlat();
+            total += p->getPrix()*quantity;
+        }
+    }
+}

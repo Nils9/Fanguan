@@ -26,6 +26,7 @@ private:
     //Liste des familles du restaurant
     std::vector<Famille*> clients;
     int indiceFamilleCourante;
+    float total = 0;
 
 public:
     Model();
@@ -52,7 +53,10 @@ public:
 
     //Accès à la liste des commandes (dans le cas non connecté
     std::vector<CommandeModel*> getCommandes() {return listeCommandes;}
-    void addCommande(CommandeModel * cm) {listeCommandes.push_back(cm);}
+    void addCommande(CommandeModel * cm);
+    float getTotal(){return total;}
+    void setTotal(float t);
+    void calculateTotal();
 
     //Mise à jour de la carte
     void addEntree(Plat * entree);

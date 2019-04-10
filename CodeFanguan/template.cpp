@@ -149,7 +149,7 @@ void Template::displayInscription(){
 void Template::displayCommande() {
    centralLayout->removeWidget(centralWidget);
    centralWidget->hide();
-   setCentralWidget(new Commande(this));
+   setCentralWidget(new Commande(this, model));
    centralLayout->addWidget(centralWidget);
 }
 

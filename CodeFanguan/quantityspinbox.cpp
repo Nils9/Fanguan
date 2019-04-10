@@ -22,12 +22,15 @@ QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p) : QWidget()
 }
 
 void QuantitySpinBox::validateQuantity() {
-    CommandeModel * cm = new CommandeModel(plat, quantity->value());
-    if (model->getConnected()) {
-        membre->addCommande(cm);
-        std::cout << membre->getName().toStdString() << "-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
-    } else {
-        model->addCommande(cm);
-        std::cout <<"Not connected-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
+    int nbUnite = quantity->value();
+    if (nbUnite > 0) {
+        CommandeModel * cm = new CommandeModel(plat, nbUnite);
+        if (model->getConnected()) {
+            membre->addCommande(cm);
+            std::cout << membre->getName().toStdString() << "-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
+        } else {
+            model->addCommande(cm);
+            std::cout <<"Not connected-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
+        }
     }
 }
