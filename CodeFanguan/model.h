@@ -18,6 +18,7 @@ private:
     std::vector<Plat*> carteEntrees = std::vector<Plat*>();
     std::vector<Plat*> cartePlats = std::vector<Plat*>();
     std::vector<Plat*> carteDesserts = std::vector<Plat*>();
+    std::vector<Plat*> carteBoissons = std::vector<Plat*>();
     std::vector<Plat*> carteEntiere = std::vector<Plat*>();
     std::vector<MenuModel*> carteMenus = std::vector<MenuModel*>();
 
@@ -42,6 +43,7 @@ public:
     std::vector<Plat*> getPlats();
     std::vector<Plat*> getDesserts();
     std::vector<Plat*> getCarteEntiere();
+    std::vector<Plat*> getBoissons();
     std::vector<MenuModel*> getMenus();
 
     //Accès liste famille et indice famille courante
@@ -59,6 +61,7 @@ public:
     void addPlat(Plat * plat);
     void addDessert(Plat * dessert);
     void addMenu(MenuModel * menu);
+    void addBoisson(Plat * boisson);
 
     // Template CSS
     QFont getTitleFont();
