@@ -20,6 +20,7 @@ public slots :
     void displayCarte();
     void displayEspaceAbo();
     void displayRecherche();
+    void displaySelection();
     void appelServeur();
 
 private:

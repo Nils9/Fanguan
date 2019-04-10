@@ -39,5 +39,9 @@
         <file>images/takoyaki.jpg</file>
         <file>images/tempura.jpg</file>
         <file>images/toriyaki.jpg</file>
+        <file>images/selectionchef.png</file>
+        <file>images/selectionchef2.png</file>
+        <file>images/tapis.png</file>
+        <file>images/tapislong.png</file>
     </qresource>
 </RCC>

@@ -70,6 +70,10 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
         setCentralWidget(new Recherche(this, model));
         break;
 
+    case SELECTION:
+        setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
+        break;
+
     default:
         centralWidget = new QWidget();
         previousWidget = CARTE;
@@ -101,6 +105,7 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
     connect(carteButton, SIGNAL(clicked()), this, SLOT(displayCarte()));
     connect(commandeButton, SIGNAL(clicked()), this, SLOT(displayCommande()));
     connect(serveurButton, SIGNAL(clicked()), this, SLOT(appelServeur()));
+    connect(selectionButton, SIGNAL(clicked()), this, SLOT(displaySelection()));
 }
 
 void Template::displayCarte() {
@@ -153,9 +158,17 @@ void Template::displayCommande() {
    centralLayout->addWidget(centralWidget);
 }
 
+void Template::displaySelection() {
+   centralLayout->removeWidget(centralWidget);
+   centralWidget->hide();
+   std::cout<<"je suis dans template"<<std::endl;
+   setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
+   centralLayout->addWidget(centralWidget);
+}
+
 
 void Template::displayDetail(Plat* p) {
-    std::cout << "## SLOT" << std::endl;
+    //std::cout << "## SLOT" << std::endl;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new Detail(this, p));
@@ -183,6 +196,9 @@ void Template::retourCommande() {
         break;
     case GERERCOMPTE:
         setCentralWidget(new GererCompte(this));
+        break;
+    case SELECTION:
+        setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
         break;
     default:
         break;

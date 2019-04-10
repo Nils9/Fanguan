@@ -35,6 +35,10 @@ void MainWindow::displayEspaceAbo() {
     setCentralWidget(new Template(this, model, Template::CONNEXION));
 }
 
+void MainWindow::displaySelection() {
+    setCentralWidget(new Template(this, model, Template::SELECTION));
+}
+
 void MainWindow::appelServeur() {
      std::cout << "Serveur"<< std::endl;
 }
