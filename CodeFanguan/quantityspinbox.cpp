@@ -1,6 +1,7 @@
 #include "quantityspinbox.h"
 #include <QBoxLayout>
 #include "commandemodel.h"
+#include <iostream>
 
 QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p) : QWidget()
 {
@@ -13,7 +14,7 @@ QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p) : QWidget()
            layout->addWidget(name);
        }
        quantity =  new QSpinBox();
-       quantity->setValue(1);
+       quantity->setValue(0);
        quantity->setRange(0, 20);
        quantity->setSuffix(tr(" unite(s)"));
        layout->addWidget(quantity);
@@ -24,7 +25,9 @@ void QuantitySpinBox::validateQuantity() {
     CommandeModel * cm = new CommandeModel(plat, quantity->value());
     if (model->getConnected()) {
         membre->addCommande(cm);
+        std::cout << membre->getName().toStdString() << "-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
     } else {
         model->addCommande(cm);
+        std::cout <<"Not connected-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
     }
 }

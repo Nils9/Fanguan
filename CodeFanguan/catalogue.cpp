@@ -17,7 +17,7 @@ Catalogue::Catalogue(QWidget *parent, Template * t, std::vector<Plat *> listePla
     QWidget * centralWidget = new QWidget();
     centralWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
     QGridLayout * mainLayout = new QGridLayout(centralWidget);
-    std::cout << "## List length" << std::to_string(listePlat.size()) << std::endl;
+    //std::cout << "## List length" << std::to_string(listePlat.size()) << std::endl;
     for (unsigned int i = 0; i < listePlat.size(); i++) {
         mainLayout->addWidget(new CatalogueItem(temp, listePlat[i] ), i%3, i/3);
     }

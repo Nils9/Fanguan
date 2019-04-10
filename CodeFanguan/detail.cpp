@@ -21,7 +21,7 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
     ingredientList.push_back(QString("Feuille de riz"));
     ingredientList.push_back(QString("poulet"));
     QString itemName = QString("%1 - %2 euros").arg(plat->getLabel()).arg(plat->getPrix());
-    std::cout << itemName.toStdString() << std::endl;
+    //std::cout << itemName.toStdString() << std::endl;
     QString itemImage = plat->getImageFile();
     QString itemDescription = "Specialte de la region de Canton. \n Croustillant et fondant a l'interieur. \n N'hesitez pas a le consommer avec sa sauce";
 
@@ -131,5 +131,10 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
     //mainLayout fin
 
     connect(quitButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
+    for (unsigned int i = 0; i < spinBoxList.size(); i++) {
+        connect(validateButton, SIGNAL(clicked()), spinBoxList[i], SLOT(validateQuantity()));
+    }
+    connect(validateButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
+
 
 }
