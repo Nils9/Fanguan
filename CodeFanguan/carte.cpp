@@ -7,33 +7,40 @@
 #include <QLabel>
 #include <iostream>
 
-Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
+Carte::Carte(Template * parent, Model * m) : QWidget(parent)
 {
     model = m;
-
+    temp = parent;
     QHBoxLayout * mainLayout = new QHBoxLayout();
     QHBoxLayout * topLayout = new QHBoxLayout();
     topLayout->setSpacing(0);
-
+    
     class CarteButton : public QPushButton
     {
     public:
-        CarteButton(QString label) : QPushButton(label){
-            Model * model = new Model();
+        CarteButton(QString label, Model * m) : QPushButton(label){
+            //Model * model = new Model();
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
-            setFont(model->getButtonFont());
-            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
+            setFont(m->getButtonFont());
+            setCheckable(true);
+            setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
         }
         virtual ~CarteButton() {}
     };
 
-    QPushButton * entreesButton = new CarteButton("Entrees");
-    QPushButton * platsButton = new CarteButton("Plats");
-    QPushButton * dessertsButton = new CarteButton("Desserts");
-    QPushButton * menusButton = new CarteButton("Menus");
-    //menusButton->setStyleSheet("background-color : #FFFF66 ;");
-    QPushButton * boissonsButton = new CarteButton("Boissons");
+    QButtonGroup * group = new QButtonGroup();
+    group->setExclusive(true);
+    QPushButton * entreesButton = new CarteButton("Entrees", model);
+    group->addButton(entreesButton);
+    QPushButton * platsButton = new CarteButton("Plats", model);
+    group->addButton(platsButton);
+    QPushButton * dessertsButton = new CarteButton("Desserts", model);
+    group->addButton(dessertsButton);
+    QPushButton * menusButton = new CarteButton("Menus", model);
+    group->addButton(menusButton);
+    QPushButton * boissonsButton = new CarteButton("Boissons", model);
+    group->addButton(boissonsButton);
 
     QVBoxLayout * buttonLayout = new QVBoxLayout();
     buttonLayout->addStretch(5);
@@ -45,17 +52,16 @@ Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
     buttonLayout->addStretch(5);
     buttonLayout->addWidget(dessertsButton);
     buttonLayout->addStretch(5);
+
     buttonLayout->addWidget(boissonsButton);
     buttonLayout->addStretch(5);
 
     //Zone centrale
     centralLayout = new QHBoxLayout();
-    centralWidget = new Menu(nullptr, model);
+    centralWidget = new Menu(nullptr, temp, model);
     centralWidget->setMinimumSize(QSize(300, 300));
     centralWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     centralLayout->addWidget(centralWidget);
-
-
 
     mainLayout->addLayout(buttonLayout);
     mainLayout->addLayout(centralLayout);
@@ -69,12 +75,12 @@ Carte::Carte(QWidget *parent, Model * m) : QWidget(parent)
 }
 
 void Carte::displayEntrees() {
-    std::cout << "## Show entree"  << std::endl;
-    std::cout << "## Show entree " << std::to_string(model->getEntrees().size()) << std::endl;
+    //std::cout << "## Show entree"  << std::endl;
+    //std::cout << "## Show entree " << std::to_string(model->getEntrees().size()) << std::endl;
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    std::cout << "## Show entree " << std::to_string(model->getEntrees().size()) << std::endl;
-    setCentralWidget(new Catalogue(nullptr,model->getEntrees()));
+    //std::cout << "## Show entree " << std::to_string(model->getEntrees().size()) << std::endl;
+    setCentralWidget(new Catalogue(nullptr, temp, model->getEntrees()));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -82,7 +88,7 @@ void Carte::displayEntrees() {
 void Carte::displayPlats() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Catalogue(nullptr,model->getPlats()));
+    setCentralWidget(new Catalogue(nullptr, temp, model->getPlats()));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -90,7 +96,7 @@ void Carte::displayPlats() {
 void Carte::displayDesserts() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Catalogue(nullptr,model->getDesserts()));
+    setCentralWidget(new Catalogue(nullptr, temp, model->getDesserts()));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -98,7 +104,7 @@ void Carte::displayDesserts() {
 void Carte::displayMenus() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    setCentralWidget(new Menu(nullptr, model));
+    setCentralWidget(new Menu(nullptr, temp, model));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -113,4 +119,3 @@ void Carte::displayBoissons() {
 
 void Carte::paintEvent(QPaintEvent *){
 }
-

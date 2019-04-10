@@ -1,8 +1,9 @@
 #include "menu.h"
 #include <QGroupBox>
 
-Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
+Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
 {
+    temp = t;
     this->model = model;
     menuList = model->getMenus();
     std::cout << "j'ai récupere les menus" << std::endl;
@@ -25,7 +26,7 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
     flecheD->setIcon(QIcon(":/images/right.png"));
 
     menuLabel = new QLabel(currentMenu->getName());
-    menuLabel->setFont(model->getButtonFont());
+    menuLabel->setFont(QFont("Arial", 22));
 
     menu->addWidget(flecheG);
     menu->addWidget(menuLabel);
@@ -34,54 +35,94 @@ Menu::Menu(QWidget *parent, Model * model) : QWidget(parent)
     mainLayout->addLayout(menu);
 
     //Partie contenu du menu
-    QHBoxLayout * columns = new QHBoxLayout();
-    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrees");
+    columns = new QHBoxLayout();
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
     platsColumn = newColonne(currentMenu->getMenuPlats(), "Plats");
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
 
-    QGroupBox * entreesGroup = new QGroupBox("Entree");
-    QGroupBox * platsGroup = new QGroupBox("Plat");
-    QGroupBox * dessertsGroup = new QGroupBox("dessert");
-    entreesGroup->setLayout(entreesColumn);
-    platsGroup->setLayout(platsColumn);
-    dessertsGroup->setLayout(dessertsColumn);
-    entreesGroup->setFont(QFont("Helvetica", 18));
-    platsGroup->setFont(QFont("Helvetica", 18));
-    dessertsGroup->setFont(QFont("Helvetica", 18));
-
-    columns->addStretch(5);
-    columns->addWidget(entreesGroup);
-    columns->addStretch(5);
-    columns->addWidget(platsGroup);
-    columns->addStretch(5);
-    columns->addWidget(dessertsGroup);
-    columns->addStretch(5);
+    columns->addWidget(entreesColumn);
+    columns->addWidget(platsColumn);
+    columns->addWidget(dessertsColumn);
 
     mainLayout->addLayout(columns);
 
     QHBoxLayout * choiceLayout = new QHBoxLayout();
     QPushButton * choiceButton = new QPushButton(tr("Valider votre menu"));
-    choiceButton->setFont(model->getButtonFont());
+    choiceLayout->setAlignment(Qt::AlignCenter);
     choiceLayout->addWidget(choiceButton);
 
     mainLayout->addLayout(choiceLayout);
-    //connect(flecheG, SIGNAL(clicked()), this, SLOT());
+
+    connect(flecheD, SIGNAL(clicked()), this, SLOT(nextMenu()));
+    connect(flecheG, SIGNAL(clicked()), this, SLOT(previousMenu()));
 }
 
-QVBoxLayout * Menu::newColonne(std::vector<Plat *> liste, QString type){
+QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
+    QGroupBox * newColonne = new QGroupBox(nom);
     QVBoxLayout * colonne = new QVBoxLayout();
-
-    QLabel * label = new QLabel(type);
-    label->setFont(QFont("Arial", 18));
     colonne->addStretch(5);
-    for(unsigned int i = 0; i < liste.size(); i++){
+    QButtonGroup * group = new QButtonGroup();
+    group->setExclusive(true);
+
+    for(int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
-        CatalogueItem * item = new CatalogueItem(plat);
+        CatalogueItem * item = new CatalogueItem(temp, plat);
         item->setCheckable(true);
-        item->setStyleSheet(QString("QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
+        item->setStyleSheet(QString(" QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
+        group->addButton(item);
         colonne->addWidget(item);
         colonne->addStretch(5);
     }
+    colonne->setAlignment(Qt::AlignCenter);
+    newColonne->setLayout(colonne);
+    return newColonne;
+}
 
-    return colonne;
+void Menu::nextMenu(){
+    int nbOfMenus = menuList.size();
+    currentIndex = (currentIndex + 1) % nbOfMenus;
+    currentMenu = menuList[currentIndex];
+    menuLabel->setText(currentMenu->getName());
+
+    columns->removeWidget(entreesColumn);
+    entreesColumn->hide();
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
+    columns->addWidget(entreesColumn);
+
+    columns->removeWidget(platsColumn);
+    platsColumn->hide();
+    platsColumn = newColonne(currentMenu->getMenuPlats(), "Plats");
+    columns->addWidget(platsColumn);
+
+    columns->removeWidget(dessertsColumn);
+    dessertsColumn->hide();
+    dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
+    columns->addWidget(dessertsColumn);
+}
+
+void Menu::previousMenu(){
+    int nbOfMenus = menuList.size();
+    if(currentIndex == 0){
+        currentIndex = nbOfMenus - 1;
+    }
+    else{
+        currentIndex = (currentIndex - 1) % nbOfMenus;
+    }
+    currentMenu = menuList[currentIndex];
+    menuLabel->setText(currentMenu->getName());
+
+    columns->removeWidget(entreesColumn);
+    entreesColumn->hide();
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
+    columns->addWidget(entreesColumn);
+
+    columns->removeWidget(platsColumn);
+    platsColumn->hide();
+    platsColumn = newColonne(currentMenu->getMenuPlats(), "Plats");
+    columns->addWidget(platsColumn);
+
+    columns->removeWidget(dessertsColumn);
+    dessertsColumn->hide();
+    dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
+    columns->addWidget(dessertsColumn);
 }

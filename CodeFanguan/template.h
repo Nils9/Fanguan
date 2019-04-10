@@ -2,19 +2,19 @@
 #ifndef TEMPLATE_H
 #define TEMPLATE_H
 
-#include "espaceabo.h"
-
 #include <QHBoxLayout>
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QButtonGroup>
+
 #include "model.h"
 
 class Template : public QWidget
 {
     Q_OBJECT
 public:
-    enum Rubriques{CARTE = 0, ESPACEABO, RECHERCHE, SELECTION, GERERCOMPTE};
+    enum Rubriques{CARTE = 0, ESPACEABO, CONNEXION, INSCRIPTION, RECHERCHE, SELECTION, GERERCOMPTE};
     explicit Template(QWidget *parent = nullptr, Model *m =nullptr, Rubriques rub = CARTE);
     QWidget * getCentralWidget();
     void setCentralWidget(QWidget * w) {
@@ -26,13 +26,15 @@ signals:
 
 public slots:
     void displayCarte();
-    void displayEspaceAbo();
+    void displayEspaceAbo(int i=0);
+    void displayInscription();
     void displayRecherche();
-    //void displaySelection();
+    void displaySelection();
     void displayCommande();
     void appelServeur();
     void displayGererCompte();
     void retourCommande();
+    void displayDetail(Plat* p);
 
 private :
     Rubriques previousWidget = CARTE;

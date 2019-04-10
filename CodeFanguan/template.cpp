@@ -11,21 +11,39 @@
 #include "connexion.h"
 #include "detail.h"
 #include "recherche.h"
+#include "inscription.h"
+#include "espaceabo.h"
 
 Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
     model = m;
 
-    //QFont buttonFont = QFont("Arial", 18);
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Barre supérieure
     QHBoxLayout * topMenuLayout = new QHBoxLayout();
 
+    QButtonGroup * topGroup = new QButtonGroup();
+    topGroup->setExclusive(true);
+
+    QString style = QString("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
+
     QPushButton * aboButton = new QPushButton(tr("Espace Habitue"));
+    topGroup->addButton(aboButton);
+    aboButton->setCheckable(true);
+    aboButton->setStyleSheet(style);
     QPushButton * carteButton = new QPushButton(tr("Carte"));
+    topGroup->addButton(carteButton);
+    carteButton->setCheckable(true);
+    carteButton->setStyleSheet(style);
     QPushButton * rechercheButton = new QPushButton(tr("Recherche"));
+    topGroup->addButton(rechercheButton);
+    rechercheButton->setCheckable(true);
+    rechercheButton->setStyleSheet(style);
     QPushButton * selectionButton = new QPushButton(tr("Selection du Chef"));
+    topGroup->addButton(selectionButton);
+    selectionButton->setCheckable(true);
+    selectionButton->setStyleSheet(style);
 
     aboButton->setFont(model->getButtonFont());
     carteButton->setFont(model->getButtonFont());
@@ -44,12 +62,16 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
         setCentralWidget(new Carte(this, model));
         break;
 
-    case ESPACEABO:
-        setCentralWidget(new EspaceAbo(this));
+    case CONNEXION:
+        setCentralWidget(new Connexion(this, model));
         break;
 
 	case RECHERCHE:
         setCentralWidget(new Recherche(this, model));
+        break;
+
+    case SELECTION:
+        setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
         break;
 
     default:
@@ -83,6 +105,7 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
     connect(carteButton, SIGNAL(clicked()), this, SLOT(displayCarte()));
     connect(commandeButton, SIGNAL(clicked()), this, SLOT(displayCommande()));
     connect(serveurButton, SIGNAL(clicked()), this, SLOT(appelServeur()));
+    connect(selectionButton, SIGNAL(clicked()), this, SLOT(displaySelection()));
 }
 
 void Template::displayCarte() {
@@ -103,11 +126,26 @@ void Template::displayRecherche() {
     update();
 }
 
-void Template::displayEspaceAbo() {
-    previousWidget = ESPACEABO;
+void Template::displayEspaceAbo(int i) {
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new EspaceAbo(this));
+    if(model->getConnected()){
+        previousWidget = ESPACEABO;
+        setCentralWidget(new EspaceAbo(this,model,i));
+    }
+    else{
+        previousWidget = CONNEXION;
+        setCentralWidget(new Connexion(this,model));
+    }
+    centralLayout->addWidget(centralWidget);
+    update();
+}
+
+void Template::displayInscription(){
+    previousWidget = INSCRIPTION;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new Inscription(this, model));
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -118,6 +156,23 @@ void Template::displayCommande() {
    centralWidget->hide();
    setCentralWidget(new Commande(this));
    centralLayout->addWidget(centralWidget);
+}
+
+void Template::displaySelection() {
+   centralLayout->removeWidget(centralWidget);
+   centralWidget->hide();
+   std::cout<<"je suis dans template"<<std::endl;
+   setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
+   centralLayout->addWidget(centralWidget);
+}
+
+
+void Template::displayDetail(Plat* p) {
+    //std::cout << "## SLOT" << std::endl;
+    centralLayout->removeWidget(centralWidget);
+    centralWidget->hide();
+    setCentralWidget(new Detail(this, p));
+    centralLayout->addWidget(centralWidget);
 }
 
 void Template::appelServeur() {
@@ -131,7 +186,7 @@ void Template::retourCommande() {
 
     switch (previousWidget) {
     case ESPACEABO:
-        setCentralWidget(new EspaceAbo(this));
+        setCentralWidget(new EspaceAbo(this, model));
         break;
     case RECHERCHE:
         setCentralWidget(new Recherche(this, model));
@@ -141,6 +196,9 @@ void Template::retourCommande() {
         break;
     case GERERCOMPTE:
         setCentralWidget(new GererCompte(this));
+        break;
+    case SELECTION:
+        setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
         break;
     default:
         break;
@@ -153,11 +211,10 @@ void Template::displayGererCompte() {
     previousWidget = GERERCOMPTE;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new GererCompte(this));
+    setCentralWidget(new GererCompte(this,model));
     centralLayout->addWidget(centralWidget);
     update();
 }
-
 
 
 void Template::paintEvent(QPaintEvent *){

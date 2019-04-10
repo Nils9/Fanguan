@@ -1,5 +1,6 @@
-#include <QApplication>
 #include "carte.h"
+#include <QApplication>
+
 #include "template.h"
 #include "detail.h"
 #include "connexion.h"

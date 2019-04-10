@@ -9,17 +9,17 @@
 #include <QtGui>
 #include <iostream>
 
-Catalogue::Catalogue(QWidget *parent, std::vector<Plat *> listePlat) : QScrollArea(parent)
+#include "detail.h"
+
+Catalogue::Catalogue(QWidget *parent, Template * t, std::vector<Plat *> listePlat) : QScrollArea(parent)
 {
+    temp = t;
     QWidget * centralWidget = new QWidget();
     centralWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
     QGridLayout * mainLayout = new QGridLayout(centralWidget);
-    std::cout << "## List length" << std::to_string(listePlat.size()) << std::endl;
     for (unsigned int i = 0; i < listePlat.size(); i++) {
-        mainLayout->addWidget(new CatalogueItem(listePlat[i]), i%3, i/3);
+        mainLayout->addWidget(new CatalogueItem(temp, listePlat[i] ), i%3, i/3);
     }
-
-
     setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     mainLayout->setSpacing(20);

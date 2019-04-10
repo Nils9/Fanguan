@@ -81,4 +81,3 @@ RESOURCES += \
     res.qrc
 
 DISTFILES += \
-    images/plus.png

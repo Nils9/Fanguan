@@ -1,6 +1,7 @@
 #include "recherche.h"
 
-Recherche::Recherche(QWidget *parent, Model * m) : QWidget(parent)
+
+Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
 {
     model = m;
     QHBoxLayout * mainLayout = new QHBoxLayout();
@@ -73,7 +74,6 @@ Recherche::Recherche(QWidget *parent, Model * m) : QWidget(parent)
 
     ingGroupBox->setLayout(ingLayout);
 
-
     vlayout->addWidget(priceGroupBox);
     vlayout->addWidget(countryGroupBox);
     vlayout->addWidget(typeGroupBox);
@@ -84,7 +84,7 @@ Recherche::Recherche(QWidget *parent, Model * m) : QWidget(parent)
 
     //Zone centrale
     centralLayout = new QHBoxLayout();
-    centralWidget = new Catalogue(this, model->getCarteEntiere());
+    centralWidget = new Catalogue(this, parent,  model->getCarteEntiere());
     centralWidget->setMinimumSize(QSize(300, 300));
     centralLayout->addWidget(centralWidget);
     centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::MinimumExpanding);
@@ -92,6 +92,4 @@ Recherche::Recherche(QWidget *parent, Model * m) : QWidget(parent)
     mainLayout->addWidget(buttonFrame);
     mainLayout->addLayout(centralLayout);
     setLayout(mainLayout);
-
-    //hlayout->addLayout(vlayout);
 }

@@ -8,32 +8,42 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QPushButton>
+#include <QGroupBox>
+#include <QButtonGroup>
 #include "menumodel.h"
 #include "model.h"
 #include "catalogueitem.h"
 #include "plat.h"
+#include "template.h"
+#include <QBoxLayout>
 
 class Menu : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Menu(QWidget *parent = nullptr, Model * model = nullptr);
-    QVBoxLayout * newColonne(std::vector<Plat*> liste, QString type);
+    explicit Menu(QWidget *parent = nullptr, Template * temp = nullptr, Model * model = nullptr);
+    QGroupBox * newColonne(std::vector<Plat*> liste, QString type);
 
 private:
+    Template * temp = nullptr;
     Model * model;
     std::vector<MenuModel*> menuList;
     MenuModel * currentMenu;
     int currentIndex; //index du menu courant dans la liste
     QLabel * menuLabel;
-    QVBoxLayout * entreesColumn;
-    QVBoxLayout * platsColumn;
-    QVBoxLayout * dessertsColumn;
+
+    QHBoxLayout * menu;
+    QHBoxLayout * columns;
+    QWidget * entreesColumn;
+    QWidget * platsColumn;
+    QWidget * dessertsColumn;
 
 signals:
 
 public slots:
+    void nextMenu();
+    void previousMenu();
 };
 
 #endif // MENU_H
