@@ -74,7 +74,6 @@ Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
 
     ingGroupBox->setLayout(ingLayout);
 
-
     vlayout->addWidget(priceGroupBox);
     vlayout->addWidget(countryGroupBox);
     vlayout->addWidget(typeGroupBox);
@@ -93,6 +92,4 @@ Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
     mainLayout->addWidget(buttonFrame);
     mainLayout->addLayout(centralLayout);
     setLayout(mainLayout);
-
-    //hlayout->addLayout(vlayout);
 }

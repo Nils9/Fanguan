@@ -23,7 +23,6 @@ Model::Model(){
     clients.push_back(fanguan);
     indiceFamilleCourante = 0;
 
-
     //Elaboration de la carte
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -41,14 +40,14 @@ Model::Model(){
 
         //Entrées
         QSqlQuery query(db);
-        std::cout << "## chargement desserts" << std::endl;
+        //std::cout << "## chargement desserts" << std::endl;
         query.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'entree' ");
         while (query.next()) {
             id = query.value(0).toInt();
             nom = query.value(1).toString();
             fichierImage = query.value(2).toString();
             prix = query.value(3).toFloat();
-            std::cout << nom.toStdString() << std::endl;
+            //std::cout << nom.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
@@ -56,10 +55,10 @@ Model::Model(){
             addEntree(e1);
             carteEntiere.push_back(e1);
         }
-        std::cout << "## Entree List length " << std::to_string(carteEntrees.size()) << std::endl;
+        //std::cout << "## Entree List length " << std::to_string(carteEntrees.size()) << std::endl;
 
         //Plats
-        std::cout << "## chargement desserts" << std::endl;
+        //std::cout << "## chargement desserts" << std::endl;
         QSqlQuery query2(db);
         query2.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'plat' ");
         while (query2.next()) {
@@ -67,7 +66,7 @@ Model::Model(){
             nom = query2.value(1).toString();
             fichierImage = query2.value(2).toString();
             prix = query2.value(3).toFloat();
-            std::cout << nom.toStdString() << std::endl;
+           // std::cout << nom.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
@@ -77,7 +76,7 @@ Model::Model(){
         }
 
         //Dessert
-        std::cout << "## chargement desserts" << std::endl;
+        //std::cout << "## chargement desserts" << std::endl;
         QSqlQuery query3(db);
         query3.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'dessert' ");
         while (query3.next()) {
@@ -85,7 +84,7 @@ Model::Model(){
             nom = query3.value(1).toString();
             fichierImage = query3.value(2).toString();
             prix = query3.value(3).toFloat();
-            std::cout << nom.toStdString() << std::endl;
+           // std::cout << nom.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
@@ -95,7 +94,7 @@ Model::Model(){
         }
 
         //Dessert
-        std::cout << "## chargement boisson" << std::endl;
+        //std::cout << "## chargement boisson" << std::endl;
         QSqlQuery query4(db);
         query4.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'boisson' ");
         while (query4.next()) {
@@ -118,7 +117,7 @@ Model::Model(){
         std::cout << "fail" << std::endl;
     }
 
-    std::cout << "## Menus" << std::endl;
+    //std::cout << "## Menus" << std::endl;
 
     //Menus
     MenuModel * m1 = new MenuModel("Cantonais");
@@ -139,7 +138,7 @@ Model::Model(){
     m2->addMenuDessert(carteDesserts[1]);
     addMenu(m2);
 
-    std::cout << "## Model done" << std::endl;
+   // std::cout << "## Model done" << std::endl;
 
     //Ajout plats favoris et recommandations à famille Fanguan
     for(unsigned int i = 0; i+3<carteEntiere.size(); i+=4){
@@ -235,3 +234,29 @@ void Model::setIndiceFamilleCourante(int indice){
     indiceFamilleCourante = indice;
 }
 
+void Model::addCommande(CommandeModel * cm){
+    listeCommandes.push_back(cm);
+}
+
+void Model::setTotal(float t){
+    total = t;
+}
+
+void Model::calculateTotal(){
+    total = 0;
+    if(connected){
+        Famille * famille = clients[indiceFamilleCourante];
+        for(int i = 0; i < famille->getSize(); i++){
+            Membre * membre = famille->getMembres()->at(i);
+            total += membre->getSousTotal();
+        }
+    }
+    else{
+        for(int i = 0; i < listeCommandes.size(); i++){
+            CommandeModel * cm = listeCommandes[i];
+            int quantity = cm->getNbUnites();
+            Plat * p = cm->getPlat();
+            total += p->getPrix()*quantity;
+        }
+    }
+}

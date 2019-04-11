@@ -18,13 +18,14 @@ private:
     std::vector<Plat*> * recommendations;
     std::vector<QString> * avantages;
     int progress;
+    float sousTotal = 0;
 
 public:
     Membre();
     QString getName();
     int getId();
     Membre(QString name, int id);
-    void addCommande(CommandeModel * com) {listeCommandes.push_back(com);}
+    void addCommande(CommandeModel * com);
     std::vector<CommandeModel*>  getCommande() {return listeCommandes;}
     std::vector<Plat*> * getFavoris();
     void addFavori(Plat * plat);
@@ -34,7 +35,7 @@ public:
     void addAvantage(QString avantage);
     int getProgress();
     void setProgress(int value);
-
+    float getSousTotal();
 
 };
 

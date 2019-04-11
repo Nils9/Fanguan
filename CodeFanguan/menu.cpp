@@ -6,7 +6,7 @@ Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
     temp = t;
     this->model = model;
     menuList = model->getMenus();
-    std::cout << "j'ai récupere les menus" << std::endl;
+    //std::cout << "j'ai récupere les menus" << std::endl;
     unsigned int sizeMenu = menuList.size();
     std::cout << sizeMenu << std::endl;
 
@@ -36,7 +36,7 @@ Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
 
     //Partie contenu du menu
     columns = new QHBoxLayout();
-    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrees");
     platsColumn = newColonne(currentMenu->getMenuPlats(), "Plats");
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
 
@@ -89,7 +89,7 @@ void Menu::nextMenu(){
 
     columns->removeWidget(entreesColumn);
     entreesColumn->hide();
-    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrees");
     columns->addWidget(entreesColumn);
 
     columns->removeWidget(platsColumn);
@@ -116,7 +116,7 @@ void Menu::previousMenu(){
 
     columns->removeWidget(entreesColumn);
     entreesColumn->hide();
-    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrées");
+    entreesColumn = newColonne(currentMenu->getMenuEntrees(), "Entrees");
     columns->addWidget(entreesColumn);
 
     columns->removeWidget(platsColumn);

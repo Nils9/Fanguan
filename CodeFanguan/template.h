@@ -29,7 +29,7 @@ public slots:
     void displayEspaceAbo(int i=0);
     void displayInscription();
     void displayRecherche();
-    //void displaySelection();
+    void displaySelection();
     void displayCommande();
     void appelServeur();
     void displayGererCompte();
