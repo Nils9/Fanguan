@@ -71,7 +71,8 @@ HEADERS += \
     plat.h \
     membre.h \
     commandemodel.h \
-    quantityspinbox.h
+    quantityspinbox.h \
+    commandeitem.h
 
 FORMS += \
         mainwindow.ui
