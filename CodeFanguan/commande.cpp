@@ -124,7 +124,7 @@ QGroupBox * Commande::newColonne(Membre * membre){
 }
 
 void Commande::displayTotal(){
-    std::cout << "je display" << std::endl;
+
     m->calculateTotal();
     total->setText(QString("%1 euros").arg(m->getTotal()));
     std::vector<Famille*> clients = m->getClients();
@@ -145,22 +145,20 @@ void Commande::refresh() {
     mainWidget = new QWidget();
     //Cas connecté
     if(m->getConnected()){
-        std::cout << "debug 0" << std::endl;
+
         //Récupération des commandes des clients
         std::vector<Famille*> clients = m->getClients();
         int currentFamilyInd = m->getIndiceFamilleCourante();
         Famille * familleCourante = clients[currentFamilyInd];
         std::vector<Membre*> * membresCourants = familleCourante->getMembres();
-        int nbOfCommands = membresCourants->size();
+        unsigned int nbOfCommands = membresCourants->size();
 
         QHBoxLayout * columns = new QHBoxLayout();
-        std::cout << "debug 1" << std::endl;
         for(unsigned int i = 0; i < nbOfCommands; i++){
             Membre * membreCourant = membresCourants->at(i);
             QWidget * membreCommande = newColonne(membreCourant);
             columns->addWidget(membreCommande);
         }
-        std::cout << "debug 2" << std::endl;
         mainWidget->setLayout(columns);
     }
 
@@ -180,9 +178,8 @@ void Commande::refresh() {
         grid->setHorizontalSpacing(30);
         mainWidget->setLayout(grid);
     }
-    std::cout << "debug 4" << std::endl;
     centralLayout->addWidget(mainWidget);
-    std::cout << "debug 5" << std::endl;
+
 
 }
 

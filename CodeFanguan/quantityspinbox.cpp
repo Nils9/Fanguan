@@ -17,6 +17,7 @@ QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p, QLineEdit* 
            layout->addWidget(name);
            quantity->setValue(0);
        }
+       quantity->setMinimumHeight(50);
        quantity->setRange(0, 20);
        quantity->setSuffix(tr(" unite(s)"));
        layout->addWidget(quantity);

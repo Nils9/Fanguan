@@ -17,7 +17,7 @@ private :
     QString itemName = "default";
     float itemPrice = 0;
     int nbUnites = 1;
-    QString infos = QString("aucune infos");
+    QString infos = QString("aucune info");
 
 };
 

@@ -56,31 +56,33 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-    //previousWidget = rub;
     switch (rub) {
     case CARTE:
         setCentralWidget(new Carte(this, model));
         setPreviousWidget(centralWidget);
+        carteButton->setChecked(true);
         break;
 
     case CONNEXION:
         setCentralWidget(new Connexion(this, model));
         setPreviousWidget(centralWidget);
+        aboButton->setChecked(true);
         break;
 
 	case RECHERCHE:
         setCentralWidget(new Recherche(this, model));
         setPreviousWidget(centralWidget);
+        rechercheButton->setChecked(true);
         break;
 
     case SELECTION:
         setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
         setPreviousWidget(centralWidget);
+        selectionButton->setChecked(true);
         break;
 
     default:
         centralWidget = new QWidget();
-        //previousWidget = CARTE;
         break;
     }
     centralWidget->setMinimumSize(QSize(600, 400));

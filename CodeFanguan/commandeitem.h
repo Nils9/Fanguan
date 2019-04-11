@@ -33,6 +33,7 @@ public:
         QHBoxLayout * bottomLayout = new QHBoxLayout();
         float itemPrice =commandeModel->getItemPrice();
         QSpinBox * quantity =  new QSpinBox();
+        quantity->setMinimumHeight(50);
         quantity->setValue(nbUnites);
         quantity->setRange(1, 20);
         quantity->setSuffix(tr(" unite(s)"));

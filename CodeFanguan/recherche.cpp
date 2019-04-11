@@ -1,5 +1,5 @@
 #include "recherche.h"
-
+#include <QLineEdit>
 
 Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
 {
@@ -40,15 +40,25 @@ Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
 
     QHBoxLayout * dishLayout = new QHBoxLayout();
     QPushButton * starterButton = new QPushButton(tr("Entrees"));
+    starterButton->setCheckable(true);
+    starterButton->setStyleSheet(QString(" QPushButton:checked{background-color: grey;} QPushButton {background-color: orange;}"));
     QPushButton * mealButton = new QPushButton(tr("Plats"));
+    mealButton->setCheckable(true);
+    mealButton->setStyleSheet(QString(" QPushButton:checked{background-color: grey;} QPushButton {background-color: orange;}"));
     QPushButton * dessertsButton = new QPushButton(tr("Desserts"));
+    dessertsButton ->setCheckable(true);
+    dessertsButton->setStyleSheet(QString(" QPushButton:checked{background-color: grey;} QPushButton {background-color: orange;}"));
     dishLayout->addWidget(starterButton);
     dishLayout->addWidget(mealButton);
     dishLayout->addWidget(dessertsButton);
 
     QHBoxLayout * detailLayout = new QHBoxLayout();
     QPushButton * spicyButton = new QPushButton(tr("Epice"));
+    spicyButton->setCheckable(true);
+    spicyButton->setStyleSheet(QString(" QPushButton:checked{background-color: grey;} QPushButton {background-color: orange;}"));
     QPushButton * vegButton = new QPushButton(tr("Vegetarien"));
+    vegButton->setCheckable(true);
+    vegButton->setStyleSheet(QString(" QPushButton:checked{background-color: grey;} QPushButton {background-color: orange;}"));
     detailLayout->addWidget(spicyButton);
     detailLayout->addWidget(vegButton);
 
@@ -73,7 +83,7 @@ Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
     ingLayout->addWidget(oignonButton);
 
     ingGroupBox->setLayout(ingLayout);
-
+    vlayout->addWidget(new QLineEdit());
     vlayout->addWidget(priceGroupBox);
     vlayout->addWidget(countryGroupBox);
     vlayout->addWidget(typeGroupBox);
@@ -91,5 +101,6 @@ Recherche::Recherche(Template *parent, Model * m) : QWidget(parent)
 
     mainLayout->addWidget(buttonFrame);
     mainLayout->addLayout(centralLayout);
+
     setLayout(mainLayout);
 }

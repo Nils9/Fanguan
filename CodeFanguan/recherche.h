@@ -9,7 +9,6 @@
 #include <QSlider>
 #include <QGridLayout>
 #include <QIcon>
-
 #include "catalogue.h"
 #include "model.h"
 #include "template.h"

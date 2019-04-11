@@ -1,14 +1,9 @@
 
 #include "plat.h"
 
-Plat::Plat(int idb/*, float prixb, QString labelb, QString imagePath, QString description, std::vector<QString> ingredient*/)
+Plat::Plat(int idb)
 {
     id = idb;
-//    prix = prixb;
-//    label = labelb;
-//    imageFile = imagePath;
-//    descriptionFile = description;
-//    ingredients = ingredient;
 }
 
 QString Plat::getLabel(){
