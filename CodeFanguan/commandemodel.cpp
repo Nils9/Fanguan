@@ -1,7 +1,8 @@
 #include "commandemodel.h"
 
-CommandeModel::CommandeModel(Plat * p,  int nb)
+CommandeModel::CommandeModel(QString name, float price,  int nb)
 {
-    plat = p;
+    itemName = name;
+    itemPrice = price;
     nbUnites = nb;
 }

@@ -33,62 +33,68 @@ Model::Model(){
     //Entrées
     if (ok) {
 
-        QString nom, fichierImage;
+        QString nom, fichierImage, description;
         int id;
         float prix;
         Plat * e1 = nullptr;
 
         //Entrées
         QSqlQuery query(db);
-        //std::cout << "## chargement desserts" << std::endl;
-        query.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'entree' ");
+        std::cout << "## chargement entree" << std::endl;
+        query.exec("SELECT id, nom, fichierImage, prix, description FROM PLATS WHERE categorie = 'entree' ");
         while (query.next()) {
             id = query.value(0).toInt();
             nom = query.value(1).toString();
             fichierImage = query.value(2).toString();
             prix = query.value(3).toFloat();
-            //std::cout << nom.toStdString() << std::endl;
+            description = query.value(4).toString();
+            std::cout << description.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
             e1->setPrix(prix);
+            e1->setDescription(description);
             addEntree(e1);
             carteEntiere.push_back(e1);
         }
         //std::cout << "## Entree List length " << std::to_string(carteEntrees.size()) << std::endl;
 
         //Plats
-        //std::cout << "## chargement desserts" << std::endl;
+        std::cout << "## chargement plat" << std::endl;
         QSqlQuery query2(db);
-        query2.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'plat' ");
+        query2.exec("SELECT id, nom, fichierImage, prix, description FROM PLATS WHERE categorie = 'plat' ");
         while (query2.next()) {
             id = query2.value(0).toInt();
             nom = query2.value(1).toString();
             fichierImage = query2.value(2).toString();
             prix = query2.value(3).toFloat();
-           // std::cout << nom.toStdString() << std::endl;
+            description = query2.value(4).toString();
+            std::cout << description.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
             e1->setPrix(prix);
+            e1->setDescription(description);
             addPlat(e1);
             carteEntiere.push_back(e1);
         }
 
         //Dessert
-        //std::cout << "## chargement desserts" << std::endl;
+        std::cout << "## chargement desserts" << std::endl;
         QSqlQuery query3(db);
-        query3.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'dessert' ");
+        query3.exec("SELECT id, nom, fichierImage, prix, description FROM PLATS WHERE categorie = 'dessert' ");
         while (query3.next()) {
             id = query3.value(0).toInt();
             nom = query3.value(1).toString();
             fichierImage = query3.value(2).toString();
             prix = query3.value(3).toFloat();
-           // std::cout << nom.toStdString() << std::endl;
+            description = query3.value(4).toString();
+            std::cout << description.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
             e1->setPrix(prix);
+            e1->setDescription(description);
             addDessert(e1);
             carteEntiere.push_back(e1);
         }
@@ -96,17 +102,19 @@ Model::Model(){
         //Dessert
         //std::cout << "## chargement boisson" << std::endl;
         QSqlQuery query4(db);
-        query4.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'boisson' ");
+        query4.exec("SELECT id, nom, fichierImage, prix, description FROM PLATS WHERE categorie = 'boisson' ");
         while (query4.next()) {
             id = query4.value(0).toInt();
             nom = query4.value(1).toString();
             fichierImage = query4.value(2).toString();
             prix = query4.value(3).toFloat();
+            description = query4.value(4).toString();
             std::cout << nom.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
             e1->setPrix(prix);
+            e1->setDescription(description);
             addBoisson(e1);
 
         }
@@ -120,7 +128,7 @@ Model::Model(){
     //std::cout << "## Menus" << std::endl;
 
     //Menus
-    MenuModel * m1 = new MenuModel("Cantonais");
+    MenuModel * m1 = new MenuModel("Cantonais", 16);
     m1->addMenuEntree(carteEntrees[0]);
     m1->addMenuEntree(carteEntrees[3]);
 
@@ -129,7 +137,7 @@ Model::Model(){
     m1->addMenuDessert(carteDesserts[1]);
     addMenu(m1);
 
-    MenuModel * m2 = new MenuModel("Japonais");
+    MenuModel * m2 = new MenuModel("Japonais", 21);
     m2->addMenuEntree(carteEntrees[1]);
     m2->addMenuEntree(carteEntrees[2]);
     m2->addMenuPlat(cartePlats[1]);
@@ -252,11 +260,10 @@ void Model::calculateTotal(){
         }
     }
     else{
-        for(int i = 0; i < listeCommandes.size(); i++){
+        for(unsigned int i = 0; i < listeCommandes.size(); i++){
             CommandeModel * cm = listeCommandes[i];
             int quantity = cm->getNbUnites();
-            Plat * p = cm->getPlat();
-            total += p->getPrix()*quantity;
+            total += cm->getItemPrice()*quantity;
         }
     }
 }

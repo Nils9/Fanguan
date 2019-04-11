@@ -22,17 +22,16 @@ public:
     CommandeItem(Commande * com, CommandeModel * commandeModel): QFrame() {
         //Données de la commande
         this->commandeModel = commandeModel;
-        Plat * platCommande = commandeModel->getPlat();
         int nbUnites = commandeModel->getNbUnites();
 
         //Création de la vue
         QVBoxLayout * layout = new QVBoxLayout(this);
-        QString nomPlat = platCommande->getLabel();
+        QString nomPlat = commandeModel->getItemName();
         QPushButton * itemName = new QPushButton(nomPlat);
         itemName->setIcon(QIcon(":/images/cross.png"));
         itemName->setFont(QFont("Arial", 12));
         QHBoxLayout * bottomLayout = new QHBoxLayout();
-        float itemPrice = platCommande->getPrix();
+        float itemPrice =commandeModel->getItemPrice();
         QSpinBox * quantity =  new QSpinBox();
         quantity->setValue(nbUnites);
         quantity->setRange(1, 20);
@@ -61,8 +60,7 @@ public:
 
 public slots:
     void changeUnity(int i){
-        Plat * p = commandeModel->getPlat();
-        float itemPrice = p->getPrix();
+        float itemPrice = commandeModel->getItemPrice();
         priceLabel->setText(QString("%1 euros").arg(itemPrice*i));
         commandeModel->setNbUnites(i);
         emit unityChanged(i);}

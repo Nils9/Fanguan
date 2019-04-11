@@ -11,7 +11,7 @@ class CatalogueItem : public QToolButton
 {
     Q_OBJECT
 public:
-    explicit CatalogueItem(Template * parent = nullptr, Plat * plat = nullptr);
+    explicit CatalogueItem(Template * parent = nullptr, Plat * plat = nullptr, bool _inMenu = false);
     virtual ~CatalogueItem() {}
     const Plat * getPlat() {return plat;}
     void setInMenu(bool b) {inMenu = b;}

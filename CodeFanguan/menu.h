@@ -44,6 +44,7 @@ signals:
 public slots:
     void nextMenu();
     void previousMenu();
+    void validateMenu();
 };
 
 #endif // MENU_H

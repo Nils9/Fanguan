@@ -64,8 +64,7 @@ float Membre::getSousTotal(){
     for(int i = 0; i < listeCommandes.size(); i++){
         CommandeModel * cm = listeCommandes[i];
         int quantity = cm->getNbUnites();
-        Plat * p = cm->getPlat();
-        sousTotal += p->getPrix()*quantity;
+        sousTotal += cm->getItemPrice()*quantity;
     }
 
     return sousTotal;

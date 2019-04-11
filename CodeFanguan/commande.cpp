@@ -42,7 +42,7 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
         int currentFamilyInd = m->getIndiceFamilleCourante();
         Famille * familleCourante = clients[currentFamilyInd];
         std::vector<Membre*> * membresCourants = familleCourante->getMembres();
-        int nbOfCommands = membresCourants->size();
+        unsigned int nbOfCommands = membresCourants->size();
 
         QHBoxLayout * columns = new QHBoxLayout();
 
@@ -119,7 +119,7 @@ void Commande::displayTotal(){
     int currentFamilyInd = m->getIndiceFamilleCourante();
     Famille * familleCourante = clients[currentFamilyInd];
     std::vector<Membre*> * membres = familleCourante->getMembres();
-    for(int i = 0; i < sousTotaux.size(); i++){
+    for(unsigned int i = 0; i < sousTotaux.size(); i++){
         float nouveauSousTotal = membres->at(i)->getSousTotal();
         sousTotaux[i]->setText(QString("%1 euros").arg(nouveauSousTotal));
     }

@@ -15,8 +15,8 @@ QString Plat::getLabel(){
     return label;
 }
 
-QString Plat::getDescriptionFile(){
-    return descriptionFile;
+QString Plat::getDescription(){
+    return description;
 }
 
 QString Plat::getImageFile(){
@@ -39,8 +39,8 @@ void Plat::setLabel(QString labelb){
     label =labelb;
 }
 
-void Plat::setDescriptionFile(QString description){
-    descriptionFile = description;
+void Plat::setDescription(QString descrip){
+    description = descrip;
 }
 
 void Plat::setImageFile(QString imagePath){

@@ -5,9 +5,11 @@ MenuModel::MenuModel()
 
 }
 
-MenuModel::MenuModel(QString name)
+MenuModel::MenuModel(QString n, float p)
 {
-    this->name = name;
+    name = n;
+    price = p;
+
 }
 
 void MenuModel::addMenuEntree(Plat * plat){

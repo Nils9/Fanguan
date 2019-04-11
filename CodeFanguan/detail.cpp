@@ -23,7 +23,7 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
     QString itemName = QString("%1 - %2 euros").arg(plat->getLabel()).arg(plat->getPrix());
     //std::cout << itemName.toStdString() << std::endl;
     QString itemImage = plat->getImageFile();
-    QString itemDescription = "Specialte de la region de Canton. \n Croustillant et fondant a l'interieur. \n N'hesitez pas a le consommer avec sa sauce";
+    QString itemDescription = plat->getDescription();
 
 
     //mainLayout début
@@ -81,7 +81,7 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
     middleLeftLayout->addLayout(infosLayout);
     //middleLeftLayout fin
 
-    QLineEdit * infos = new QLineEdit(tr("Requete particuliere"));
+    infos = new QLineEdit(tr("Requete particuliere"));
     leftLayout->addLayout(middleLeftLayout);
     leftLayout->addWidget(infos);
     //leftLayout fin
