@@ -25,6 +25,7 @@ private:
     std::vector<QLineEdit*> * membresVector;
     QLineEdit * nomCompteLineEdit;
     QLineEdit * passwordLineEdit;
+    QLabel * noMembreErrorLabel;
 
 public:
     explicit Inscription(QWidget *parent = nullptr, Model * m = nullptr);

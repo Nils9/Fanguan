@@ -27,10 +27,10 @@ public:
     explicit EspaceAbo(Template * t = nullptr, Model * m = nullptr, int indiceMembreCourant = 0);
 
 signals:
-    void membreChanged();
+
 
 public slots:
-
+    void disconnect();
 };
 
 #endif // ESPACEABO_H

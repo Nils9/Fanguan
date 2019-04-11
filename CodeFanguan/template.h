@@ -40,7 +40,6 @@ public slots:
     void displayDetail(Plat* p);
 
 private :
-    //Rubriques previousWidget = CARTE;
     QWidget * previousWidget = nullptr;
     QWidget * centralWidget = nullptr;
     QHBoxLayout * centralLayout = new QHBoxLayout() ;
