@@ -161,14 +161,12 @@ void Template::displayCommande() {
 void Template::displaySelection() {
    centralLayout->removeWidget(centralWidget);
    centralWidget->hide();
-   std::cout<<"je suis dans template"<<std::endl;
    setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
    centralLayout->addWidget(centralWidget);
 }
 
 
 void Template::displayDetail(Plat* p) {
-    //std::cout << "## SLOT" << std::endl;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new Detail(this, model, p));

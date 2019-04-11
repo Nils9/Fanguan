@@ -21,7 +21,7 @@ Inscription::Inscription(QWidget *parent, Model * m) : QWidget(parent)
 
     formLayout->addRow(tr("&Nom du compte"),nomCompteLineEdit);
     formLayout->addRow(tr("&Mot de passe"),passwordLineEdit);
-    formLayout->addRow(tr("&Nombre de personnes associées:"),nombrePersonnesSpinBox);
+    formLayout->addRow(tr("&Nombre de personnes associees:"),nombrePersonnesSpinBox);
     layout->addLayout(formLayout);
     layout->addWidget(scrollArea);
     layout->addWidget(validerButton);

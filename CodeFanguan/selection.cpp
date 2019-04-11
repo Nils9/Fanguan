@@ -8,7 +8,6 @@
 
 Selection::Selection(Template *parent, Model * m, std::vector<Plat *> listePlat) : QWidget(parent)
 {
-    std::cout<<"Debut constructeur"<<std::endl;
     model = m;
     QLabel * image = new QLabel();
     QPixmap pix = QPixmap(":/images/selectionchef2.png");
@@ -58,20 +57,19 @@ void Selection::moveBar(){
     position = sb->value();
     int max = scrollArea->horizontalScrollBar()->maximum();
     int min = scrollArea->horizontalScrollBar()->minimum();
-    //std::cout<<max<<std::endl;
     if((position < max - 3) && (mode ==0)){
         position += 3;
     }
     if (position >= max - 3){
-        mode == 1;
+        mode = 1;
     }
     if((mode == 1) && (position > min)){
         position -= 3;
     }
     if (position <= min + 3){
-        mode == 0;
+        mode = 0;
     }
-    if(min< position < max){
+    if(min < position && position < max){
         sb->setValue(position);
     }
 }
