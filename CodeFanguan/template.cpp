@@ -159,6 +159,7 @@ void Template::displayCommande() {
 }
 
 void Template::displaySelection() {
+   previousWidget = SELECTION;
    centralLayout->removeWidget(centralWidget);
    centralWidget->hide();
    setCentralWidget(new Selection(this, model, model->getCarteEntiere()));

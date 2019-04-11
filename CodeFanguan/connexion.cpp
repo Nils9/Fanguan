@@ -12,6 +12,8 @@ Connexion::Connexion(QWidget *parent, Model * m) : QWidget(parent)
     familleLineEdit = new QLineEdit();
     passwordLineEdit = new QLineEdit();
     passwordLineEdit->setEchoMode(QLineEdit::Password);
+    familleLineEdit->setFont(model->getButtonFont());
+    passwordLineEdit->setFont(model->getButtonFont());
     formLayout->addRow(tr("&Famille:"), familleLineEdit);
     formLayout->addRow(tr("&Password:"),passwordLineEdit);
     layout->addLayout(formLayout);
@@ -25,6 +27,8 @@ Connexion::Connexion(QWidget *parent, Model * m) : QWidget(parent)
     QPushButton * creerCompteButton = new QPushButton("Creer un compte");
     connexionButton->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
     creerCompteButton->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
+    creerCompteButton->setFont(model->getButtonFont());
+    connexionButton->setFont(model->getButtonFont());
     layout->addLayout(connexionLayout);
     layout->addWidget(creerCompteButton);
 

@@ -18,6 +18,7 @@ Inscription::Inscription(QWidget *parent, Model * m) : QWidget(parent)
     membresVector = new std::vector<QLineEdit*>();
     scrollArea->setLayout(membresFormLayout);
     QPushButton * validerButton = new QPushButton("Valider le compte");
+    validerButton->setFont(model->getButtonFont());
 
     formLayout->addRow(tr("&Nom du compte"),nomCompteLineEdit);
     formLayout->addRow(tr("&Mot de passe"),passwordLineEdit);
