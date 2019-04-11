@@ -6,6 +6,7 @@
 #include <QSpinBox>
 #include "plat.h"
 #include "template.h"
+#include <QLineEdit>
 
 class Detail : public QWidget
 {
@@ -20,7 +21,7 @@ public slots:
 
 private :
    Model * model =  nullptr;
-   //std::vector<QSpinBox*> spinBoxList = std::vector<QSpinBox*>();
+   QLineEdit * infos = nullptr;
 };
 
 #endif // DETAIL_H

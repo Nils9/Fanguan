@@ -10,14 +10,14 @@ public:
     Plat(int);
 
     QString getLabel();
-    QString getDescriptionFile();
+    QString getDescription();
     QString getImageFile();
     float getPrix();
     int getId();
     std::vector<QString> getIngredients();
 
     void setLabel(QString);
-    void setDescriptionFile(QString);
+    void setDescription(QString);
     void setImageFile(QString);
     void setPrix(float);
     void setId(int);
@@ -28,7 +28,7 @@ private:
     int id = 0;
     QString label = "defaut";
     float prix = 0.0;
-    QString descriptionFile = "";
+    QString description = "";
     QString imageFile = "path";
     std::vector<QString> ingredients = std::vector<QString>();
 };

@@ -25,7 +25,7 @@ Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
     QToolButton * flecheD = new QToolButton();
     flecheD->setIcon(QIcon(":/images/right.png"));
 
-    menuLabel = new QLabel(currentMenu->getName());
+    menuLabel = new QLabel(QString("%1 \n %2 euros").arg(currentMenu->getName()).arg(currentMenu->getPrix()));
     menuLabel->setFont(QFont("Arial", 22));
 
     menu->addWidget(flecheG);
@@ -57,6 +57,7 @@ Menu::Menu(QWidget *parent, Template * t, Model * model) : QWidget(parent)
 
     connect(flecheD, SIGNAL(clicked()), this, SLOT(nextMenu()));
     connect(flecheG, SIGNAL(clicked()), this, SLOT(previousMenu()));
+    connect(choiceButton,SIGNAL(clicked()), this, SLOT(validateMenu()));
 }
 
 QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
@@ -68,8 +69,7 @@ QGroupBox * Menu::newColonne(std::vector<Plat *> liste, QString nom){
 
     for(unsigned int i = 0; i < liste.size(); i++){
         Plat * plat = liste[i];
-        CatalogueItem * item = new CatalogueItem(temp, plat);
-        item->setInMenu(true);
+        CatalogueItem * item = new CatalogueItem(temp, plat, true);
         item->setCheckable(true);
         item->setStyleSheet(QString(" QToolButton:checked{background-color: orange;} QToolButton:pressed {background-color: orange;}"));
         group->addButton(item);
@@ -85,7 +85,7 @@ void Menu::nextMenu(){
     int nbOfMenus = menuList.size();
     currentIndex = (currentIndex + 1) % nbOfMenus;
     currentMenu = menuList[currentIndex];
-    menuLabel->setText(currentMenu->getName());
+    menuLabel->setText(QString("%1 \n %2 euros").arg(currentMenu->getName()).arg(currentMenu->getPrix()));
 
     columns->removeWidget(entreesColumn);
     entreesColumn->hide();
@@ -112,7 +112,7 @@ void Menu::previousMenu(){
         currentIndex = (currentIndex - 1) % nbOfMenus;
     }
     currentMenu = menuList[currentIndex];
-    menuLabel->setText(currentMenu->getName());
+    menuLabel->setText(QString("%1 \n %2 euros").arg(currentMenu->getName()).arg(currentMenu->getPrix()));
 
     columns->removeWidget(entreesColumn);
     entreesColumn->hide();
@@ -128,4 +128,8 @@ void Menu::previousMenu(){
     dessertsColumn->hide();
     dessertsColumn = newColonne(currentMenu->getMenuDesserts(), "Desserts");
     columns->addWidget(dessertsColumn);
+}
+
+void Menu::validateMenu() {
+    model->addCommande(new CommandeModel(currentMenu->getName(), currentMenu->getPrix(), 1));
 }

@@ -5,17 +5,19 @@
 class CommandeModel
 {
 public:
-    CommandeModel(Plat * p, int nb);
-    void setRequete(QString s) {requete = s;}
+    CommandeModel(QString name, float price, int nb);
+    void setInfos(QString s) {infos = s;}
     void setNbUnites(int n) {nbUnites = n;}
-    Plat* getPlat() {return plat;}
+    float getItemPrice() {return itemPrice;}
+    QString getItemName(){return itemName;}
     int getNbUnites() {return nbUnites;}
-    QString getRequete() {return requete;}
+    QString getInfos() {return infos;}
 
 private :
-    Plat * plat = nullptr;
+    QString itemName = "default";
+    float itemPrice = 0;
     int nbUnites = 1;
-    QString requete = QString("aucune");
+    QString infos = QString("aucune");
 
 };
 
