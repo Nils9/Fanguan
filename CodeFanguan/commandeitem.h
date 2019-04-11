@@ -54,6 +54,7 @@ public:
 
         connect(quantity, SIGNAL(valueChanged(int)), this, SLOT(changeUnity(int)));
         connect(this, SIGNAL(unityChanged(int)), com, SLOT(displayTotal()));
+        connect(itemName, SIGNAL(pressed()), this, SLOT(remove()));
     }
 
     virtual ~CommandeItem() {}
@@ -64,6 +65,11 @@ public slots:
         priceLabel->setText(QString("%1 euros").arg(itemPrice*i));
         commandeModel->setNbUnites(i);
         emit unityChanged(i);}
+
+    void remove(){
+        commandeModel->setNbUnites(0);
+        this->close();
+        emit unityChanged(0);}
 
 signals:
     void unityChanged(int);
