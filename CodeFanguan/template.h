@@ -19,6 +19,8 @@ public:
     QWidget * getCentralWidget();
     void setCentralWidget(QWidget * w) {
         centralWidget =  w;
+        centralWidget->setObjectName("tito");
+        centralWidget->setStyleSheet("QWidget#tito{border-image: url(:/images/fondFanguan.png) 0 0 0 0 stretch stretch;} ");
     }
     void paintEvent(QPaintEvent *);
 

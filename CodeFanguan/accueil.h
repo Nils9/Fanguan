@@ -2,6 +2,7 @@
 #ifndef ACCUEIL_H
 #define ACCUEIL_H
 
+#include <QPixmap>
 #include <QWidget>
 #include "model.h"
 
@@ -15,6 +16,14 @@ public:
 signals:
 
 public slots:
+    void changeLangueFR();
+    void changeLangueEN();
+    void changeLangueCH();
+
+private :
+    QWidget * mainWidget = new QWidget();
+    QLabel * welcomeSentence = new QLabel();
+    QPixmap pix = QPixmap(":/images/titreFanguan.png" );
 };
 
 #endif // ACCUEIL_H

@@ -17,7 +17,6 @@
 Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
     model = m;
-
     QVBoxLayout * mainLayout = new QVBoxLayout(this);
 
     //Barre supérieure

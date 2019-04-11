@@ -48,5 +48,9 @@
         <file>images/matcha.jpg</file>
         <file>images/jasmin.jpg</file>
         <file>images/asashi.jpg</file>
+        <file>images/fondFanguan.png</file>
+        <file>images/titreFanguan_CH.png</file>
+        <file>images/titreFanguan_EN.png</file>
+        <file>images/titreFanguan.png</file>
     </qresource>
 </RCC>
