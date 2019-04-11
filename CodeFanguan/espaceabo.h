@@ -3,16 +3,34 @@
 #define ESPACEABO_H
 
 #include <QWidget>
+#include <QLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QTextListFormat>
+#include <QToolButton>
+#include <QButtonGroup>
+#include <QIcon>
+#include <QScrollArea>
+#include "catalogueitem.h"
+#include "gerercompte.h"
+#include "model.h"
+#include "template.h"
 
 class EspaceAbo : public QWidget
 {
     Q_OBJECT
+private:
+    Model * model;
+    Template * temp;
+
 public:
-    explicit EspaceAbo(QWidget *parent = nullptr);
+    explicit EspaceAbo(Template * t = nullptr, Model * m = nullptr, int indiceMembreCourant = 0);
 
 signals:
 
+
 public slots:
+    void disconnect();
 };
 
 #endif // ESPACEABO_H

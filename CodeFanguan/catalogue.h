@@ -2,17 +2,22 @@
 #ifndef CATALOGUE_H
 #define CATALOGUE_H
 
-#include <QWidget>
+#include <QScrollArea>
+#include "catalogueitem.h"
+#include "plat.h"
+#include "template.h"
 
-class Catalogue : public QWidget
+class Catalogue : public QScrollArea
 {
     Q_OBJECT
 public:
-    explicit Catalogue(QWidget *parent = nullptr);
-
-signals:
+    Catalogue(QWidget *parent = nullptr, Template *t = nullptr, std::vector<Plat *> listePlat = std::vector<Plat *>());
 
 public slots:
+
+private:
+    Template * temp = nullptr;
+
 };
 
 #endif // CATALOGUE_H
