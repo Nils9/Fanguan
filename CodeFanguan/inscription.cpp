@@ -18,7 +18,9 @@ Inscription::Inscription(QWidget *parent, Model * m) : QWidget(parent)
     membresVector = new std::vector<QLineEdit*>();
     scrollArea->setLayout(membresFormLayout);
     QPushButton * validerButton = new QPushButton("Valider le compte");
+
     validerButton->setFont(model->getButtonFont());
+    noMembreErrorLabel = new QLabel();
 
     formLayout->addRow(tr("&Nom du compte"),nomCompteLineEdit);
     formLayout->addRow(tr("&Mot de passe"),passwordLineEdit);
@@ -26,6 +28,7 @@ Inscription::Inscription(QWidget *parent, Model * m) : QWidget(parent)
     layout->addLayout(formLayout);
     layout->addWidget(scrollArea);
     layout->addWidget(validerButton);
+    layout->addWidget(noMembreErrorLabel);
 
     connect(nombrePersonnesSpinBox,SIGNAL(valueChanged(int)),this,SLOT(displayMembres(int)));
     connect(validerButton,SIGNAL(clicked()),this,SLOT(addFamille()));
@@ -36,7 +39,7 @@ Inscription::Inscription(QWidget *parent, Model * m) : QWidget(parent)
 void Inscription::displayMembres(int n){
     for(unsigned int j =0; j<=membresVector->size(); j++){
         if(membresFormLayout->rowCount()>0){
-         //membresFormLayout->removeRow(0);
+         membresFormLayout->removeRow(0);
         }
     }
     membresVector->clear();
@@ -53,18 +56,23 @@ void Inscription::displayMembres(int n){
 }
 
 void Inscription::addFamille(){
-    Famille * newFamille = new Famille(nomCompteLineEdit->text(),passwordLineEdit->text());
-    int nextId = 0;
-    for(unsigned int i = 0; i<model->getClients().size();i++){       //on calcule nombre de membres
-        nextId+=model->getClients()[i]->getSize();
+    if(membresVector->size()==0){
+        noMembreErrorLabel->setText("Il n'y a aucun membre dans votre famille!");
     }
-    for(unsigned int i = 0; i<membresVector->size();i++){
-        Membre * newMembre = new Membre(membresVector->at(i)->text(),nextId);
-        newFamille->addMembre(newMembre);
-        nextId+=1;
+    else{
+        Famille * newFamille = new Famille(nomCompteLineEdit->text(),passwordLineEdit->text());
+        int nextId = 0;
+        for(unsigned int i = 0; i<model->getClients().size();i++){       //on calcule nombre de membres
+            nextId+=model->getClients()[i]->getSize();
+        }
+        for(unsigned int i = 0; i<membresVector->size();i++){
+            Membre * newMembre = new Membre(membresVector->at(i)->text(),nextId);
+            newFamille->addMembre(newMembre);
+            nextId+=1;
+        }
+        model->addFamille(newFamille);
+        model->setIndiceFamilleCourante(model->getClients().size()-1);
+        model->setConnected(true);
+        emit(compteCree());
     }
-    model->addFamille(newFamille);
-    model->setIndiceFamilleCourante(model->getClients().size()-1);
-    model->setConnected(true);
-    emit(compteCree());
 }

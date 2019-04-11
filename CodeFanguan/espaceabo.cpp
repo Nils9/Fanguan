@@ -34,7 +34,11 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     }
     membresButtonGroup->button(indiceMembreCourant)->setChecked(true);
     EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte", model);
+    gererCompteButton->setStyleSheet("background-color: #FFECB3;");
     leftVerticalLayout->addWidget(gererCompteButton);
+    EspaceAboLeftButton * deconnexionButton = new EspaceAboLeftButton("Déconnexion",model);
+    deconnexionButton->setStyleSheet("background-color: #FFECB3;");
+    leftVerticalLayout->addWidget(deconnexionButton);
 
     QVBoxLayout * platsFavorisWithLabelLayout = new QVBoxLayout();
     QLabel * platsFavorisLabel = new QLabel("Mes plats favoris:");
@@ -110,6 +114,12 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
 
     connect(gererCompteButton, SIGNAL(clicked()), temp, SLOT(displayGererCompte()));
     connect(membresButtonGroup,SIGNAL(buttonClicked(int)),temp,SLOT(displayEspaceAbo(int)));
+    connect(deconnexionButton,SIGNAL(clicked()),this,SLOT(disconnect()));
+}
+
+void EspaceAbo::disconnect(){
+    model->setConnected(false);
+    temp->displayEspaceAbo();
 }
 
 
