@@ -50,7 +50,8 @@ public:
         setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
         setLineWidth(2);
         layout->setSizeConstraint(QLayout::SetMinimumSize);
-        setStyleSheet("background : orange");
+        setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        setStyleSheet("background-color : #FFECB3 ");
 
         connect(quantity, SIGNAL(valueChanged(int)), this, SLOT(changeUnity(int)));
         connect(this, SIGNAL(unityChanged(int)), com, SLOT(displayTotal()));

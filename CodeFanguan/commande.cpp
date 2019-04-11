@@ -33,6 +33,7 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
     topLayout->addWidget(title);
     topLayout->addWidget(backButton);
     mainLayout->addLayout(topLayout);
+    mainLayout->addStretch(1);
 
     //Cas connecté
     if(m->getConnected()){
@@ -63,7 +64,7 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
         QGridLayout * grid = new QGridLayout();
         for (int i = 0; i < nbOfCommands; i++) {
             CommandeModel * commandeItem = commande[i];
-            if(commandeItem->getNbUnites() > 1){
+            if(commandeItem->getNbUnites() > 0){
                 grid->addWidget(new CommandeItem(this, commandeItem), i/3, i%3);
             }
         }
@@ -83,6 +84,7 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
     bottomLayout->addStretch(10);
     bottomLayout->addWidget(sendButton);
 
+    mainLayout->addStretch(1);
     mainLayout->addLayout(bottomLayout);
 
     connect(backButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
