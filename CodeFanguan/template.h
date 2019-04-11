@@ -20,6 +20,9 @@ public:
     void setCentralWidget(QWidget * w) {
         centralWidget =  w;
     }
+    void setPreviousWidget(QWidget * w){
+        previousWidget = w;
+    }
     void paintEvent(QPaintEvent *);
 
 signals:
@@ -37,7 +40,8 @@ public slots:
     void displayDetail(Plat* p);
 
 private :
-    Rubriques previousWidget = CARTE;
+    //Rubriques previousWidget = CARTE;
+    QWidget * previousWidget = nullptr;
     QWidget * centralWidget = nullptr;
     QHBoxLayout * centralLayout = new QHBoxLayout() ;
     QVBoxLayout * mainLayout = nullptr;

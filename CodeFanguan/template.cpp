@@ -56,27 +56,31 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
     topMenuLayout->addWidget(selectionButton);
 
     //Zone centrale
-    previousWidget = rub;
+    //previousWidget = rub;
     switch (rub) {
     case CARTE:
         setCentralWidget(new Carte(this, model));
+        setPreviousWidget(centralWidget);
         break;
 
     case CONNEXION:
         setCentralWidget(new Connexion(this, model));
+        setPreviousWidget(centralWidget);
         break;
 
 	case RECHERCHE:
         setCentralWidget(new Recherche(this, model));
+        setPreviousWidget(centralWidget);
         break;
 
     case SELECTION:
         setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
+        setPreviousWidget(centralWidget);
         break;
 
     default:
         centralWidget = new QWidget();
-        previousWidget = CARTE;
+        //previousWidget = CARTE;
         break;
     }
     centralWidget->setMinimumSize(QSize(600, 400));
@@ -109,19 +113,19 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 }
 
 void Template::displayCarte() {
-    previousWidget = CARTE;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new Carte(this, model));
+    setCentralWidget(new Carte(this,model));
+    setPreviousWidget(centralWidget);
     centralLayout->addWidget(centralWidget);
     update();
 }
 
 void Template::displayRecherche() {
-    previousWidget = RECHERCHE;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new Recherche(this, model));
+    setCentralWidget(new Recherche(this,model));
+    setPreviousWidget(centralWidget);
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -130,22 +134,22 @@ void Template::displayEspaceAbo(int i) {
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     if(model->getConnected()){
-        previousWidget = ESPACEABO;
         setCentralWidget(new EspaceAbo(this,model,i));
+        setPreviousWidget(centralWidget);
     }
     else{
-        previousWidget = CONNEXION;
         setCentralWidget(new Connexion(this,model));
+        setPreviousWidget(centralWidget);
     }
     centralLayout->addWidget(centralWidget);
     update();
 }
 
 void Template::displayInscription(){
-    previousWidget = INSCRIPTION;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-    setCentralWidget(new Inscription(this, model));
+    setCentralWidget(new Inscription(this,model));
+    setPreviousWidget(centralWidget);
     centralLayout->addWidget(centralWidget);
     update();
 }
@@ -161,7 +165,8 @@ void Template::displayCommande() {
 void Template::displaySelection() {
    centralLayout->removeWidget(centralWidget);
    centralWidget->hide();
-   setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
+   setCentralWidget(new Selection(this,model,model->getCarteEntiere()));
+   setPreviousWidget(centralWidget);
    centralLayout->addWidget(centralWidget);
 }
 
@@ -181,35 +186,17 @@ void Template::appelServeur() {
 void Template::retourCommande() {
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
-
-    switch (previousWidget) {
-    case ESPACEABO:
-        setCentralWidget(new EspaceAbo(this, model));
-        break;
-    case RECHERCHE:
-        setCentralWidget(new Recherche(this, model));
-        break;
-    case CARTE:
-        setCentralWidget(new Carte(this, model));
-        break;
-    case GERERCOMPTE:
-        setCentralWidget(new GererCompte(this));
-        break;
-    case SELECTION:
-        setCentralWidget(new Selection(this, model, model->getCarteEntiere()));
-        break;
-    default:
-        break;
-    }
+    setCentralWidget(previousWidget);
     centralLayout->addWidget(centralWidget);
+    centralWidget->show();
     update();
 }
 
 void Template::displayGererCompte() {
-    previousWidget = GERERCOMPTE;
     centralLayout->removeWidget(centralWidget);
     centralWidget->hide();
     setCentralWidget(new GererCompte(this,model));
+    setPreviousWidget(centralWidget);
     centralLayout->addWidget(centralWidget);
     update();
 }
