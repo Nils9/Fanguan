@@ -9,12 +9,13 @@ QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p) : QWidget()
        membre = memb;
        plat = p;
        QHBoxLayout * layout = new QHBoxLayout(this);
+       quantity =  new QSpinBox();
+       quantity->setValue(1);
        if (model->getConnected()) {
            QLabel * name = new QLabel(membre->getName());
            layout->addWidget(name);
+           quantity->setValue(0);
        }
-       quantity =  new QSpinBox();
-       quantity->setValue(0);
        quantity->setRange(0, 20);
        quantity->setSuffix(tr(" unite(s)"));
        layout->addWidget(quantity);

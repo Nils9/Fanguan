@@ -13,13 +13,14 @@ Selection::Selection(Template *parent, Model * m, std::vector<Plat *> listePlat)
     QPixmap pix = QPixmap(":/images/selectionchef2.png");
     image->setPixmap(pix);
     image->setScaledContents(true);
+    image->setObjectName("tito");
+    image->setStyleSheet("QWidget#tito{border-image: url(:/images/fondFanguan.png) 0 0 0 0 stretch stretch;} ");
     mainLayout->addWidget(image);
 
     QLabel * imageTapis = new QLabel();
     QPixmap pix2 = QPixmap(":/images/tapis.png");
     imageTapis->setPixmap(pix2);
     imageTapis->setScaledContents(true);
-
 
     QWidget * ligneContentWidget = new QWidget();
     scrollArea->setAlignment(Qt::AlignCenter);

@@ -33,11 +33,16 @@ Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
     topLayout->addWidget(chButton);
     topLayout->addStretch();
 
-    QLabel * welcomeSentence = new QLabel("Bienvenue chez Fanguan");
+    welcomeSentence->setPixmap(pix.scaled(QSize(500, 500), Qt::KeepAspectRatio,
+                                          Qt::SmoothTransformation));
+
     welcomeSentence->setAlignment(Qt::AlignHCenter);
     welcomeSentence->setFont(model->getTitleFont());
     welcomeSentence->setSizePolicy(QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum));
 
+    mainWidget->setMinimumSize(QSize(600, 400));
+    mainWidget->setObjectName(QObject::tr("tata"));
+    mainWidget->setStyleSheet("QWidget#tata{border-image: url(:/images/fondFanguan.png) 0 0 0 0 stretch stretch;} ");
 
     class AccueilButton : public QPushButton
     {
@@ -70,11 +75,13 @@ Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
     QPushButton * selectionButton = new AccueilButton("Notre Selection",":/images/toque.png");
 
     QHBoxLayout * buttonLayout = new QHBoxLayout();
+    buttonLayout->addStretch(5);
     buttonLayout->addWidget(aboButton);
     buttonLayout->addWidget(carteButton);
     buttonLayout->addWidget(rechercheButton);
     buttonLayout->addWidget(selectionButton);
-    buttonLayout->setSpacing(50);
+    buttonLayout->addStretch(5);
+    buttonLayout->setSpacing(25);
 
     QHBoxLayout * serveurLayout = new QHBoxLayout();
     QPushButton * serveurButton = new AccueilButton("Serveur", ":/images/bell.png");
@@ -83,19 +90,45 @@ Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
     serveurLayout->addStretch(5);
 
     mainLayout->addLayout(topLayout);
-    mainLayout->addStretch(5);
+    mainLayout->addStretch(3);
     mainLayout->addWidget(welcomeSentence);
-    mainLayout->addStretch(5);
+    mainLayout->addStretch(1);
     mainLayout->addLayout(buttonLayout);
-    mainLayout->addStretch(5);
+    mainLayout->addStretch(1);
     mainLayout->addLayout(serveurLayout);
     mainLayout->addStretch(5);
-    setLayout(mainLayout);
+
+    mainWidget->setLayout(mainLayout);
+
+    QVBoxLayout * centralLayout = new QVBoxLayout();
+    centralLayout->addWidget(mainWidget);
+    setLayout(centralLayout);
 
     connect(aboButton, SIGNAL(clicked()), parent, SLOT(displayEspaceAbo()));
     connect(rechercheButton, SIGNAL(clicked()), parent, SLOT(displayRecherche()));
     connect(carteButton, SIGNAL(clicked()), parent, SLOT(displayCarte()));
     connect(selectionButton, SIGNAL(clicked()), parent, SLOT(displaySelection()));
     connect(serveurButton, SIGNAL(clicked()), parent, SLOT(appelServeur()));
+
+    connect(engButton, SIGNAL(clicked()), this, SLOT(changeLangueEN()));
+    connect(frButton, SIGNAL(clicked()), this, SLOT(changeLangueFR()));
+    connect(chButton, SIGNAL(clicked()), this, SLOT(changeLangueCH()));
 }
 
+void Accueil::changeLangueFR(){
+    pix = QPixmap(":/images/titreFanguan.png" );
+    welcomeSentence->setPixmap(pix.scaled(QSize(500, 500), Qt::KeepAspectRatio,
+                                          Qt::SmoothTransformation));
+}
+
+void Accueil::changeLangueEN(){
+    pix = QPixmap(":/images/titreFanguan_EN.png" );
+    welcomeSentence->setPixmap(pix.scaled(QSize(500, 500), Qt::KeepAspectRatio,
+                                          Qt::SmoothTransformation));
+}
+
+void Accueil::changeLangueCH(){
+    pix = QPixmap(":/images/titreFanguan_CH.png" );
+    welcomeSentence->setPixmap(pix.scaled(QSize(500, 500), Qt::KeepAspectRatio,
+                                          Qt::SmoothTransformation));
+}

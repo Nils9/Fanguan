@@ -13,9 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     //ui->setupUi(this);
     model = new Model();
-    setCentralWidget(new Accueil(this));
+    Accueil* acc = new Accueil(this);
+//    acc->setObjectName(QObject::tr("tata"));
+//    acc->setStyleSheet("QWidget#tata {border-image: url(:/images/fondFanguan.png) 0 0 0 0 stretch stretch;}");
+    setCentralWidget(acc);
     setMinimumSize(1024, 740);
-    setStyleSheet(" QMainWindow {background-color : white}; QPushButton {color black; background-color :#FFCB60;;}");
+    setStyleSheet(" QMainWindow {background-color : white};QPushButton {color black; background-color :#FFCB60;}");
+
+    //setStyleSheet(" QWidget#tata {border-image: url(:/images/fondFanguan.png) 0 0 0 0 stretch stretch;} QPushButton {color black; background-color :#FFCB60;} ");
 }
 
 MainWindow::~MainWindow()

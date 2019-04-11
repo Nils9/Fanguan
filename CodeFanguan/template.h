@@ -19,6 +19,11 @@ public:
     QWidget * getCentralWidget();
     void setCentralWidget(QWidget * w) {
         centralWidget =  w;
+        centralWidget->setObjectName("tito");
+        centralWidget->setStyleSheet("QWidget#tito{border-image: url(:/images/fondFanguan.png) 0 0 0 0 stretch stretch;} ");
+    }
+    void setPreviousWidget(QWidget * w){
+        previousWidget = w;
     }
     void paintEvent(QPaintEvent *);
 
@@ -37,7 +42,7 @@ public slots:
     void displayDetail(Plat* p);
 
 private :
-    Rubriques previousWidget = CARTE;
+    QWidget * previousWidget = nullptr;
     QWidget * centralWidget = nullptr;
     QHBoxLayout * centralLayout = new QHBoxLayout() ;
     QVBoxLayout * mainLayout = nullptr;

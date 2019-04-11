@@ -12,21 +12,41 @@ Connexion::Connexion(QWidget *parent, Model * m) : QWidget(parent)
     familleLineEdit = new QLineEdit();
     passwordLineEdit = new QLineEdit();
     passwordLineEdit->setEchoMode(QLineEdit::Password);
+    familleLineEdit->setFont(model->getButtonFont());
+    passwordLineEdit->setFont(model->getButtonFont());
     formLayout->addRow(tr("&Famille:"), familleLineEdit);
     formLayout->addRow(tr("&Password:"),passwordLineEdit);
     layout->addLayout(formLayout);
 
-    QHBoxLayout * connexionLayout = new QHBoxLayout();
+    QVBoxLayout * connexionLayout = new QVBoxLayout();
     QPushButton * connexionButton = new QPushButton("Connexion");
     feedbackLabel = new QLabel();
+    feedbackLabel->setAlignment(Qt::AlignCenter);
     connexionLayout->addWidget(connexionButton);
+    connexionLayout->setAlignment(Qt::AlignCenter);
     connexionLayout->addWidget(feedbackLabel);
 
     QPushButton * creerCompteButton = new QPushButton("Creer un compte");
     connexionButton->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
     creerCompteButton->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
+    creerCompteButton->setFont(model->getButtonFont());
+    connexionButton->setFont(model->getButtonFont());
     layout->addLayout(connexionLayout);
-    layout->addWidget(creerCompteButton);
+
+    QHBoxLayout * creeCompteLayout = new QHBoxLayout();
+    creeCompteLayout->addWidget(creerCompteButton);
+    creeCompteLayout->setAlignment(Qt::AlignCenter);
+    layout->addLayout(creeCompteLayout);
+
+    QWidget * centralWidget = new QWidget();
+    centralWidget->setObjectName("tutu");
+    centralWidget->setStyleSheet("QWidget#tutu{border-image: url(:/images/fondFanguan.png) 0 0 0 0 stretch stretch;} ");
+
+    centralWidget->setLayout(layout);
+
+    QHBoxLayout * mainLayout = new QHBoxLayout();
+    mainLayout->addWidget(centralWidget);
+    setLayout(mainLayout);
 
     connect(creerCompteButton,SIGNAL(clicked()),parent,SLOT(displayInscription()));
     connect(connexionButton,SIGNAL(clicked()),this,SLOT(verifierIdentifiants()));

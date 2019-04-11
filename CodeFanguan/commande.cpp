@@ -33,6 +33,7 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
     topLayout->addWidget(title);
     topLayout->addWidget(backButton);
     mainLayout->addLayout(topLayout);
+    mainLayout->addStretch(1);
 
     //Cas connecté
     if(m->getConnected()){
@@ -63,7 +64,9 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
         QGridLayout * grid = new QGridLayout();
         for (int i = 0; i < nbOfCommands; i++) {
             CommandeModel * commandeItem = commande[i];
-            grid->addWidget(new CommandeItem(this, commandeItem), i/3, i%3);
+            if(commandeItem->getNbUnites() > 0){
+                grid->addWidget(new CommandeItem(this, commandeItem), i/3, i%3);
+            }
         }
         grid->setHorizontalSpacing(30);
         mainLayout->addLayout(grid);
@@ -81,6 +84,7 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
     bottomLayout->addStretch(10);
     bottomLayout->addWidget(sendButton);
 
+    mainLayout->addStretch(1);
     mainLayout->addLayout(bottomLayout);
 
     connect(backButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
@@ -99,9 +103,10 @@ QGroupBox * Commande::newColonne(Membre * membre, int nb){
     for(unsigned int i = 0; i < listePlats.size(); i++){
         CommandeModel * commande = listePlats[i];
         CommandeItem * commandeItem = new CommandeItem(this, commande);
-        colonne->addWidget(commandeItem);
-        colonne->addStretch(5);
-
+        if(commande->getNbUnites() > 0){
+            colonne->addWidget(commandeItem);
+            colonne->addStretch(5);
+        }
     }
     QLabel * total = new QLabel(QString("%1 euros").arg(sousTotal));
     sousTotaux.push_back(total);
