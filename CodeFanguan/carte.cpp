@@ -38,6 +38,7 @@ Carte::Carte(Template * parent, Model * m) : QWidget(parent)
     QPushButton * dessertsButton = new CarteButton("Desserts", model);
     group->addButton(dessertsButton);
     QPushButton * menusButton = new CarteButton("Menus", model);
+    menusButton->setChecked(true);
     group->addButton(menusButton);
     QPushButton * boissonsButton = new CarteButton("Boissons", model);
     group->addButton(boissonsButton);
@@ -101,6 +102,8 @@ void Carte::displayDesserts() {
     update();
 }
 
+
+
 void Carte::displayMenus() {
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
@@ -110,11 +113,11 @@ void Carte::displayMenus() {
 }
 
 void Carte::displayBoissons() {
-//    centralWidget->hide();
-//    centralLayout->removeWidget(centralWidget);
-//    setCentralWidget(new Catalogue());
-//    centralLayout->addWidget(centralWidget);
-//    update();
+    centralWidget->hide();
+    centralLayout->removeWidget(centralWidget);
+    setCentralWidget(new Catalogue(nullptr, temp, model->getBoissons()));
+    centralLayout->addWidget(centralWidget);
+    update();
 }
 
 void Carte::paintEvent(QPaintEvent *){

@@ -93,6 +93,24 @@ Model::Model(){
             addDessert(e1);
             carteEntiere.push_back(e1);
         }
+
+        //Dessert
+        std::cout << "## chargement boisson" << std::endl;
+        QSqlQuery query4(db);
+        query4.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'boisson' ");
+        while (query4.next()) {
+            id = query4.value(0).toInt();
+            nom = query4.value(1).toString();
+            fichierImage = query4.value(2).toString();
+            prix = query4.value(3).toFloat();
+            std::cout << nom.toStdString() << std::endl;
+            e1 = new Plat(id);
+            e1->setLabel(nom);
+            e1->setImageFile(fichierImage);
+            e1->setPrix(prix);
+            addBoisson(e1);
+
+        }
     }
 
     else {
@@ -124,7 +142,7 @@ Model::Model(){
    // std::cout << "## Model done" << std::endl;
 
     //Ajout plats favoris et recommandations à famille Fanguan
-    for(int i = 0; i+3<carteEntiere.size(); i+=4){
+    for(unsigned int i = 0; i+3<carteEntiere.size(); i+=4){
         margot->addFavori(carteEntiere[i]);
         margot->addRecommendation(carteEntiere[i]);
         arthur->addFavori(carteEntiere[i+1]);
@@ -148,12 +166,21 @@ void Model::addEntree(Plat *entree){
     carteEntrees.push_back(entree);
 }
 
+void Model::addBoisson(Plat *boisson){
+    carteBoissons.push_back(boisson);
+}
+
+
 void Model::addMenu(MenuModel *menu){
     carteMenus.push_back(menu);
 }
 
 std::vector<Plat*> Model::getEntrees(){
     return carteEntrees;
+}
+
+std::vector<Plat*> Model::getBoissons(){
+    return carteBoissons;
 }
 
 std::vector<Plat*> Model::getPlats(){

@@ -33,7 +33,7 @@ Inscription::Inscription(QWidget *parent, Model * m) : QWidget(parent)
 }
 
 void Inscription::displayMembres(int n){
-    for(int j =0; j<=membresVector->size(); j++){
+    for(unsigned int j =0; j<=membresVector->size(); j++){
         if(membresFormLayout->rowCount()>0){
          //membresFormLayout->removeRow(0);
         }
@@ -54,10 +54,10 @@ void Inscription::displayMembres(int n){
 void Inscription::addFamille(){
     Famille * newFamille = new Famille(nomCompteLineEdit->text(),passwordLineEdit->text());
     int nextId = 0;
-    for(int i = 0; i<model->getClients().size();i++){       //on calcule nombre de membres
+    for(unsigned int i = 0; i<model->getClients().size();i++){       //on calcule nombre de membres
         nextId+=model->getClients()[i]->getSize();
     }
-    for(int i = 0; i<membresVector->size();i++){
+    for(unsigned int i = 0; i<membresVector->size();i++){
         Membre * newMembre = new Membre(membresVector->at(i)->text(),nextId);
         newFamille->addMembre(newMembre);
         nextId+=1;

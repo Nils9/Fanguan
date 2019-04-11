@@ -5,14 +5,15 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <plat.h>
+#include "plat.h"
+#include "commandemodel.h"
 
 class Membre
 {
 private:
     QString name;
     int id;
-    std::vector<Plat*> * commande;
+    std::vector<CommandeModel*> listeCommandes = std::vector<CommandeModel*>();
     std::vector<Plat*> * favoris;
     std::vector<Plat*> * recommendations;
     std::vector<QString> * avantages;
@@ -23,8 +24,8 @@ public:
     QString getName();
     int getId();
     Membre(QString name, int id);
-    std::vector<Plat*> * getCommande();
-    void addCommande(Plat * plat);
+    void addCommande(CommandeModel * com) {listeCommandes.push_back(com);}
+    std::vector<CommandeModel*>  getCommande() {return listeCommandes;}
     std::vector<Plat*> * getFavoris();
     void addFavori(Plat * plat);
     std::vector<Plat*> * getRecommendations();

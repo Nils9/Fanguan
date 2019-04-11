@@ -16,5 +16,5 @@ CatalogueItem::CatalogueItem(Template * temp, Plat * p) : QToolButton(){
 
 
 void CatalogueItem::sendDetailSignal() {
-    emit detailRequis(plat);
+    if (!inMenu) emit detailRequis(plat);
 }

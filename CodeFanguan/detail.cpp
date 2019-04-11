@@ -3,24 +3,25 @@
 #include <QPushButton>
 #include <QSizePolicy>
 #include <iostream>
-#include <QSpinBox>
 #include <QLineEdit>
 #include <QLabel>
 #include <QFrame>
 #include <QGroupBox>
+#include "membre.h"
+#include "famille.h"
+#include "quantityspinbox.h"
 
-
-Detail::Detail(Template *parent, Plat * plat) : QWidget(parent)
+Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
 {
-    std::cout << "## Constructeur" << std::endl;
 
+    model = m;
     std::vector<QString> ingredientList;
     ingredientList.push_back(QString("Carotte"));
     ingredientList.push_back(QString("Soja"));
     ingredientList.push_back(QString("Feuille de riz"));
     ingredientList.push_back(QString("poulet"));
     QString itemName = QString("%1 - %2 euros").arg(plat->getLabel()).arg(plat->getPrix());
-    std::cout << itemName.toStdString() << std::endl;
+    //std::cout << itemName.toStdString() << std::endl;
     QString itemImage = plat->getImageFile();
     QString itemDescription = "Specialte de la region de Canton. \n Croustillant et fondant a l'interieur. \n N'hesitez pas a le consommer avec sa sauce";
 
@@ -58,11 +59,13 @@ Detail::Detail(Template *parent, Plat * plat) : QWidget(parent)
     QGridLayout * ingredientGrid = new QGridLayout(ingredientBox);
     std::vector<QPushButton *> buttonList = std::vector<QPushButton *>();
 
-    for (int i = 0; i < ingredientList.size(); i++) {
+    for (unsigned int i = 0; i < ingredientList.size(); i++) {
         QPushButton * button = new QPushButton(ingredientList[i]);
         buttonList.push_back(button);
         button ->setIcon(QIcon(":/images/cross.png"));
         ingredientGrid->addWidget(button, i/2, i%2);
+        button->setCheckable(true);
+        button->setStyleSheet(QString(" QPushButton:checked{background-color: grey;} QPushButton {background-color: orange;}"));
     }
 
     QGroupBox * descriptionBox = new QGroupBox(tr("Description"));
@@ -84,20 +87,35 @@ Detail::Detail(Template *parent, Plat * plat) : QWidget(parent)
     //leftLayout fin
 
 
-
     QFrame * rightFrame = new QFrame();
     QVBoxLayout * rightLayout =new  QVBoxLayout(rightFrame);
     QGroupBox * quantityBox = new QGroupBox(tr("Quantite"));
-    QHBoxLayout * quantityLayout = new QHBoxLayout();
-    QSpinBox * quantity =  new QSpinBox();
-    quantity->setValue(1);
-    quantity->setRange(1, 20);
-    quantity->setSuffix(tr(" unite(s)"));
-    quantityLayout->addWidget(quantity);
+    QVBoxLayout * quantityLayout = new QVBoxLayout();
+
+
+
+    std::vector<QuantitySpinBox*> spinBoxList = std::vector<QuantitySpinBox*>();
+
+    if (model->getConnected()) {
+        Famille * famille = model->getClients().at(model->getIndiceFamilleCourante());
+        std::vector<Membre*>* membres = famille->getMembres();
+        for (unsigned int i = 0; i < membres->size(); i++) {
+            spinBoxList.push_back(new QuantitySpinBox(model, membres->at(i), plat));
+        }
+    }
+    else {
+        spinBoxList.push_back(new QuantitySpinBox(model, nullptr, plat));
+    }
+
+    for (unsigned int i = 0 ; i < spinBoxList.size(); i++) {
+        quantityLayout->addWidget(spinBoxList[i]);
+    }
+
     quantityBox->setLayout(quantityLayout);
 
-    QPushButton * validateButton = new QPushButton("Valider \n commande");
-    validateButton->setFont(QFont("Arial", 15));
+    QPushButton * validateButton = new QPushButton("Commander");
+    validateButton->setFont(model->getButtonFont());
+    validateButton->setStyleSheet("QPushButton {background-color: orange;}");
 
     rightLayout->addWidget(quantityBox);
     rightLayout->addStretch(5);
@@ -113,5 +131,10 @@ Detail::Detail(Template *parent, Plat * plat) : QWidget(parent)
     //mainLayout fin
 
     connect(quitButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
+    for (unsigned int i = 0; i < spinBoxList.size(); i++) {
+        connect(validateButton, SIGNAL(clicked()), spinBoxList[i], SLOT(validateQuantity()));
+    }
+    connect(validateButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
+
 
 }

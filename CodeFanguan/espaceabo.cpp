@@ -16,10 +16,9 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     class EspaceAboLeftButton : public QPushButton
     {
     public:
-        EspaceAboLeftButton(QString label) : QPushButton(label){
+        EspaceAboLeftButton(QString label, Model * model) : QPushButton(label){
             setMinimumSize(QSize(280, 70));
             setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Maximum);
-            Model * model = new Model();
             setFont(model->getButtonFont());
             setCheckable(true);
             setStyleSheet("QPushButton:checked{background-color: yellow;} QPushButton:pressed {background-color: yellow;}");
@@ -28,13 +27,13 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     };
     QButtonGroup * membresButtonGroup = new QButtonGroup();
     membresButtonGroup->setExclusive(true);
-    for(int i = 0; i<membres->size();i++){
-        EspaceAboLeftButton * membreButton = new EspaceAboLeftButton(membres->at(i)->getName());
+    for(unsigned int i = 0; i<membres->size();i++){
+        EspaceAboLeftButton * membreButton = new EspaceAboLeftButton(membres->at(i)->getName(), model);
         leftVerticalLayout->addWidget(membreButton);
         membresButtonGroup->addButton(membreButton,i);
     }
     membresButtonGroup->button(indiceMembreCourant)->setChecked(true);
-    EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte");
+    EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte", model);
     leftVerticalLayout->addWidget(gererCompteButton);
 
     QVBoxLayout * platsFavorisWithLabelLayout = new QVBoxLayout();
@@ -50,7 +49,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     QHBoxLayout * platsFavorisLayout = new QHBoxLayout();
     platsFavorisLayout->setSpacing(10);
     std::vector<Plat*>* favoris = model->getClients()[model->getIndiceFamilleCourante()]->getMembres()->at(indiceMembreCourant)->getFavoris();
-    for(int i = 0; i<favoris->size();i++){
+    for(unsigned int i = 0; i<favoris->size();i++){
         CatalogueItem * item = new CatalogueItem(temp, favoris->at(i));
         platsFavorisLayout->addWidget(item);
     }
@@ -74,7 +73,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     recommandationsLayout->setSpacing(10);
 
     std::vector<Plat*>* recommandations = membreCourant->getRecommendations();
-    for(int i = 0; i<recommandations->size();i++){
+    for(unsigned int i = 0; i<recommandations->size();i++){
         CatalogueItem * item = new CatalogueItem(temp, favoris->at(i));
         recommandationsLayout->addWidget(item);
     }
@@ -91,7 +90,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     QGridLayout * avantagesGridLayout = new QGridLayout();
     avantagesGridLayout->setAlignment(Qt::AlignCenter);
     avantagesGridLayout->addWidget(avantagesPersoLabel,1,1);
-    for(int i = 0; i<membreCourant->getAvantages()->size();i++){
+    for(unsigned int i = 0; i<membreCourant->getAvantages()->size();i++){
         QLabel * avantage = new QLabel(membreCourant->getAvantages()->at(i));
         avantagesGridLayout->addWidget(avantage,i+2,1);
     }

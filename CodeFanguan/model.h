@@ -7,6 +7,7 @@
 #include "membre.h"
 #include "famille.h"
 #include "menumodel.h"
+#include "commandemodel.h"
 
 class Model{
 private:
@@ -15,10 +16,13 @@ private:
 
     //Carte du restaurant
     std::vector<Plat*> carteEntrees = std::vector<Plat*>();
-    std::vector<Plat*> cartePlats= std::vector<Plat*>();
-    std::vector<Plat*> carteDesserts= std::vector<Plat*>();
-    std::vector<Plat*> carteEntiere= std::vector<Plat*>();
-    std::vector<MenuModel*> carteMenus;
+    std::vector<Plat*> cartePlats = std::vector<Plat*>();
+    std::vector<Plat*> carteDesserts = std::vector<Plat*>();
+    std::vector<Plat*> carteBoissons = std::vector<Plat*>();
+    std::vector<Plat*> carteEntiere = std::vector<Plat*>();
+    std::vector<MenuModel*> carteMenus = std::vector<MenuModel*>();
+
+    std::vector<CommandeModel*> listeCommandes = std::vector<CommandeModel*>();
 
     //Liste des familles du restaurant
     std::vector<Famille*> clients;
@@ -39,6 +43,7 @@ public:
     std::vector<Plat*> getPlats();
     std::vector<Plat*> getDesserts();
     std::vector<Plat*> getCarteEntiere();
+    std::vector<Plat*> getBoissons();
     std::vector<MenuModel*> getMenus();
 
     //Accès liste famille et indice famille courante
@@ -47,11 +52,16 @@ public:
     int getIndiceFamilleCourante();
     void setIndiceFamilleCourante(int indice);
 
+    //Accès à la liste des commandes (dans le cas non connecté
+    std::vector<CommandeModel*> getCommandes() {return listeCommandes;}
+    void addCommande(CommandeModel * cm) {listeCommandes.push_back(cm);}
+
     //Mise à jour de la carte
     void addEntree(Plat * entree);
     void addPlat(Plat * plat);
     void addDessert(Plat * dessert);
     void addMenu(MenuModel * menu);
+    void addBoisson(Plat * boisson);
 
     // Template CSS
     QFont getTitleFont();
