@@ -3,11 +3,12 @@
 #include "commandemodel.h"
 #include <iostream>
 
-QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p) : QWidget()
+QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p, QLineEdit* infos) : QWidget()
 {
        model = m;
        membre = memb;
        plat = p;
+       infosLineEdit = infos;
        QHBoxLayout * layout = new QHBoxLayout(this);
        quantity =  new QSpinBox();
        quantity->setValue(1);
@@ -19,7 +20,6 @@ QuantitySpinBox::QuantitySpinBox(Model * m, Membre * memb, Plat * p) : QWidget()
        quantity->setRange(0, 20);
        quantity->setSuffix(tr(" unite(s)"));
        layout->addWidget(quantity);
-
 }
 
 void QuantitySpinBox::validateQuantity() {
@@ -28,9 +28,11 @@ void QuantitySpinBox::validateQuantity() {
         CommandeModel * cm = new CommandeModel(plat->getLabel(), plat->getPrix(), nbUnite);
         if (model->getConnected()) {
             membre->addCommande(cm);
+            cm->setInfos(infosLineEdit->text());
             std::cout << membre->getName().toStdString() << "-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
         } else {
             model->addCommande(cm);
+            cm->setInfos(infosLineEdit->text());
             std::cout <<"Not connected-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
         }
     }

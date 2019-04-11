@@ -26,7 +26,7 @@ private:
     Model * model = nullptr;
     QScrollArea * scrollArea = new QScrollArea();
     int mode = 0;
-    int position ;
+    int position =0;
 };
 
 #endif // SELECTION_H

@@ -26,7 +26,7 @@ private:
 
     //Liste des familles du restaurant
     std::vector<Famille*> clients;
-    int indiceFamilleCourante;
+    int indiceFamilleCourante = 0;
     float total = 0;
 
 public:
@@ -73,6 +73,8 @@ public:
     QFont getButtonFont();
     QFont getTextFont();
     QFont getPlatFont();
+
+    void clear();
 
 };
 

@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QWidget>
 #include "model.h"
+#include <QPushButton>
 
 class Accueil : public QWidget
 {
@@ -19,11 +20,14 @@ public slots:
     void changeLangueFR();
     void changeLangueEN();
     void changeLangueCH();
+    void appelServeur();
+    void leServeurEstArrive();
 
 private :
     QWidget * mainWidget = new QWidget();
     QLabel * welcomeSentence = new QLabel();
     QPixmap pix = QPixmap(":/images/titreFanguan.png" );
+    QPushButton * serveurButton = nullptr;
 };
 
 #endif // ACCUEIL_H

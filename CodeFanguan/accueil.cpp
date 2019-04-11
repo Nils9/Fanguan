@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QTimer>
 
 Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
 {
@@ -52,7 +53,7 @@ Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
             setMinimumSize(QSize(200, 150));
             setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum));
             setFont(model->getAccueilButtonFont());
-            setStyleSheet("color : #ff5e4d; background-color : #FFCB60;");
+            setStyleSheet("color : black; background-color : #FFCB60;");
             QVBoxLayout * layout = new QVBoxLayout(this);
             QLabel * image = new QLabel();
             image->setAlignment(Qt::AlignHCenter);
@@ -84,7 +85,7 @@ Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
     buttonLayout->setSpacing(25);
 
     QHBoxLayout * serveurLayout = new QHBoxLayout();
-    QPushButton * serveurButton = new AccueilButton("Serveur", ":/images/bell.png");
+    serveurButton = new AccueilButton("Serveur", ":/images/bell.png");
     serveurLayout->addStretch(5);
     serveurLayout->addWidget(serveurButton);
     serveurLayout->addStretch(5);
@@ -108,7 +109,7 @@ Accueil::Accueil(QWidget *parent, Model * m) : QWidget(parent)
     connect(rechercheButton, SIGNAL(clicked()), parent, SLOT(displayRecherche()));
     connect(carteButton, SIGNAL(clicked()), parent, SLOT(displayCarte()));
     connect(selectionButton, SIGNAL(clicked()), parent, SLOT(displaySelection()));
-    connect(serveurButton, SIGNAL(clicked()), parent, SLOT(appelServeur()));
+    connect(serveurButton, SIGNAL(clicked()), this, SLOT(appelServeur()));
 
     connect(engButton, SIGNAL(clicked()), this, SLOT(changeLangueEN()));
     connect(frButton, SIGNAL(clicked()), this, SLOT(changeLangueFR()));
@@ -131,4 +132,17 @@ void Accueil::changeLangueCH(){
     pix = QPixmap(":/images/titreFanguan_CH.png" );
     welcomeSentence->setPixmap(pix.scaled(QSize(500, 500), Qt::KeepAspectRatio,
                                           Qt::SmoothTransformation));
+}
+void Accueil::appelServeur() {
+    serveurButton->setText("Un serveur arrive !");
+    serveurButton->setDisabled(true);
+    QTimer * serveurTimer = new QTimer();
+    serveurTimer->setSingleShot(true);
+    serveurTimer->start(10000);
+    connect(serveurTimer, SIGNAL(timeout()), this, SLOT(leServeurEstArrive()));
+}
+
+void Accueil::leServeurEstArrive() {
+    serveurButton->setText("Appeler serveur");
+    serveurButton->setDisabled(false);
 }

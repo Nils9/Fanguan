@@ -6,6 +6,7 @@
 #include "carte.h"
 #include "catalogue.h"
 #include "gerercompte.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -44,6 +45,4 @@ void MainWindow::displaySelection() {
     setCentralWidget(new Template(this, model, Template::SELECTION));
 }
 
-void MainWindow::appelServeur() {
-     std::cout << "Serveur"<< std::endl;
-}
+

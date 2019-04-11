@@ -41,7 +41,7 @@ public:
         bottomLayout->addWidget(quantity);
         bottomLayout->addStretch(5);
         bottomLayout->addWidget(priceLabel);
-        QLineEdit * infos = new QLineEdit("infos");
+        QLineEdit * infos = new QLineEdit(commandeModel->getInfos());
         infos->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         layout->addWidget(itemName);
         layout->addLayout(bottomLayout);
@@ -56,6 +56,7 @@ public:
         connect(quantity, SIGNAL(valueChanged(int)), this, SLOT(changeUnity(int)));
         connect(this, SIGNAL(unityChanged(int)), com, SLOT(displayTotal()));
         connect(itemName, SIGNAL(pressed()), this, SLOT(remove()));
+        connect(this, SIGNAL(removed()), com, SLOT(refresh()));
     }
 
     virtual ~CommandeItem() {}
@@ -69,11 +70,13 @@ public slots:
 
     void remove(){
         commandeModel->setNbUnites(0);
-        this->close();
+        //this->close();
+        emit removed();
         emit unityChanged(0);}
 
 signals:
     void unityChanged(int);
+    void removed();
 };
 
 #endif // COMMANDEITEM_H

@@ -36,7 +36,7 @@ public:
     int getProgress();
     void setProgress(int value);
     float getSousTotal();
-
+    void clearCommande() {listeCommandes.clear();}
 };
 
 #endif // MEMBRE_H

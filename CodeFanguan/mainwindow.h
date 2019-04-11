@@ -21,7 +21,7 @@ public slots :
     void displayEspaceAbo();
     void displayRecherche();
     void displaySelection();
-    void appelServeur();
+
 
 private:
     Ui::MainWindow *ui;

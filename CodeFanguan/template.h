@@ -7,7 +7,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QButtonGroup>
-
+#include <QPushButton>
 #include "model.h"
 
 class Template : public QWidget
@@ -37,6 +37,7 @@ public slots:
     void displaySelection();
     void displayCommande();
     void appelServeur();
+    void leServeurEstArrive();
     void displayGererCompte();
     void retourCommande();
     void displayDetail(Plat* p);
@@ -47,6 +48,7 @@ private :
     QHBoxLayout * centralLayout = new QHBoxLayout() ;
     QVBoxLayout * mainLayout = nullptr;
     Model *model = nullptr;
+    QPushButton * serveurButton = nullptr;
 };
 
 #endif // TEMPLATE_H

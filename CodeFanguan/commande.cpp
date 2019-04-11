@@ -10,14 +10,15 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QFrame>
+#include <QMessageBox>
 #include "commandeitem.h"
 
-Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
+Commande::Commande(Template *p, Model * model) : QWidget(p)
 {
-    this->m = model;
-
+    m = model;
+    parent = p;
     //Interface
-    QVBoxLayout * mainLayout = new QVBoxLayout(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QFont font = QFont("Arial", 22);
 
@@ -35,6 +36,7 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
     mainLayout->addLayout(topLayout);
     mainLayout->addStretch(1);
 
+    mainWidget = new QWidget(this);
     //Cas connecté
     if(m->getConnected()){
 
@@ -49,11 +51,12 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
 
         for(unsigned int i = 0; i < nbOfCommands; i++){
             Membre * membreCourant = membresCourants->at(i);
-            QWidget * membreCommande = newColonne(membreCourant, i);
+            QWidget * membreCommande = newColonne(membreCourant);
             columns->addWidget(membreCommande);
         }
 
-        mainLayout->addLayout(columns);
+        mainWidget->setLayout(columns);
+
 
     }
 
@@ -62,19 +65,22 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
         std::vector<CommandeModel*> commande = m->getCommandes();
         int nbOfCommands = commande.size();
         QGridLayout * grid = new QGridLayout();
+        unsigned int j = 0;
         for (int i = 0; i < nbOfCommands; i++) {
             CommandeModel * commandeItem = commande[i];
             if(commandeItem->getNbUnites() > 0){
-                grid->addWidget(new CommandeItem(this, commandeItem), i/3, i%3);
+                grid->addWidget(new CommandeItem(this, commandeItem), j/3, j%3);
+                j = j+1 ;
             }
         }
         grid->setHorizontalSpacing(30);
-        mainLayout->addLayout(grid);
+        mainWidget->setLayout(grid);
     }
 
-
+    centralLayout->addWidget(mainWidget);
+    mainLayout->addLayout(centralLayout);
     QHBoxLayout * bottomLayout = new QHBoxLayout();
-    QPushButton * sendButton = new QPushButton("Envoyer en cuisine");
+    sendButton = new QPushButton("Envoyer en cuisine");
     sendButton->setFont(font);
     m->calculateTotal();
     float totalPrice = m->getTotal();
@@ -88,9 +94,10 @@ Commande::Commande(QWidget *parent, Model * model) : QWidget(parent)
     mainLayout->addLayout(bottomLayout);
 
     connect(backButton, SIGNAL(clicked()), parent, SLOT(retourCommande()));
+    connect(sendButton, SIGNAL(clicked()), this, SLOT(envoieCommande()));
 }
 
-QGroupBox * Commande::newColonne(Membre * membre, int nb){
+QGroupBox * Commande::newColonne(Membre * membre){
     QString nom = membre->getName();
     QGroupBox * newColonne = new QGroupBox(nom);
     QVBoxLayout * colonne = new QVBoxLayout();
@@ -124,8 +131,68 @@ void Commande::displayTotal(){
     int currentFamilyInd = m->getIndiceFamilleCourante();
     Famille * familleCourante = clients[currentFamilyInd];
     std::vector<Membre*> * membres = familleCourante->getMembres();
+
     for(unsigned int i = 0; i < sousTotaux.size(); i++){
         float nouveauSousTotal = membres->at(i)->getSousTotal();
         sousTotaux[i]->setText(QString("%1 euros").arg(nouveauSousTotal));
     }
+}
+
+void Commande::refresh() {
+    sousTotaux.clear();
+    mainWidget->hide();
+    centralLayout->removeWidget(mainWidget);
+    mainWidget = new QWidget();
+    //Cas connecté
+    if(m->getConnected()){
+        std::cout << "debug 0" << std::endl;
+        //Récupération des commandes des clients
+        std::vector<Famille*> clients = m->getClients();
+        int currentFamilyInd = m->getIndiceFamilleCourante();
+        Famille * familleCourante = clients[currentFamilyInd];
+        std::vector<Membre*> * membresCourants = familleCourante->getMembres();
+        int nbOfCommands = membresCourants->size();
+
+        QHBoxLayout * columns = new QHBoxLayout();
+        std::cout << "debug 1" << std::endl;
+        for(unsigned int i = 0; i < nbOfCommands; i++){
+            Membre * membreCourant = membresCourants->at(i);
+            QWidget * membreCommande = newColonne(membreCourant);
+            columns->addWidget(membreCommande);
+        }
+        std::cout << "debug 2" << std::endl;
+        mainWidget->setLayout(columns);
+    }
+
+    else{
+        std::cout<< "je ne suis pas connecté" << std::endl;
+        std::vector<CommandeModel*> commande = m->getCommandes();
+        int nbOfCommands = commande.size();
+        QGridLayout * grid = new QGridLayout();
+        unsigned int j = 0;
+        for (int i = 0; i < nbOfCommands; i++) {
+            CommandeModel * commandeItem = commande[i];
+            if(commandeItem->getNbUnites() > 0){
+                grid->addWidget(new CommandeItem(this, commandeItem), j/3, j%3);
+                j = j +1;
+            }
+        }
+        grid->setHorizontalSpacing(30);
+        mainWidget->setLayout(grid);
+    }
+    std::cout << "debug 4" << std::endl;
+    centralLayout->addWidget(mainWidget);
+    std::cout << "debug 5" << std::endl;
+
+}
+
+void Commande::envoieCommande() {
+
+
+    m->clear();
+
+    QMessageBox msgBox(this);
+    msgBox.setText("Votre commande a ete envoyee en cuisine.");
+    msgBox.exec();
+    parent->retourCommande();
 }

@@ -48,7 +48,6 @@ Model::Model(){
             fichierImage = query.value(2).toString();
             prix = query.value(3).toFloat();
             description = query.value(4).toString();
-            std::cout << description.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
@@ -57,7 +56,6 @@ Model::Model(){
             addEntree(e1);
             carteEntiere.push_back(e1);
         }
-        //std::cout << "## Entree List length " << std::to_string(carteEntrees.size()) << std::endl;
 
         //Plats
         std::cout << "## chargement plat" << std::endl;
@@ -69,7 +67,6 @@ Model::Model(){
             fichierImage = query2.value(2).toString();
             prix = query2.value(3).toFloat();
             description = query2.value(4).toString();
-            std::cout << description.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
@@ -89,7 +86,6 @@ Model::Model(){
             fichierImage = query3.value(2).toString();
             prix = query3.value(3).toFloat();
             description = query3.value(4).toString();
-            std::cout << description.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
@@ -100,7 +96,7 @@ Model::Model(){
         }
 
         //Dessert
-        //std::cout << "## chargement boisson" << std::endl;
+
         QSqlQuery query4(db);
         query4.exec("SELECT id, nom, fichierImage, prix, description FROM PLATS WHERE categorie = 'boisson' ");
         while (query4.next()) {
@@ -109,7 +105,6 @@ Model::Model(){
             fichierImage = query4.value(2).toString();
             prix = query4.value(3).toFloat();
             description = query4.value(4).toString();
-            std::cout << nom.toStdString() << std::endl;
             e1 = new Plat(id);
             e1->setLabel(nom);
             e1->setImageFile(fichierImage);
@@ -125,7 +120,6 @@ Model::Model(){
         std::cout << "fail" << std::endl;
     }
 
-    //std::cout << "## Menus" << std::endl;
 
     //Menus
     MenuModel * m1 = new MenuModel("Cantonais", 16);
@@ -146,7 +140,7 @@ Model::Model(){
     m2->addMenuDessert(carteDesserts[1]);
     addMenu(m2);
 
-   // std::cout << "## Model done" << std::endl;
+
 
     //Ajout plats favoris et recommandations à famille Fanguan
     for(unsigned int i = 0; i+3<carteEntiere.size(); i+=4){
@@ -266,4 +260,17 @@ void Model::calculateTotal(){
             total += cm->getItemPrice()*quantity;
         }
     }
+}
+
+void Model::clear() {
+
+    Famille * familleCourante = clients[indiceFamilleCourante];
+    std::vector<Membre*> * membresCourants = familleCourante->getMembres();
+    std::vector<Membre*> * membres = familleCourante->getMembres();
+    for(unsigned int i = 0; i < membres->size(); i++){
+        Membre * membreCourant = membresCourants->at(i);
+        membreCourant->clearCommande();
+    }
+    listeCommandes.clear();
+
 }

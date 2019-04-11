@@ -1,5 +1,5 @@
 #include "template.h"
-
+#include <QMessageBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -13,6 +13,7 @@
 #include "recherche.h"
 #include "inscription.h"
 #include "espaceabo.h"
+#include <QTimer>
 
 Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
@@ -88,8 +89,8 @@ Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
     //Barre inférieure
     QHBoxLayout * bottomMenuLayout = new QHBoxLayout();
 
-    QPushButton * serveurButton = new QPushButton(tr("Appeler Serveur"));
-    QPushButton * commandeButton = new QPushButton(tr("Commande"));
+    serveurButton = new QPushButton(tr("Appeler Serveur"));
+    QPushButton * commandeButton = new QPushButton(tr("Voir Recapitulaif"));
 
     serveurButton->setFont(model->getButtonFont());
     commandeButton->setFont(model->getButtonFont());
@@ -178,7 +179,18 @@ void Template::displayDetail(Plat* p) {
 }
 
 void Template::appelServeur() {
-   std::cout << "Serveur"<< std::endl;
+    serveurButton->setText("Un serveur arrive !");
+    serveurButton->setDisabled(true);
+    QTimer * serveurTimer = new QTimer();
+    serveurTimer->setSingleShot(true);
+    serveurTimer->start(10000);
+    connect(serveurTimer, SIGNAL(timeout()), this, SLOT(leServeurEstArrive()));
+
+}
+
+void Template::leServeurEstArrive() {
+    serveurButton->setText("Appeler serveur");
+    serveurButton->setDisabled(false);
 }
 
 

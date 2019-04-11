@@ -81,7 +81,7 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
     middleLeftLayout->addLayout(infosLayout);
     //middleLeftLayout fin
 
-    infos = new QLineEdit(tr("Requete particuliere"));
+    infos = new QLineEdit(tr("infos"));
     leftLayout->addLayout(middleLeftLayout);
     leftLayout->addWidget(infos);
     //leftLayout fin
@@ -100,11 +100,11 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
         Famille * famille = model->getClients().at(model->getIndiceFamilleCourante());
         std::vector<Membre*>* membres = famille->getMembres();
         for (unsigned int i = 0; i < membres->size(); i++) {
-            spinBoxList.push_back(new QuantitySpinBox(model, membres->at(i), plat));
+            spinBoxList.push_back(new QuantitySpinBox(model, membres->at(i), plat, infos));
         }
     }
     else {
-        spinBoxList.push_back(new QuantitySpinBox(model, nullptr, plat));
+        spinBoxList.push_back(new QuantitySpinBox(model, nullptr, plat, infos));
     }
 
     for (unsigned int i = 0 ; i < spinBoxList.size(); i++) {
@@ -113,7 +113,7 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
 
     quantityBox->setLayout(quantityLayout);
 
-    QPushButton * validateButton = new QPushButton("Commander");
+    QPushButton * validateButton = new QPushButton("Ajouter \n a la commande");
     validateButton->setFont(model->getButtonFont());
     validateButton->setStyleSheet("QPushButton {background-color: orange;}");
 

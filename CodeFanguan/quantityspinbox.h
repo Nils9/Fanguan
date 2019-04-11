@@ -6,6 +6,7 @@
 #include "model.h"
 #include <QSpinBox>
 #include "plat.h"
+#include <QLineEdit>
 
 class QuantitySpinBox : public QWidget
 {
@@ -15,9 +16,10 @@ private:
     Model * model = nullptr;
     QSpinBox * quantity =nullptr;
     Plat * plat = nullptr;
+    QLineEdit *infosLineEdit = nullptr;
 
 public:
-    QuantitySpinBox(Model * m, Membre * memb, Plat * p);
+    QuantitySpinBox(Model * m, Membre * memb, Plat * p, QLineEdit* infosLineEdit = nullptr);
     virtual ~QuantitySpinBox() {}
 
 signals:

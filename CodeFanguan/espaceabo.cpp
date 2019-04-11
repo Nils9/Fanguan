@@ -119,6 +119,7 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
 
 void EspaceAbo::disconnect(){
     model->setConnected(false);
+    model->clear();
     temp->displayEspaceAbo();
 }
 
