@@ -23,7 +23,6 @@ Model::Model(){
     clients.push_back(fanguan);
     indiceFamilleCourante = 0;
 
-
     //Elaboration de la carte
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -77,7 +76,7 @@ Model::Model(){
         }
 
         //Dessert
-        std::cout << "## chargement desserts" << std::endl;
+        //std::cout << "## chargement desserts" << std::endl;
         QSqlQuery query3(db);
         query3.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'dessert' ");
         while (query3.next()) {
@@ -95,7 +94,7 @@ Model::Model(){
         }
 
         //Dessert
-        std::cout << "## chargement boisson" << std::endl;
+        //std::cout << "## chargement boisson" << std::endl;
         QSqlQuery query4(db);
         query4.exec("SELECT id, nom, fichierImage, prix FROM PLATS WHERE categorie = 'boisson' ");
         while (query4.next()) {
