@@ -34,10 +34,10 @@ EspaceAbo::EspaceAbo(Template * t, Model * m, int indiceMembreCourant) : QWidget
     }
     membresButtonGroup->button(indiceMembreCourant)->setChecked(true);
     EspaceAboLeftButton * gererCompteButton = new EspaceAboLeftButton("Gerer Compte", model);
-    gererCompteButton->setStyleSheet("background-color: #FFECB3;");
+    gererCompteButton->setStyleSheet("color:white; background-color: grey;");
     leftVerticalLayout->addWidget(gererCompteButton);
-    EspaceAboLeftButton * deconnexionButton = new EspaceAboLeftButton("Déconnexion",model);
-    deconnexionButton->setStyleSheet("background-color: #FFECB3;");
+    EspaceAboLeftButton * deconnexionButton = new EspaceAboLeftButton("Deconnexion",model);
+    deconnexionButton->setStyleSheet("color:white; background-color: #ff9999;");
     leftVerticalLayout->addWidget(deconnexionButton);
 
     QVBoxLayout * platsFavorisWithLabelLayout = new QVBoxLayout();
