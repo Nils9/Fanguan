@@ -26,7 +26,7 @@ Model::Model(){
     //Elaboration de la carte
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QCoreApplication::applicationDirPath().append("/bdd/fanguan_bdd.sqlite"));
+    db.setDatabaseName(QCoreApplication::applicationDirPath().append("/fanguan_bdd.sqlite"));
 
     bool ok = db.open();
 
