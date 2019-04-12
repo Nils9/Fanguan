@@ -10,6 +10,8 @@
 #include <QPushButton>
 #include "model.h"
 
+/*Cette classe est le widget qui dans lequel sont affichees les differentes rubriques de la carte en son centre.
+Il affiche en haut des boutons permettant de naviguer entre les differentes widgets*/
 class Template : public QWidget
 {
     Q_OBJECT
@@ -36,14 +38,21 @@ public slots:
     void displayRecherche();
     void displaySelection();
     void displayCommande();
-    void appelServeur();
-    void leServeurEstArrive();
     void displayGererCompte();
-    void retourCommande();
     void displayDetail(Plat* p);
 
+    /*Slot simulant l'appel et l'arrivee d'un serveur*/
+    void appelServeur();
+    void leServeurEstArrive();
+
+    void retourCommande();
+
+
 private :
+    /*Widget precedemment affiche au centre*/
     QWidget * previousWidget = nullptr;
+
+    /*Widget actuellement affiche au centre*/
     QWidget * centralWidget = nullptr;
     QHBoxLayout * centralLayout = new QHBoxLayout() ;
     QVBoxLayout * mainLayout = nullptr;

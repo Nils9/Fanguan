@@ -35,7 +35,7 @@ Selection::Selection(Template *parent, Model * m, std::vector<Plat *> listePlat)
     ligneContentWidget->setStyleSheet("QWidget#toto{background-image: url(:/images/tapis.png)} ");
     ligneLayout->setSpacing(50);
 
-    for(int i = 0; i<listePlat.size();i++){
+    for(unsigned int i = 0; i<listePlat.size();i++){
         Plat * plat = listePlat[i];
         CatalogueItem * item = new CatalogueItem(parent, plat);
         ligneLayout->addWidget(item);

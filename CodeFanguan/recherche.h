@@ -13,6 +13,8 @@
 #include "model.h"
 #include "template.h"
 
+/*Cette classe correspond a la vue de la rubrique recherche de notre carte. A gauche, sont affiches
+des boutons qui permettent de filtrer la recherche, et au centre un objet de la classe Catalogue*/
 class Recherche : public QWidget
 {
     Q_OBJECT
@@ -24,9 +26,8 @@ signals:
 public slots:
 
 private:
-    QWidget * centralWidget = nullptr;
+    QWidget * centralWidget =nullptr;
     QLayout * centralLayout = nullptr;
-    QVBoxLayout * mainLayout = nullptr;
     Model * model = nullptr;
 };
 

@@ -22,6 +22,7 @@ private:
     std::vector<Plat*> carteEntiere = std::vector<Plat*>();
     std::vector<MenuModel*> carteMenus = std::vector<MenuModel*>();
 
+    //Dans le cas non connecte, contient la liste des commandes
     std::vector<CommandeModel*> listeCommandes = std::vector<CommandeModel*>();
 
     //Liste des familles du restaurant
@@ -74,6 +75,7 @@ public:
     QFont getTextFont();
     QFont getPlatFont();
 
+    // Vide les listes des commandes
     void clear();
 
 };

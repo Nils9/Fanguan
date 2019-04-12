@@ -15,6 +15,7 @@
 #include "espaceabo.h"
 #include <QTimer>
 
+
 Template::Template(QWidget *parent, Model *m, Rubriques rub) : QWidget(parent)
 {
     model = m;

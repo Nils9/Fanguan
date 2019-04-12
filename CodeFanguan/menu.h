@@ -17,6 +17,7 @@
 #include "template.h"
 #include <QBoxLayout>
 
+/*Correspond a la vue de la rubrique menu de la carte*/
 class Menu : public QWidget
 {
     Q_OBJECT

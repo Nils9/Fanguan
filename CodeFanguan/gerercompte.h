@@ -15,6 +15,7 @@
 #include <math.h>
 #include "model.h"
 
+/*Correspond a la vue de la gestion de compte*/
 class GererCompte : public QWidget
 {
     Q_OBJECT

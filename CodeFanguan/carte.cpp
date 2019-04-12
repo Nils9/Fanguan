@@ -76,11 +76,8 @@ Carte::Carte(Template * parent, Model * m) : QWidget(parent)
 }
 
 void Carte::displayEntrees() {
-    //std::cout << "## Show entree"  << std::endl;
-    //std::cout << "## Show entree " << std::to_string(model->getEntrees().size()) << std::endl;
     centralWidget->hide();
     centralLayout->removeWidget(centralWidget);
-    //std::cout << "## Show entree " << std::to_string(model->getEntrees().size()) << std::endl;
     setCentralWidget(new Catalogue(nullptr, temp, model->getEntrees()));
     centralLayout->addWidget(centralWidget);
     update();

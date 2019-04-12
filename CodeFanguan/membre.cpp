@@ -61,7 +61,7 @@ void Membre::addCommande(CommandeModel * com) {
 
 float Membre::getSousTotal(){
     sousTotal = 0;
-    for(int i = 0; i < listeCommandes.size(); i++){
+    for(unsigned int i = 0; i < listeCommandes.size(); i++){
         CommandeModel * cm = listeCommandes[i];
         int quantity = cm->getNbUnites();
         sousTotal += cm->getItemPrice()*quantity;

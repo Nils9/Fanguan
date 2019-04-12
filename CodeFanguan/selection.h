@@ -8,6 +8,7 @@
 #include"model.h"
 #include "template.h"
 
+/*Cette classe correspond a la vue du tapis roulant*/
 class Selection : public QWidget
 {
     Q_OBJECT

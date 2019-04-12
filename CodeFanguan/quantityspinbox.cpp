@@ -30,11 +30,9 @@ void QuantitySpinBox::validateQuantity() {
         if (model->getConnected()) {
             membre->addCommande(cm);
             cm->setInfos(infosLineEdit->text());
-            std::cout << membre->getName().toStdString() << "-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
         } else {
             model->addCommande(cm);
             cm->setInfos(infosLineEdit->text());
-            std::cout <<"Not connected-" <<plat->getLabel().toStdString()<< "-" << std::to_string(quantity->value()) << std::endl;
         }
     }
 }

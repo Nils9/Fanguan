@@ -60,8 +60,7 @@ Commande::Commande(Template *p, Model * model) : QWidget(p)
 
     }
 
-    else{
-        std::cout<< "je ne suis pas connecté" << std::endl;
+    else {
         std::vector<CommandeModel*> commande = m->getCommandes();
         int nbOfCommands = commande.size();
         QGridLayout * grid = new QGridLayout();
@@ -163,7 +162,6 @@ void Commande::refresh() {
     }
 
     else{
-        std::cout<< "je ne suis pas connecté" << std::endl;
         std::vector<CommandeModel*> commande = m->getCommandes();
         int nbOfCommands = commande.size();
         QGridLayout * grid = new QGridLayout();

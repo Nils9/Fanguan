@@ -8,6 +8,7 @@
 #include "plat.h"
 #include <QLineEdit>
 
+/*Correspond au spin box permettant d'attribuer l'article commande dans la vue detail*/
 class QuantitySpinBox : public QWidget
 {
     Q_OBJECT
@@ -16,6 +17,8 @@ private:
     Model * model = nullptr;
     QSpinBox * quantity =nullptr;
     Plat * plat = nullptr;
+    /*line edit de la vue detail, contient les requetes particulieres renseignees par
+    l'utilisateur*/
     QLineEdit *infosLineEdit = nullptr;
 
 public:

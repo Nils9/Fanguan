@@ -1,7 +1,6 @@
 #include "catalogueitem.h"
 
 CatalogueItem::CatalogueItem(Template * temp, Plat * p, bool _inMenu) : QToolButton(){
-    //model = new Model();
     plat = p;
     inMenu = _inMenu;
     setToolButtonStyle(Qt::ToolButtonTextUnderIcon);

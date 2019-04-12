@@ -16,6 +16,7 @@
 #include "model.h"
 #include "template.h"
 
+/*Correspond a la vue de l'espace habitue*/
 class EspaceAbo : public QWidget
 {
     Q_OBJECT

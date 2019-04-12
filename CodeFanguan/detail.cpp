@@ -21,7 +21,6 @@ Detail::Detail(Template *parent, Model *m, Plat * plat) : QWidget(parent)
     ingredientList.push_back(QString("Feuille de riz"));
     ingredientList.push_back(QString("poulet"));
     QString itemName = QString("%1 - %2 euros").arg(plat->getLabel()).arg(plat->getPrix());
-    //std::cout << itemName.toStdString() << std::endl;
     QString itemImage = plat->getImageFile();
     QString itemDescription = plat->getDescription();
 

@@ -7,6 +7,7 @@
 #include "plat.h"
 #include "template.h"
 
+/*Scroll area permettant d'afficher une liste de plats*/
 class Catalogue : public QScrollArea
 {
     Q_OBJECT

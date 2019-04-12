@@ -8,6 +8,9 @@
 #include "model.h"
 #include "template.h"
 
+/*Cette classe correspond a une vue qui affiche les boutons qui permettent de naviguer entre les
+differentes categories de la carte ("entree", "plat", "dessert" etc.) a gauche et une zone centrale qui sera remplie
+par une vue Catalogue pour les categories "entree", "plat", "dessert" et "boisson" et une Menu pour la categorie menue*/
 class Carte : public QWidget
 {
     Q_OBJECT
@@ -21,6 +24,7 @@ public:
 signals:
 
 public slots:
+    /*Rafraichit la vue pour afficher la rubrique désirée de la carte*/
     void displayEntrees();
     void displayPlats();
     void displayDesserts();
@@ -28,10 +32,14 @@ public slots:
     void displayBoissons();
 
 private:
+    /*Objet contenant les donnees necessaires a l'application*/
     Model * model = nullptr;
+
+    /*Widget et layout centraux*/
     QWidget * centralWidget = nullptr;
     QLayout * centralLayout = nullptr;
-    QVBoxLayout * mainLayout;
+
+    /*Widget parent*/
     Template * temp;
 };
 

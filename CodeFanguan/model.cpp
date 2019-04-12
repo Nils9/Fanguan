@@ -3,24 +3,24 @@
 
 Model::Model(){
     //Création d'une famille
-    Membre * margot = new Membre("Margot", 1);
-    margot->setProgress(56);
-    margot->addAvantage("Dessert à moitié prix");
-    Membre * arthur = new Membre("Arthur", 2);
-    arthur->setProgress(89);
-    arthur->addAvantage("-10% sur les nems");
-    Membre * julien = new Membre("Julien", 3);
-    julien->setProgress(63);
-    julien->addAvantage("Saqué offert");
-    Membre * nils = new Membre("Nils", 4);
-    nils->setProgress(58);
-    nils->addAvantage("Riz à volonté");
-    Famille * fanguan = new Famille("Fanguan", "password");
-    fanguan->addMembre(margot);
-    fanguan->addMembre(arthur);
-    fanguan->addMembre(julien);
-    fanguan->addMembre(nils);
-    clients.push_back(fanguan);
+    Membre * farida = new Membre("Farida", 1);
+    farida->setProgress(56);
+    farida->addAvantage("Dessert à moitié prix");
+    Membre * samy = new Membre("Samy", 2);
+    samy->setProgress(89);
+    samy->addAvantage("-10% sur les nems");
+    Membre * clara = new Membre("Clara", 3);
+    clara->setProgress(63);
+    clara->addAvantage("Saqué offert");
+    Membre * ines = new Membre("Ines", 4);
+    ines->setProgress(58);
+    ines->addAvantage("Riz à volonté");
+    Famille * safi = new Famille("Safi", "password");
+    safi->addMembre(farida);
+    safi->addMembre(samy);
+    safi->addMembre(clara);
+    safi->addMembre(ines);
+    clients.push_back(safi);
     indiceFamilleCourante = 0;
 
     //Elaboration de la carte
@@ -142,16 +142,16 @@ Model::Model(){
 
 
 
-    //Ajout plats favoris et recommandations à famille Fanguan
+    //Ajout plats favoris et recommandations à famille Safi
     for(unsigned int i = 0; i+3<carteEntiere.size(); i+=4){
-        margot->addFavori(carteEntiere[i]);
-        margot->addRecommendation(carteEntiere[i]);
-        arthur->addFavori(carteEntiere[i+1]);
-        arthur->addRecommendation(carteEntiere[i+1]);
-        julien->addFavori(carteEntiere[i+2]);
-        julien->addRecommendation(carteEntiere[i+2]);
-        nils->addFavori(carteEntiere[i+3]);
-        nils->addRecommendation(carteEntiere[i+3]);
+        farida->addFavori(carteEntiere[i]);
+        farida->addRecommendation(carteEntiere[i]);
+        samy->addFavori(carteEntiere[i+1]);
+        samy->addRecommendation(carteEntiere[i+1]);
+        clara->addFavori(carteEntiere[i+2]);
+        clara->addRecommendation(carteEntiere[i+2]);
+        ines->addFavori(carteEntiere[i+3]);
+        ines->addRecommendation(carteEntiere[i+3]);
     }
 }
 

@@ -2,6 +2,7 @@
 #define COMMANDEMODEL_H
 #include "plat.h"
 
+/*Contient les donnees necessaire d'un item de commande*/
 class CommandeModel
 {
 public:

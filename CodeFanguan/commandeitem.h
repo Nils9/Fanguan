@@ -10,11 +10,15 @@
 #include "commandemodel.h"
 #include "commande.h"
 
+/*Vue correspondant a un item de commande (objet CommandeItem)*/
 class CommandeItem : public QFrame
 {
     Q_OBJECT
 private:
+    /*Objet contenant les donnees necessaires d'un item de commande*/
     CommandeModel * commandeModel;
+
+    /*Label afficahnt le prix*/
     QLabel * priceLabel;
 
 
@@ -63,12 +67,16 @@ public:
     virtual ~CommandeItem() {}
 
 public slots:
+    /*Ce slot est appele lorsque la quantite de l'article commande est modifie par l'utilisateur*/
     void changeUnity(int i){
         float itemPrice = commandeModel->getItemPrice();
         priceLabel->setText(QString("%1 euros").arg(itemPrice*i));
         commandeModel->setNbUnites(i);
         emit unityChanged(i);}
 
+    /*Ce slot est appele lorsque l'utilisateur retire l'objet de sa commande. On passe donc la
+    quantite commandee a 0, en effet la vue Commande n'affiche que les commandes dont la quantite
+    est superieure a zero.*/
     void remove(){
         commandeModel->setNbUnites(0);
         //this->close();
@@ -76,7 +84,10 @@ public slots:
         emit unityChanged(0);}
 
 signals:
+    /*Ce signal est en envoye quand la quantite commandee est modifier*/
     void unityChanged(int);
+
+    /*Ce signal est en envoye quand l'item doit etre enleve de la commande. La vue commande doit etre rafraichit*/
     void removed();
 };
 

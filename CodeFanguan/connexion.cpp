@@ -58,7 +58,7 @@ void Connexion::verifierIdentifiants(){
     QString familleName = familleLineEdit->text();
     QString password = passwordLineEdit->text();
     std::vector<Famille*> clients = model->getClients();
-    int i = 0;
+    unsigned int i = 0;
     while(i<clients.size() && familleName != clients[i]->getName()){
         i+=1;
     }
